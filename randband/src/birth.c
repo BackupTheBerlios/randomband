@@ -1378,86 +1378,86 @@ static const byte player_init[MAX_CLASS][3][2] =
 {
 	{
 		/* Warrior */
-		{ TV_RING, SV_RING_RES_FEAR }, /* Warriors need it! */
+		{ TV_RING, SV_ANY }, /* Warriors need it! */
 		{ TV_SWORD, SV_BROAD_SWORD },
 		{ TV_HARD_ARMOR, SV_CHAIN_MAIL }
 	},
 
 	{
 		/* Mage */
-		{ TV_SORCERY_BOOK, 0 }, /* Hack: for realm1 book */
+		{ TV_SPELL_BOOK, 0 }, /* Hack: for realm1 book */
 		{ TV_SWORD, SV_DAGGER },
-		{ TV_DEATH_BOOK, 0 } /* Hack: for realm2 book */
+		{ TV_SPELL_BOOK, 0 } /* Hack: for realm2 book */
 	},
 
 	{
 		/* Priest */
-		{ TV_SORCERY_BOOK, 0 }, /* Hack: for Life / Death book */
+		{ TV_SPELL_BOOK, 0 }, /* Hack: for Life / Death book */
 		{ TV_HAFTED, SV_MACE },
-		{ TV_DEATH_BOOK, 0 } /* Hack: for realm2 book */
+		{ TV_SPELL_BOOK, 0 } /* Hack: for realm2 book */
 	},
 
 	{
 		/* Rogue */
-		{ TV_SORCERY_BOOK, 0 }, /* Hack: for realm1 book */
+		{ TV_SPELL_BOOK, 0 }, /* Hack: for realm1 book */
 		{ TV_SWORD, SV_DAGGER },
 		{ TV_SOFT_ARMOR, SV_SOFT_LEATHER_ARMOR }
 	},
 
 	{
 		/* Ranger */
-		{ TV_NATURE_BOOK, 0 },
+		{ TV_SPELL_BOOK, 0 },
 		{ TV_SWORD, SV_DAGGER },
-		{ TV_DEATH_BOOK, 0 }		/* Hack: for realm2 book */
+		{ TV_SPELL_BOOK, 0 }		/* Hack: for realm2 book */
 	},
 
 	{
 		/* Paladin */
-		{ TV_SORCERY_BOOK, 0 },
+		{ TV_SPELL_BOOK, 0 },
 		{ TV_SWORD, SV_BROAD_SWORD },
-		{ TV_SCROLL, SV_SCROLL_PROTECTION_FROM_EVIL }
+		{ TV_SCROLL, SV_ANY }
 	},
 
 	{
 		/* Warrior-Mage */
-		{ TV_SORCERY_BOOK, 0 }, /* Hack: for realm1 book */
+		{ TV_SPELL_BOOK, 0 }, /* Hack: for realm1 book */
 		{ TV_SWORD, SV_SHORT_SWORD },
-		{ TV_DEATH_BOOK, 0 } /* Hack: for realm2 book */
+		{ TV_SPELL_BOOK, 0 } /* Hack: for realm2 book */
 	},
 
 	{
 		/* Chaos Warrior */
-		{ TV_SORCERY_BOOK, 0 }, /* Hack: For realm1 book */
+		{ TV_SPELL_BOOK, 0 }, /* Hack: For realm1 book */
 		{ TV_SWORD, SV_BROAD_SWORD },
 		{ TV_HARD_ARMOR, SV_METAL_SCALE_MAIL }
 	},
 
 	{
 		/* Monk */
-		{ TV_SORCERY_BOOK, 0 },
-		{ TV_POTION, SV_POTION_HEALING },
+		{ TV_SPELL_BOOK, 0 },
+		{ TV_POTION, SV_ANY },
 		{ TV_SOFT_ARMOR, SV_SOFT_LEATHER_ARMOR },
 	},
 
 	{
 		/* Mindcrafter */
 		{ TV_SWORD, SV_DAGGER },
-		{ TV_POTION, SV_POTION_RESTORE_MANA },
+		{ TV_POTION, SV_ANY },
 		{ TV_SOFT_ARMOR, SV_SOFT_LEATHER_ARMOR },
 	},
 
 	{
 		/* High Mage */
-		{ TV_SORCERY_BOOK, 0 }, /* Hack: for realm1 book */
+		{ TV_SPELL_BOOK, 0 }, /* Hack: for realm1 book */
 		{ TV_SWORD, SV_DAGGER },
-		{ TV_RING, SV_RING_SUSTAIN_INT}
+		{ TV_RING, SV_ANY}
 	},
 
 	{
 		/* Chi Warrior */
-		{ TV_SORCERY_BOOK, 0 }, /* Hack: for realm1 book */
+		{ TV_SPELL_BOOK, 0 }, /* Hack: for realm1 book */
 		{ TV_SWORD, SV_SHORT_SWORD },
-		{ TV_RING, SV_RING_PROTECTION }
+		{ TV_RING, SV_ANY }
 	},
 };
 
@@ -1494,7 +1494,7 @@ static void player_outfit(void)
 		{
 			/* Scrolls of satisfy hunger */
 			object_prep(q_ptr,
-			            lookup_kind(TV_SCROLL, SV_SCROLL_SATISFY_HUNGER));
+			            lookup_kind(TV_SCROLL, SV_ANY));
 			q_ptr->number = (byte)rand_range(2, 5);
 			object_aware(q_ptr);
 			object_known(q_ptr);
@@ -1524,7 +1524,7 @@ static void player_outfit(void)
 	if (p_ptr->prace == RACE_VAMPIRE)
 	{
 		/* Hack -- Give the player scrolls of DARKNESS! */
-		object_prep(q_ptr, lookup_kind(TV_SCROLL, SV_SCROLL_DARKNESS));
+		object_prep(q_ptr, lookup_kind(TV_SCROLL, SV_ANY));
 
 		q_ptr->number = (byte)rand_range(2, 5);
 
@@ -1580,7 +1580,7 @@ static void player_outfit(void)
 	else if (p_ptr->pclass == CLASS_HIGH_MAGE)
 	{
 		/* Hack -- Give the player some arrows */
-		object_prep(q_ptr, lookup_kind(TV_WAND, SV_WAND_MAGIC_MISSILE));
+		object_prep(q_ptr, lookup_kind(TV_WAND, SV_ANY));
 		q_ptr->number = 1;
 		q_ptr->pval = (byte)rand_range(25, 30);
 
@@ -1601,14 +1601,14 @@ static void player_outfit(void)
 		sv = player_init[p_ptr->pclass][i][1];
 
 		/* Hack to initialize spellbooks */
-		if (tv == TV_SORCERY_BOOK) tv = TV_LIFE_BOOK + p_ptr->realm1 - 1;
-		else if (tv == TV_DEATH_BOOK) tv = TV_LIFE_BOOK + p_ptr->realm2 - 1;
+		if (tv == TV_SPELL_BOOK) tv = TV_SPELL_BOOK + p_ptr->realm1 - 1;
+		else if (tv == TV_SPELL_BOOK) tv = TV_SPELL_BOOK + p_ptr->realm2 - 1;
 
-		else if (tv == TV_RING && sv == SV_RING_RES_FEAR &&
+		else if (tv == TV_RING && sv == SV_ANY &&
 		    p_ptr->prace == RACE_BARBARIAN)
 		{
 			/* Barbarians do not need a ring of resist fear */
-			sv = SV_RING_SUSTAIN_STR;
+			sv = SV_ANY;
 		}
 
 		/* Get local object */
@@ -1623,7 +1623,7 @@ static void player_outfit(void)
 		if (tv == TV_SWORD && p_ptr->pclass == CLASS_ROGUE &&
 			p_ptr->realm1 == REALM_DEATH)
 		{
-			add_ego_flags(q_ptr, EGO_BRAND_POIS);
+			add_ego_flags(q_ptr, 34);
 		}
 
 		/* These objects are "storebought" */

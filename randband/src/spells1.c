@@ -605,7 +605,7 @@ static bool project_o(int who, int r, int y, int x, int dam, int typ)
 	bool obvious = FALSE;
 	bool known = player_can_see_bold(y, x);
 
-	u32b f1, f2, f3;
+	u32b f1, f2, f3, f4, f5, f6;
 
 	char o_name[80];
 
@@ -639,7 +639,8 @@ static bool project_o(int who, int r, int y, int x, int dam, int typ)
 		next_o_idx = o_ptr->next_o_idx;
 
 		/* Extract the flags */
-		object_flags(o_ptr, &f1, &f2, &f3);
+		object_flags(o_ptr, &f1, &f2, &f3, &f4, &f5, &f6);
+   /*****   NEEDS   REWORKING   *****/
 
 		/* Get the "plural"-ness */
 		if (o_ptr->number > 1) plural = TRUE;

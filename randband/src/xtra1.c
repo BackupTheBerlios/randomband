@@ -1587,7 +1587,7 @@ static void calc_spells(void)
 	/* Save the current number of spells to learn */
 	s16b old_spells = p_ptr->new_spells;
 
-	cptr p = ((mp_ptr->spell_book == TV_SORCERY_BOOK) ? "spell" : "prayer");
+	cptr p = ((mp_ptr->spell_book == TV_SPELL_BOOK) ? "spell" : "prayer");
 
 
 	/* Hack -- must be literate */
@@ -1869,9 +1869,9 @@ static void calc_mana(void)
 
 
 	/* Only mages are affected */
-	if (mp_ptr->spell_book == TV_SORCERY_BOOK)
+	if (mp_ptr->spell_book == TV_SPELL_BOOK)
 	{
-		u32b f1, f2, f3;
+		u32b f1, f2, f3, f4, f5, f6;
 
 		/* Assume player is not encumbered by gloves */
 		p_ptr->cumber_glove = FALSE;
@@ -1880,7 +1880,7 @@ static void calc_mana(void)
 		o_ptr = &inventory[INVEN_HANDS];
 
 		/* Examine the gloves */
-		object_flags(o_ptr, &f1, &f2, &f3);
+		object_flags(o_ptr, &f1, &f2, &f3, &f4, &f5, &f6);
 
 		/* Normal gloves hurt mage-type spells */
 		if (o_ptr->k_idx &&
@@ -2081,7 +2081,7 @@ static void calc_torch(void)
 {
 	int i;
 	object_type *o_ptr;
-	u32b f1, f2, f3;
+	u32b f1, f2, f3, f4, f5, f6;
 
 	s16b old_lite = p_ptr->cur_lite;
 
@@ -2133,7 +2133,7 @@ static void calc_torch(void)
 			if (!o_ptr->k_idx) continue;
 
 			/* Extract the flags */
-			object_flags(o_ptr, &f1, &f2, &f3);
+			object_flags(o_ptr, &f1, &f2, &f3, &f4, &f5, &f6);
 
 			/* does this item glow? */
 			if (f3 & TR3_LITE) p_ptr->cur_lite++;
@@ -2403,7 +2403,7 @@ static void calc_bonuses(void)
 	int             extra_blows;
 	int             extra_shots;
 	object_type     *o_ptr;
-	u32b            f1, f2, f3;
+	u32b            f1, f2, f3, f4, f5, f6;
 
 	bool old_heavy_wield = p_ptr->heavy_wield;
 	bool old_heavy_shoot = p_ptr->heavy_shoot;
@@ -2817,7 +2817,7 @@ static void calc_bonuses(void)
 		if (!o_ptr->k_idx) continue;
 
 		/* Extract the item flags */
-		object_flags(o_ptr, &f1, &f2, &f3);
+		object_flags(o_ptr, &f1, &f2, &f3, &f4, &f5, &f6);
 
 		/* Affect stats */
 		if (f1 & (TR1_STR)) p_ptr->stat_add[A_STR] += o_ptr->pval;

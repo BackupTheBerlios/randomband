@@ -1399,7 +1399,7 @@ static void display_player_abilities(void)
 	char		desc[20];
 	int         muta_att = 0;
 	long		avgdam;
-	u32b            f1, f2, f3;
+	u32b            f1, f2, f3, f4, f5, f6;
 	int		energy_fire;
 	int		shots, shot_frac;
 
@@ -1529,7 +1529,7 @@ static void display_player_abilities(void)
 	if (o_ptr->k_idx)
 	{
 		/* Is there a vorpal effect we know about? */
-		object_flags(o_ptr, &f1, &f2, &f3);
+		object_flags(o_ptr, &f1, &f2, &f3, &f4, &f5, &f6);
 		if (object_known_p(o_ptr) && (f1 & TR1_VORPAL))
 		{
 			/* vorpal flag only */
@@ -1564,10 +1564,12 @@ static void display_player_abilities(void)
 /*
  * Obtain the "flags" for the player as if he was an item
  */
-static void player_flags(u32b *f1, u32b *f2, u32b *f3)
+static void player_flags(u32b *f1, u32b *f2, u32b *f3, u32b *f4, u32b *f5, u32b *f6)
 {
+   /*****   NEEDS   REWORKING   *****/
+
 	/* Clear */
-	(*f1) = (*f2) = (*f3) = 0L;
+	(*f1) = (*f2) = (*f3) = (*f4) = (*f5) = (*f6) = 0L;
 
 	/* Classes */
 	switch (p_ptr->pclass)
@@ -1898,7 +1900,7 @@ static void display_player_flag_aux(int row, int col,
 			char *header, int n, u32b flag1, u32b flag2)
 {
 	int     i;
-	u32b    f[3];
+	u32b    f[6];
    int     TermColor;
 
 
@@ -1919,7 +1921,7 @@ static void display_player_flag_aux(int row, int col,
 		o_ptr = &inventory[i];
 
 		/* Known flags */
-		object_flags_known(o_ptr, &f[0], &f[1], &f[2]);
+		object_flags_known(o_ptr, &f[0], &f[1], &f[2], &f[3], &f[4], &f[5]);
 
       TermColor = 2;
 
@@ -1943,7 +1945,7 @@ static void display_player_flag_aux(int row, int col,
 	}
 
 	/* Player flags */
-	player_flags(&f[0], &f[1], &f[2]);
+	player_flags(&f[0], &f[1], &f[2], &f[3], &f[4], &f[5]);
 
 	/* Default */
 	c_put_str(2, ".", row, col);
@@ -2084,7 +2086,7 @@ static void display_player_stat_info(void)
    int TermColor;
 
 	object_type *o_ptr;
-	u32b f1, f2, f3;
+	u32b f1, f2, f3, f4, f5, f6;
 	s16b k_idx;
 
 	byte a;
@@ -2176,7 +2178,9 @@ static void display_player_stat_info(void)
 		k_idx = o_ptr->k_idx;
 
 		/* Acquire "known" flags */
-		object_flags_known(o_ptr, &f1, &f2, &f3);
+		object_flags_known(o_ptr, &f1, &f2, &f3, &f4, &f5, &f6);
+
+   /*****   NEEDS   REWORKING   *****/
 
       TermColor = 2;
 
@@ -2244,7 +2248,7 @@ static void display_player_stat_info(void)
 	}
 
 	/* Player flags */
-	player_flags(&f1, &f2, &f3);
+	player_flags(&f1, &f2, &f3, &f4, &f5, &f6);
 
 	/* Check stats */
 	for (stat = 0; stat < A_MAX; stat++)
@@ -4159,6 +4163,9 @@ static void show_info(void)
 		o_ptr->kn_flags1 = o_ptr->flags1;
 		o_ptr->kn_flags2 = o_ptr->flags2;
 		o_ptr->kn_flags3 = o_ptr->flags3;
+		o_ptr->kn_flags4 = o_ptr->flags4;
+		o_ptr->kn_flags5 = o_ptr->flags5;
+		o_ptr->kn_flags6 = o_ptr->flags6;
 	}
 
 	for (i = 1; i < max_towns; i++)
@@ -4186,6 +4193,9 @@ static void show_info(void)
 					o_ptr->kn_flags1 = o_ptr->flags1;
 					o_ptr->kn_flags2 = o_ptr->flags2;
 					o_ptr->kn_flags3 = o_ptr->flags3;
+					o_ptr->kn_flags4 = o_ptr->flags4;
+					o_ptr->kn_flags5 = o_ptr->flags5;
+					o_ptr->kn_flags6 = o_ptr->flags6;
 				}
 			}
 		}

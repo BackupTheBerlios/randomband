@@ -555,6 +555,9 @@ static void wr_item(const object_type *o_ptr)
 	wr_u32b(o_ptr->flags1);
 	wr_u32b(o_ptr->flags2);
 	wr_u32b(o_ptr->flags3);
+	wr_u32b(o_ptr->flags4);
+	wr_u32b(o_ptr->flags5);
+	wr_u32b(o_ptr->flags6);
 
 	/* Held by monster index */
 	wr_s16b(o_ptr->held_m_idx);
@@ -588,11 +591,14 @@ static void wr_item(const object_type *o_ptr)
 	/* The new flags */
 	wr_s32b(o_ptr->cost);
 
-	wr_byte(o_ptr->activate);
+	wr_u16b(o_ptr->activate);
 
 	wr_u32b(o_ptr->kn_flags1);
 	wr_u32b(o_ptr->kn_flags2);
 	wr_u32b(o_ptr->kn_flags3);
+	wr_u32b(o_ptr->kn_flags4);
+	wr_u32b(o_ptr->kn_flags5);
+	wr_u32b(o_ptr->kn_flags6);
 
    wr_byte(o_ptr->OCraftLevel);
    wr_byte(o_ptr->CCraftLevel);

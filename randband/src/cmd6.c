@@ -90,6 +90,7 @@ static void do_cmd_eat_food_aux(int item)
 		/* Analyze the food */
 		switch (o_ptr->sval)
 		{
+         /*
 			case SV_FOOD_POISON:
 			{
 				if (!(p_ptr->resist_pois || p_ptr->oppose_pois))
@@ -262,6 +263,7 @@ static void do_cmd_eat_food_aux(int item)
 				if (do_res_stat(A_CHR)) ident = TRUE;
 				break;
 			}
+         */
 
 			case SV_FOOD_RATION:
 			case SV_FOOD_BISCUIT:
@@ -435,6 +437,7 @@ static void do_cmd_quaff_potion_aux(int item)
 	/* Analyze the potion */
 	switch (o_ptr->sval)
 	{
+      /*
 		case SV_POTION_WATER:
 		case SV_POTION_APPLE_JUICE:
 		case SV_POTION_SLIME_MOLD:
@@ -487,7 +490,7 @@ static void do_cmd_quaff_potion_aux(int item)
 			break;
 		}
 
-		case SV_POTION_CONFUSION: /* Booze */
+		case SV_POTION_CONFUSION:
 		{
 			chg_virtue(V_HARMONY, -1);
 
@@ -532,13 +535,13 @@ static void do_cmd_quaff_potion_aux(int item)
 				{
 					msg_print("A horrible vision enters your mind.");
 
-					/* Pick a nightmare */
+					 Pick a nightmare
 					get_mon_num_prep(get_nightmare, NULL);
 
-					/* Have some nightmares */
+					 Have some nightmares
 					have_nightmare(get_mon_num(MAX_DEPTH));
 
-					/* Remove the monster restriction */
+					 Remove the monster restriction
 					get_mon_num_prep(NULL, NULL);
 				}
 				if (set_paralyzed(p_ptr->paralyzed + rand_range(4, 8)))
@@ -787,7 +790,7 @@ static void do_cmd_quaff_potion_aux(int item)
 			(void)do_res_stat(A_INT);
 			(void)do_res_stat(A_CHR);
 
-			/* Recalculate max. hitpoints */
+			 Recalculate max. hitpoints
 			update_stuff();
 
 			(void)hp_player(5000);
@@ -997,6 +1000,7 @@ static void do_cmd_quaff_potion_aux(int item)
 			ident = TRUE;
 			break;
 		}
+      */
 	}
 
 	if (p_ptr->prace == RACE_SKELETON)
@@ -1127,6 +1131,7 @@ static void do_cmd_read_scroll_aux(int item)
 	/* Analyze the scroll */
 	switch (o_ptr->sval)
 	{
+      /*
 		case SV_SCROLL_DARKNESS:
 		{
 			if (!(p_ptr->resist_blind) && !(p_ptr->resist_dark))
@@ -1449,11 +1454,11 @@ static void do_cmd_read_scroll_aux(int item)
 			break;
 		}
 
-		/* New Zangband scrolls */
+		 New Zangband scrolls
 		case SV_SCROLL_FIRE:
 		{
 			(void)fire_ball(GF_FIRE, 0, 300, 4);
-			/* Note: "Double" damage since it is centered on the player ... */
+			 Note: "Double" damage since it is centered on the player ...
 			if (!(p_ptr->oppose_fire || p_ptr->resist_fire || p_ptr->immune_fire))
 				take_hit(rand_range(50, 100), "a Scroll of Fire", TRUE);
 			ident = TRUE;
@@ -1501,7 +1506,7 @@ static void do_cmd_read_scroll_aux(int item)
 					break;
 			}
 
-			/* An error occured */
+			 An error occured
 			if (err) strcpy(Rumor, "Some rumors are wrong.");
 
 			msg_print("There is message on the scroll. It says:");
@@ -1519,6 +1524,7 @@ static void do_cmd_read_scroll_aux(int item)
 			ident = TRUE;
 			break;
 		}
+      */
 	}
 
 
@@ -1702,6 +1708,7 @@ static void do_cmd_use_staff_aux(int item)
 	/* Analyze the staff */
 	switch (o_ptr->sval)
 	{
+      /*
 		case SV_STAFF_DARKNESS:
 		{
 			if (!(p_ptr->resist_blind) && !(p_ptr->resist_dark))
@@ -1784,7 +1791,7 @@ static void do_cmd_use_staff_aux(int item)
 				{
 					scatter(&y, &x, py, px, 4);
 
-					/* paranoia */
+					 paranoia
 					if (!in_bounds2(y, x)) continue;
 
 					c_ptr = area(y, x);
@@ -1976,6 +1983,7 @@ static void do_cmd_use_staff_aux(int item)
 
 			break;
 		}
+      */
 	}
 
 	if (!(object_aware_p(o_ptr)))
@@ -2174,16 +2182,19 @@ static void do_cmd_aim_wand_aux(int item)
 	sval = o_ptr->sval;
 
 	/* XXX Hack -- Wand of wonder can do anything before it */
+   /*
 	if (sval == SV_WAND_WONDER)
 	{
 		sval = randint0(SV_WAND_WONDER);
 		if (sval < SV_WAND_TELEPORT_AWAY)
 			chg_virtue(V_CHANCE, 1);
 	}
+   */
 
 	/* Analyze the wand */
 	switch (sval)
 	{
+      /*
 		case SV_WAND_HEAL_MONSTER:
 		{
 			if (heal_monster(dir)) ident = TRUE;
@@ -2399,6 +2410,7 @@ static void do_cmd_aim_wand_aux(int item)
 			ident = TRUE;
 			break;
 		}
+      */
 	}
 
 
@@ -2504,7 +2516,7 @@ static void do_cmd_zap_rod_aux(int item)
 
 
 	/* Get a direction (unless KNOWN not to need it) */
-	if (((o_ptr->sval >= SV_ROD_MIN_DIRECTION) && (o_ptr->sval != SV_ROD_HAVOC)) ||
+	if (/*(*/(o_ptr->sval >= SV_ROD_MIN_DIRECTION) /*&& (o_ptr->sval != SV_ROD_HAVOC))*/ ||
 	     !object_aware_p(o_ptr))
 	{
 		/* Get a direction, allow cancel */
@@ -2571,6 +2583,7 @@ static void do_cmd_zap_rod_aux(int item)
 	/* Analyze the rod */
 	switch (o_ptr->sval)
 	{
+      /*
 		case SV_ROD_DETECT_TRAP:
 		{
 			if (detect_traps()) ident = TRUE;
@@ -2772,6 +2785,7 @@ static void do_cmd_zap_rod_aux(int item)
 			ident = TRUE;
 			break;
 		}
+      */
 	}
 
 
@@ -2829,7 +2843,7 @@ void do_cmd_zap_rod(void)
  */
 static bool item_tester_hook_activate(const object_type *o_ptr)
 {
-	u32b f1, f2, f3;
+	u32b f1, f2, f3, f4, f5, f6;
 
 	/* Check statues */
 	if (o_ptr->tval == TV_STATUE) return (TRUE);
@@ -2841,7 +2855,7 @@ static bool item_tester_hook_activate(const object_type *o_ptr)
 	if (!object_known_p(o_ptr)) return (FALSE);
 
 	/* Extract the flags */
-	object_flags(o_ptr, &f1, &f2, &f3);
+	object_flags(o_ptr, &f1, &f2, &f3, &f4, &f5, &f6);
 
 	/* Check activation flag */
 	if (f3 & (TR3_ACTIVATE)) return (TRUE);
@@ -2926,7 +2940,7 @@ static void do_cmd_activate_aux(int item)
 	int	dir, lev, chance;
 	object_type *o_ptr;
 
-	u32b f1, f2, f3;
+	u32b f1, f2, f3, f4, f5, f6;
 
    int Hi, Low, Size, Boost;
 
@@ -2945,7 +2959,9 @@ static void do_cmd_activate_aux(int item)
 	}
 
 	/* Extract the flags */
-	object_flags(o_ptr, &f1, &f2, &f3);
+	object_flags(o_ptr, &f1, &f2, &f3, &f4, &f5, &f6);
+
+   /*****   NEEDS   REWORKING   *****/
 
 	/* Take a turn */
 	p_ptr->energy_use = MIN(75, 200 - 5 * p_ptr->skill_dev / 8);
@@ -3014,6 +3030,7 @@ static void do_cmd_activate_aux(int item)
 		/* Branch on the sub-type */
 		switch (o_ptr->sval)
 		{
+         /*
 			case SV_DRAGON_BLUE:
 			{
 				msg_print("You breathe lightning.");
@@ -3141,6 +3158,7 @@ static void do_cmd_activate_aux(int item)
 				o_ptr->timeout = (s16b)rand_range(30, 60);
 				break;
 			}
+         */
 		}
 
 		/* Window stuff */
@@ -3157,6 +3175,7 @@ static void do_cmd_activate_aux(int item)
 
 		switch (o_ptr->sval)
 		{
+         /*
 			case SV_RING_ACID:
 			{
 				(void)fire_ball(GF_ACID, dir, 100, 2);
@@ -3180,6 +3199,7 @@ static void do_cmd_activate_aux(int item)
 				o_ptr->timeout = (s16b)rand_range(25, 50);
 				break;
 			}
+         */
 		}
 
 		/* Window stuff */
@@ -3220,6 +3240,7 @@ static void do_cmd_activate_aux(int item)
 
 		switch (o_ptr->sval)
 		{
+         /*
 			case SV_YELLOW_GLOWSTONE:
 			{
 				msg_print("The glowstone changes to a ball of light!");
@@ -3848,6 +3869,7 @@ static void do_cmd_activate_aux(int item)
             }
 				break;
 			}
+         */
 		}
 
 		/* Window stuff */
@@ -3886,7 +3908,7 @@ void do_cmd_activate(void)
  */
 static bool item_tester_hook_use(const object_type *o_ptr)
 {
-	u32b f1, f2, f3;
+	u32b f1, f2, f3, f4, f5, f6;
 
 	/* Ammo */
 	if (o_ptr->tval == p_ptr->ammo_tval)
@@ -3919,7 +3941,7 @@ static bool item_tester_hook_use(const object_type *o_ptr)
 				if (&inventory[i] == o_ptr)
 				{
 					/* Extract the flags */
-					object_flags(o_ptr, &f1, &f2, &f3);
+					object_flags(o_ptr, &f1, &f2, &f3, &f4, &f5, &f6);
 
 					/* Check activation flag */
 					if (f3 & TR3_ACTIVATE) return (TRUE);

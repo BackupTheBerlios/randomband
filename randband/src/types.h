@@ -158,6 +158,7 @@ struct object_kind
 	byte sval;			/* Object sub type */
 
 	s16b pval;			/* Object extra info */
+   s16b pval2;
 
 	s16b to_h;			/* Bonus to hit */
 	s16b to_d;			/* Bonus to damage */
@@ -174,13 +175,16 @@ struct object_kind
 	u32b flags1;		/* Flags, set 1 */
 	u32b flags2;		/* Flags, set 2 */
 	u32b flags3;		/* Flags, set 3 */
+	u32b flags4;		/* Flags, set 1 */
+	u32b flags5;		/* Flags, set 2 */
+	u32b flags6;		/* Flags, set 3 */
 
 	byte locale[4];		/* Allocation level(s) */
 	byte chance[4];		/* Allocation chance(s) */
 
 	byte level;			/* Level */
 
-	byte extra;			/*  Activation Index ** MAY NEED u16b **  */
+	u16b extra;			/*  Activation Index ** MAY NEED u16b **  */
 
 	byte d_attr;		/* Default object attribute */
 	char d_char;		/* Default object character */
@@ -236,6 +240,7 @@ struct artifact_type
 	byte sval;			/* Artifact sub type */
 
 	s16b pval;			/* Artifact extra info */
+   s16b pval2;
 
 	s16b to_h;			/* Bonus to hit */
 	s16b to_d;			/* Bonus to damage */
@@ -252,6 +257,9 @@ struct artifact_type
 	u32b flags1;		/* Artifact Flags, set 1 */
 	u32b flags2;		/* Artifact Flags, set 2 */
 	u32b flags3;		/* Artifact Flags, set 3 */
+	u32b flags4;		/* Artifact Flags, set 1 */
+	u32b flags5;		/* Artifact Flags, set 2 */
+	u32b flags6;		/* Artifact Flags, set 3 */
 
 	byte level;			/* Artifact level */
 	byte rarity;		/* Artifact rarity */
@@ -283,15 +291,18 @@ struct ego_item_type
 	byte max_to_a;		/* Maximum to-ac bonus */
 
 	byte max_pval;		/* Maximum pval */
-/* byte max_pval2;    *  Maximum Secondary pval  */
+   byte max_pval2;   /*  Maximum Secondary pval  */
 
 	s32b cost;			/* Ego-item "cost" */
 
 	u32b flags1;		/* Ego-Item Flags, set 1 */
 	u32b flags2;		/* Ego-Item Flags, set 2 */
 	u32b flags3;		/* Ego-Item Flags, set 3 */
+	u32b flags4;		/* Ego-Item Flags, set 1 */
+	u32b flags5;		/* Ego-Item Flags, set 2 */
+	u32b flags6;		/* Ego-Item Flags, set 3 */
 
-/* byte activation;   *  Activation Effect  */
+   u16b activation;  /*  Activation Effect  */
 };
 
 
@@ -741,7 +752,7 @@ struct object_type
 	byte sval;			/* Item sub-type (from kind) */
 
 	s16b pval;			/* Item extra-parameter */
-/* s16b pval2;        *  Secondary pval  */
+   s16b pval2;       /*  Secondary pval  */
 
 	byte discount;		/* Discount (if any) */
 
@@ -769,10 +780,16 @@ struct object_type
 	u32b flags1;        /* Flags, set 1 */
 	u32b flags2;        /* Flags, set 2 */
 	u32b flags3;        /* Flags, set 3 */
+	u32b flags4;        /* Flags, set 1 */
+	u32b flags5;        /* Flags, set 2 */
+	u32b flags6;        /* Flags, set 3 */
 
 	u32b kn_flags1;     /* Known Flags, set 1 */
 	u32b kn_flags2;     /* Known Flags, set 2 */
 	u32b kn_flags3;     /* Known Flags, set 3 */
+	u32b kn_flags4;     /* Known Flags, set 1 */
+	u32b kn_flags5;     /* Known Flags, set 2 */
+	u32b kn_flags6;     /* Known Flags, set 3 */
 
 	s16b next_o_idx;	/* Next object in stack (if any) */
 
@@ -782,7 +799,7 @@ struct object_type
 
 	byte feeling;       /* Game generated inscription number (eg, pseudo-id) */
 
-	byte activate;		/* Activation type */
+	u16b activate;		/* Activation type */
 
    byte OCraftLevel;  /* Durability Marker */
    byte CCraftLevel; /* Current Durability Marker */

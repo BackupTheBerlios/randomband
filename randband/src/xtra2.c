@@ -3523,7 +3523,7 @@ void gain_level_reward(int chosen_reward)
 
 			(void) random_resistance(q_ptr, rand_range(5, 38), 0);
 
-			add_ego_flags(q_ptr, EGO_CHAOTIC);
+			add_ego_flags(q_ptr, 35);
 
 			/* Drop it in the dungeon */
 			(void)drop_near(q_ptr, -1, py, px);

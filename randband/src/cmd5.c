@@ -35,7 +35,7 @@ static int get_spell(int *sn, cptr prompt, int sval, bool known, bool realm_2)
 	const magic_type  *s_ptr;
 	char        out_val[160];
 	int         use_realm = (realm_2 ? p_ptr->realm2 : p_ptr->realm1);
-	cptr        p = ((mp_ptr->spell_book == TV_LIFE_BOOK) ? "prayer" : "spell");
+	cptr        p = ((mp_ptr->spell_book == TV_SPELL_BOOK) ? "prayer" : "spell");
 
 	/* Get the spell, if available */
 	if (repeat_pull(sn))
@@ -337,7 +337,7 @@ void do_cmd_study(void)
 	/* Spells of realm2 will have an increment of +32 */
 	int	spell = -1;
 
-	cptr p = ((mp_ptr->spell_book == TV_SORCERY_BOOK) ? "spell" : "prayer");
+	cptr p = ((mp_ptr->spell_book == TV_SPELL_BOOK) ? "spell" : "prayer");
 
 	object_type *o_ptr;
 
@@ -404,7 +404,7 @@ void do_cmd_study(void)
 	handle_stuff();
 
 	/* Mage -- Learn a selected spell */
-	if (mp_ptr->spell_book != TV_LIFE_BOOK)
+	if (mp_ptr->spell_book != TV_SPELL_BOOK)
 	{
 		/* Ask for a spell, allow cancel */
 		if (!get_spell(&spell, "study", sval, FALSE,
@@ -482,7 +482,7 @@ void do_cmd_study(void)
 		p, spell_names
 		[(increment ? p_ptr->realm2 - 1 : p_ptr->realm1 - 1)][spell % 32]);
 
-	if (mp_ptr->spell_book == TV_LIFE_BOOK)
+	if (mp_ptr->spell_book == TV_SPELL_BOOK)
 		chg_virtue(V_FAITH, 1);
 	else
 		chg_virtue(V_KNOWLEDGE, 1);
@@ -3007,7 +3007,7 @@ void do_cmd_cast(void)
 	int	use_realm;
 	bool cast;
 
-	const cptr prayer = ((mp_ptr->spell_book == TV_LIFE_BOOK) ? "prayer" : "spell");
+	const cptr prayer = ((mp_ptr->spell_book == TV_SPELL_BOOK) ? "prayer" : "spell");
 
 	object_type	*o_ptr;
 
@@ -3076,7 +3076,7 @@ void do_cmd_cast(void)
 	else realm = p_ptr->realm1;
 
 	/* Ask for a spell */
-	if (!get_spell(&spell, ((mp_ptr->spell_book == TV_LIFE_BOOK) ? "recite" : "cast"),
+	if (!get_spell(&spell, ((mp_ptr->spell_book == TV_SPELL_BOOK) ? "recite" : "cast"),
 	               sval, TRUE, (bool)(increment ? TRUE : FALSE)))
 	{
 		if (spell == -2)
@@ -3096,7 +3096,7 @@ void do_cmd_cast(void)
 	{
 		/* Warning */
 		msg_format("You do not have enough mana to %s this %s.",
-			((mp_ptr->spell_book == TV_LIFE_BOOK) ? "recite" : "cast"),
+			((mp_ptr->spell_book == TV_SPELL_BOOK) ? "recite" : "cast"),
 			prayer);
 
 		/* Verify */
@@ -3115,7 +3115,7 @@ void do_cmd_cast(void)
 		msg_format("You failed to get the %s off!", prayer);
 		sound(SOUND_FAIL);
 
-		if ((randint1(100) < chance) && (mp_ptr->spell_book == TV_LIFE_BOOK))
+		if ((randint1(100) < chance) && (mp_ptr->spell_book == TV_SPELL_BOOK))
 			chg_virtue(V_FAITH, -1);
 		else if (randint1(100) < chance)
 			chg_virtue(V_KNOWLEDGE, -1);
@@ -3125,12 +3125,12 @@ void do_cmd_cast(void)
 		{
 			(void)cast_trump_spell(spell, FALSE);
 		}
-		else if ((o_ptr->tval == TV_CHAOS_BOOK) && (randint1(100) < spell))
+		else if ((o_ptr->tval == TV_SPELL_BOOK) && (randint1(100) < spell))
 		{
 			msg_print("You produce a chaotic effect!");
 			wild_magic(spell);
 		}
-		else if ((o_ptr->tval == TV_DEATH_BOOK) && (randint1(100) < spell))
+		else if ((o_ptr->tval == TV_SPELL_BOOK) && (randint1(100) < spell))
 		{
 			if ((sval == 3) && one_in_(2))
 			{
@@ -3171,7 +3171,7 @@ void do_cmd_cast(void)
 	{
 		if ((randint1(100) < chance) && (chance < 50))
 		{
-			if (mp_ptr->spell_book == TV_LIFE_BOOK)
+			if (mp_ptr->spell_book == TV_SPELL_BOOK)
 				chg_virtue(V_FAITH, 1);
 			else
 				chg_virtue(V_KNOWLEDGE, 1);
@@ -3233,7 +3233,7 @@ void do_cmd_cast(void)
 			/* Gain experience */
 			gain_exp(e * s_ptr->slevel);
 
-			if (mp_ptr->spell_book == TV_LIFE_BOOK)
+			if (mp_ptr->spell_book == TV_SPELL_BOOK)
 				chg_virtue(V_FAITH, 1);
 			else
 				chg_virtue(V_KNOWLEDGE, 1);
@@ -3265,7 +3265,7 @@ void do_cmd_cast(void)
 		/* Hack -- Bypass free action */
 		(void)set_paralyzed(p_ptr->paralyzed + randint1(5 * oops + 1));
 
-		if (mp_ptr->spell_book == TV_LIFE_BOOK)
+		if (mp_ptr->spell_book == TV_SPELL_BOOK)
 			chg_virtue(V_FAITH, -10);
 		else
 			chg_virtue(V_KNOWLEDGE, -10);

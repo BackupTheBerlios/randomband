@@ -609,8 +609,8 @@ extern void object_desc_store(char *buf, const object_type *o_ptr, int pref, int
 /* object2.c */
 
 extern void reset_visuals(void);
-extern void object_flags(const object_type *o_ptr, u32b *f1, u32b *f2, u32b *f3);
-extern void object_flags_known(const object_type *o_ptr, u32b *f1, u32b *f2, u32b *f3);
+extern void object_flags(const object_type *o_ptr, u32b *f1, u32b *f2, u32b *f3, u32b *f4, u32b *f5, u32b *f6);
+extern void object_flags_known(const object_type *o_ptr, u32b *f1, u32b *f2, u32b *f3, u32b *f4, u32b *f5, u32b *f6);
 extern bool identify_fully_aux(const object_type *o_ptr);
 extern char index_to_label(int i);
 extern s16b label_to_inven(int c);
@@ -682,7 +682,7 @@ extern void object_wipe(object_type *o_ptr);
 extern void set_durability(object_type *d_ptr, int dval); /* NEW */
 extern void object_prep(object_type *o_ptr, int k_idx);
 extern void object_copy(object_type *o_ptr, const object_type *j_ptr);
-extern void add_ego_flags(object_type *o_ptr, byte ego);
+extern void add_ego_flags(object_type *o_ptr, int ego);
 extern bool make_artifact(object_type *o_ptr);
 extern void add_ego_power(int power, object_type *o_ptr);
 extern void apply_magic(object_type *o_ptr, int lev, int lev_dif, byte flags);
@@ -1050,6 +1050,7 @@ extern bool monst_spell_monst(int m_idx);
 /* artifact.c */
 extern bool create_artifact(object_type *o_ptr, bool a_scroll);
 extern int random_resistance(object_type *o_ptr, int specific, int artifact_bias);
+extern int random_misc(object_type *o_ptr, int artifact_bias);
 extern bool activate_effect(object_type *o_ptr);
 
 /* scores.c */

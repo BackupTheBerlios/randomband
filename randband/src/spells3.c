@@ -1003,32 +1003,32 @@ void brand_weapon(int brand_type)
 		{
 		case 4:
 			act = "seems very unstable now.";
-			ego = EGO_TRUMP;
+			ego = 39;
 			o_ptr->pval = randint1(2);
-			o_ptr->activate = ACT_TELEPORT_1;
+/*			o_ptr->activate = ACT_TELEPORT_1;*/
 			break;
 		case 3:
 			act = "thirsts for blood!";
-			ego = EGO_VAMPIRIC;
+			ego = 38;
 			break;
 		case 2:
 			act = "is coated with poison.";
-			ego = EGO_BRAND_POIS;
+			ego = 34;
 			break;
 		case 1:
 			act = "is engulfed in raw Logrus!";
-			ego = EGO_CHAOTIC;
+			ego = 35;
 			break;
 		default:
 			if (randint0(100) < 25)
 			{
 				act = "is covered in a fiery shield!";
-				ego = EGO_BRAND_FIRE;
+				ego = 32;
 			}
 			else
 			{
 				act = "glows deep, icy blue!";
-				ego = EGO_BRAND_COLD;
+				ego = 33;
 			}
 		}
 
@@ -1092,8 +1092,8 @@ void call_the_(void)
 	else
 	{
 		msg_format("You %s the %s too close to a wall!",
-			((mp_ptr->spell_book == TV_LIFE_BOOK) ? "recite" : "cast"),
-			((mp_ptr->spell_book == TV_LIFE_BOOK) ? "prayer" : "spell"));
+			((mp_ptr->spell_book == TV_SPELL_BOOK) ? "recite" : "cast"),
+			((mp_ptr->spell_book == TV_SPELL_BOOK) ? "prayer" : "spell"));
 		msg_print("There is a loud explosion!");
 
 		if (destroy_area(py, px, 20 + p_ptr->lev))
@@ -1344,6 +1344,9 @@ void identify_pack2(void)
 	      o_ptr->kn_flags1 = o_ptr->flags1;
       	o_ptr->kn_flags2 = o_ptr->flags2;
 	      o_ptr->kn_flags3 = o_ptr->flags3;
+	      o_ptr->kn_flags4 = o_ptr->flags4;
+      	o_ptr->kn_flags5 = o_ptr->flags5;
+	      o_ptr->kn_flags6 = o_ptr->flags6;
 
       	/* Handle stuff */
    	   handle_stuff();
@@ -1388,7 +1391,7 @@ static int remove_curse_aux(int all)
 	/* Attempt to uncurse items being worn */
 	for (i = INVEN_WIELD; i < INVEN_TOTAL; i++)
 	{
-		u32b f1, f2, f3;
+		u32b f1, f2, f3, f4, f5, f6;
 
 		object_type *o_ptr = &inventory[i];
 
@@ -1399,7 +1402,8 @@ static int remove_curse_aux(int all)
 		if (!cursed_p(o_ptr)) continue;
 
 		/* Extract the flags */
-		object_flags(o_ptr, &f1, &f2, &f3);
+		object_flags(o_ptr, &f1, &f2, &f3, &f4, &f5, &f6);
+   /*****   NEEDS   REWORKING   *****/
 
 		/* Heavily Cursed Items need a special spell */
 		if (!all && (f3 & TR3_HEAVY_CURSE)) continue;
@@ -1629,10 +1633,11 @@ void stair_creation(void)
  */
 static void break_curse(object_type *o_ptr)
 {
-	u32b    f1, f2, f3;
+	u32b    f1, f2, f3, f4, f5, f6;
 
 	/* Extract the flags */
-	object_flags(o_ptr, &f1, &f2, &f3);
+	object_flags(o_ptr, &f1, &f2, &f3, &f4, &f5, &f6);
+   /*****   NEEDS   REWORKING   *****/
 
 	if (cursed_p(o_ptr) && !(f3 & TR3_PERMA_CURSE) && (randint0(100) < 25))
 	{
@@ -1950,8 +1955,11 @@ static void bad_luck(object_type *o_ptr)
 		o_ptr->flags1 = 0;
 		o_ptr->flags2 = 0;
 		o_ptr->flags3 = 0;
+		o_ptr->flags4 = 0;
+		o_ptr->flags5 = 0;
+		o_ptr->flags6 = 0;
 
-		add_ego_flags(o_ptr, EGO_BLASTED);
+		add_ego_flags(o_ptr, 92);
 
 		/* Curse it */
 		o_ptr->ident |= (IDENT_CURSED);
@@ -2166,6 +2174,9 @@ bool mundane_spell(void)
 	o_ptr->flags1 = 0;
 	o_ptr->flags2 = 0;
 	o_ptr->flags3 = 0;
+	o_ptr->flags4 = 0;
+	o_ptr->flags5 = 0;
+	o_ptr->flags6 = 0;
 
 	/* For rod-stacking */
 	if (o_ptr->tval == TV_ROD)
@@ -2227,6 +2238,9 @@ bool identify_fully(void)
 	o_ptr->kn_flags1 = o_ptr->flags1;
 	o_ptr->kn_flags2 = o_ptr->flags2;
 	o_ptr->kn_flags3 = o_ptr->flags3;
+	o_ptr->kn_flags4 = o_ptr->flags4;
+	o_ptr->kn_flags5 = o_ptr->flags5;
+	o_ptr->kn_flags6 = o_ptr->flags6;
 
 	/* Handle stuff */
 	handle_stuff();
@@ -2593,7 +2607,7 @@ bool bless_weapon(void)
 {
 	int             item;
 	object_type     *o_ptr;
-	u32b            f1, f2, f3;
+	u32b            f1, f2, f3, f4, f5, f6;
 	char            o_name[80];
 	cptr            q, s;
 
@@ -2623,7 +2637,8 @@ bool bless_weapon(void)
 	object_desc(o_name, o_ptr, FALSE, 0);
 
 	/* Extract the flags */
-	object_flags(o_ptr, &f1, &f2, &f3);
+	object_flags(o_ptr, &f1, &f2, &f3, &f4, &f5, &f6);
+   /*****   NEEDS   REWORKING   *****/
 
 	if (cursed_p(o_ptr))
 	{
@@ -2760,6 +2775,7 @@ bool potion_smash_effect(int who, int y, int x, int k_idx)
 
 	switch (k_ptr->sval)
 	{
+      /*
 		case SV_POTION_SALT_WATER:
 		case SV_POTION_SLIME_MOLD:
 		case SV_POTION_LOSE_MEMORIES:
@@ -2769,7 +2785,7 @@ bool potion_smash_effect(int who, int y, int x, int k_idx)
 		case SV_POTION_DEC_DEX:
 		case SV_POTION_DEC_CON:
 		case SV_POTION_DEC_CHR:
-		case SV_POTION_WATER:   /* perhaps a 'water' attack? */
+		case SV_POTION_WATER:    perhaps a 'water' attack?
 		case SV_POTION_APPLE_JUICE:
 			return TRUE;
 
@@ -2803,7 +2819,7 @@ bool potion_smash_effect(int who, int y, int x, int k_idx)
 		case SV_POTION_RESISTANCE:
 		case SV_POTION_INVULNERABILITY:
 		case SV_POTION_NEW_LIFE:
-			/* All of the above potions have no effect when shattered */
+			 All of the above potions have no effect when shattered
 			return FALSE;
 		case SV_POTION_SLOWNESS:
 			dt = GF_OLD_SLOW;
@@ -2822,7 +2838,7 @@ bool potion_smash_effect(int who, int y, int x, int k_idx)
 			ident = TRUE;
 			angry = TRUE;
 			break;
-		case SV_POTION_CONFUSION: /* Booze */
+		case SV_POTION_CONFUSION:  Booze
 			dt = GF_OLD_CONF;
 			ident = TRUE;
 			angry = TRUE;
@@ -2840,7 +2856,7 @@ bool potion_smash_effect(int who, int y, int x, int k_idx)
 			ident = TRUE;
 			break;
 		case SV_POTION_DEATH:
-			dt = GF_DEATH_RAY;    /* !! */
+			dt = GF_DEATH_RAY;     !!
 			dam = damroll(25, 25);
 			angry = TRUE;
 			radius = 1;
@@ -2878,14 +2894,15 @@ bool potion_smash_effect(int who, int y, int x, int k_idx)
 			radius = 1;
 			ident = TRUE;
 			break;
-		case SV_POTION_RESTORE_MANA:   /* MANA */
+		case SV_POTION_RESTORE_MANA:    MANA
 			dt = GF_MANA;
 			dam = damroll(10, 10);
 			radius = 1;
 			ident = TRUE;
 			break;
 		default:
-			/* Do nothing */  ;
+			 Do nothing   ;
+      */
 	}
 
 	(void)project(who, radius, y, x, dam, dt,
@@ -3565,14 +3582,7 @@ bool hates_fire(const object_type *o_ptr)
 		}
 
 		/* Books */
-		case TV_LIFE_BOOK:
-		case TV_SORCERY_BOOK:
-		case TV_NATURE_BOOK:
-		case TV_CHAOS_BOOK:
-		case TV_DEATH_BOOK:
-		case TV_TRUMP_BOOK:
-		case TV_ARCANE_BOOK:
-      case TV_CHI_BOOK:
+		case TV_SPELL_BOOK:
 		{
 			return (TRUE);
 		}
@@ -3619,9 +3629,9 @@ bool hates_cold(const object_type *o_ptr)
  */
 int set_acid_destroy(object_type *o_ptr)
 {
-	u32b f1, f2, f3;
+	u32b f1, f2, f3, f4, f5, f6;
 	if (!hates_acid(o_ptr)) return (FALSE);
-	object_flags(o_ptr, &f1, &f2, &f3);
+	object_flags(o_ptr, &f1, &f2, &f3, &f4, &f5, &f6);
 	if (f3 & TR3_IGNORE_ACID) return (FALSE);
 	return (TRUE);
 }
@@ -3632,9 +3642,9 @@ int set_acid_destroy(object_type *o_ptr)
  */
 int set_elec_destroy(object_type *o_ptr)
 {
-	u32b f1, f2, f3;
+	u32b f1, f2, f3, f4, f5, f6;
 	if (!hates_elec(o_ptr)) return (FALSE);
-	object_flags(o_ptr, &f1, &f2, &f3);
+	object_flags(o_ptr, &f1, &f2, &f3, &f4, &f5, &f6);
 	if (f3 & TR3_IGNORE_ELEC) return (FALSE);
 	return (TRUE);
 }
@@ -3645,9 +3655,9 @@ int set_elec_destroy(object_type *o_ptr)
  */
 int set_fire_destroy(object_type *o_ptr)
 {
-	u32b f1, f2, f3;
+	u32b f1, f2, f3, f4, f5, f6;
 	if (!hates_fire(o_ptr)) return (FALSE);
-	object_flags(o_ptr, &f1, &f2, &f3);
+	object_flags(o_ptr, &f1, &f2, &f3, &f4, &f5, &f6);
 	if (f3 & TR3_IGNORE_FIRE) return (FALSE);
 	return (TRUE);
 }
@@ -3658,9 +3668,9 @@ int set_fire_destroy(object_type *o_ptr)
  */
 int set_cold_destroy(object_type *o_ptr)
 {
-	u32b f1, f2, f3;
+	u32b f1, f2, f3, f4, f5, f6;
 	if (!hates_cold(o_ptr)) return (FALSE);
-	object_flags(o_ptr, &f1, &f2, &f3);
+	object_flags(o_ptr, &f1, &f2, &f3, &f4, &f5, &f6);
 	if (f3 & TR3_IGNORE_COLD) return (FALSE);
 	return (TRUE);
 }
@@ -3816,7 +3826,7 @@ int inven_damage(inven_func typ, int perc, int Damage)
 static int minus_ac(void)
 {
 	object_type *o_ptr = NULL;
-	u32b        f1, f2, f3;
+	u32b        f1, f2, f3, f4, f5, f6;
 	char        o_name[80];
 
 
@@ -3842,7 +3852,7 @@ static int minus_ac(void)
 	object_desc(o_name, o_ptr, FALSE, 0);
 
 	/* Extract the flags */
-	object_flags(o_ptr, &f1, &f2, &f3);
+	object_flags(o_ptr, &f1, &f2, &f3, &f4, &f5, &f6);
 
 	/* Object resists */
 	if (f3 & TR3_IGNORE_ACID)
@@ -4083,8 +4093,11 @@ bool curse_armor(void)
 		o_ptr->flags1 = 0;
 		o_ptr->flags2 = 0;
 		o_ptr->flags3 = 0;
+		o_ptr->flags4 = 0;
+		o_ptr->flags5 = 0;
+		o_ptr->flags6 = 0;
 
-		add_ego_flags(o_ptr, EGO_BLASTED);
+		add_ego_flags(o_ptr, 92);
 
 		/* Curse it */
 		o_ptr->ident |= (IDENT_CURSED);
@@ -4152,8 +4165,11 @@ bool curse_weapon(void)
 		o_ptr->flags1 = 0;
 		o_ptr->flags2 = 0;
 		o_ptr->flags3 = 0;
+		o_ptr->flags4 = 0;
+		o_ptr->flags5 = 0;
+		o_ptr->flags6 = 0;
 
-		add_ego_flags(o_ptr, EGO_SHATTERED);
+		add_ego_flags(o_ptr, 91);
 
 		/* Curse it */
 		o_ptr->ident |= (IDENT_CURSED);
@@ -4204,7 +4220,7 @@ bool brand_bolts(void)
 		msg_print("Your bolts are covered in a fiery aura!");
 
 		/* Ego-item */
-		add_ego_flags(o_ptr, EGO_FLAME);
+		add_ego_flags(o_ptr, 32);
 
 		/* Enchant */
 		(void)enchant(o_ptr, rand_range(2, 6), ENCH_TOHIT | ENCH_TODAM);

@@ -1502,11 +1502,13 @@ void do_cmd_tunnel(void)
 
 	object_type     *o_ptr;
 
-	u32b            f1, f2, f3;
+	u32b            f1, f2, f3, f4, f5, f6;
 
 	o_ptr = &inventory[INVEN_WIELD];
 
-   object_flags(o_ptr, &f1, &f2, &f3);
+   object_flags(o_ptr, &f1, &f2, &f3, &f4, &f5, &f6);
+
+   /*****   NEEDS   REWORKING   *****/
 
    /*  Handle Durability if using weapon or tool */
    if (o_ptr->k_idx)
@@ -3033,7 +3035,7 @@ void do_cmd_throw_aux(int mult)
 
 	int msec = delay_factor * delay_factor * delay_factor;
 
-	u32b f1, f2, f3;
+	u32b f1, f2, f3, f4, f5, f6;
 	cptr q, s;
 
 	cave_type *c_ptr;
@@ -3075,7 +3077,9 @@ void do_cmd_throw_aux(int mult)
 	object_copy(q_ptr, o_ptr);
 
 	/* Extract the thrown object's flags. */
-	object_flags(q_ptr, &f1, &f2, &f3);
+	object_flags(q_ptr, &f1, &f2, &f3, &f4, &f5, &f6);
+
+   /*****   NEEDS   REWORKING   *****/
 
 	/* Distribute the charges of rods/wands between the stacks */
 	distribute_charges(o_ptr, q_ptr, 1);

@@ -100,7 +100,7 @@ void reset_visuals(void)
 /*
  * Obtain the "flags" for an item
  */
-void object_flags(const object_type *o_ptr, u32b *f1, u32b *f2, u32b *f3)
+void object_flags(const object_type *o_ptr, u32b *f1, u32b *f2, u32b *f3, u32b *f4, u32b *f5, u32b *f6)
 {
 	const object_kind *k_ptr = &k_info[o_ptr->k_idx];
 
@@ -108,21 +108,24 @@ void object_flags(const object_type *o_ptr, u32b *f1, u32b *f2, u32b *f3)
 	(*f1) = k_ptr->flags1 | o_ptr->flags1;
 	(*f2) = k_ptr->flags2 | o_ptr->flags2;
 	(*f3) = k_ptr->flags3 | o_ptr->flags3;
+	(*f4) = k_ptr->flags4 | o_ptr->flags4;
+	(*f5) = k_ptr->flags5 | o_ptr->flags5;
+	(*f6) = k_ptr->flags6 | o_ptr->flags6;
 
-	/* Remove the Moria flags */
-	if (ironman_moria)
+	/*  Removed the Moria flags  */
+/*	if (ironman_moria)
 	{
 		(*f1) &= TR1_MORIA_MASK;
 		(*f2) &= TR2_MORIA_MASK;
 		(*f3) &= TR3_MORIA_MASK;
-	}
+	}*/
 }
 
 
 /*
  * Obtain the "flags" for an item which are known to the player
  */
-void object_flags_known(const object_type *o_ptr, u32b *f1, u32b *f2, u32b *f3)
+void object_flags_known(const object_type *o_ptr, u32b *f1, u32b *f2, u32b *f3, u32b *f4, u32b *f5, u32b *f6)
 {
 	const object_kind *k_ptr = &k_info[o_ptr->k_idx];
 
@@ -136,6 +139,9 @@ void object_flags_known(const object_type *o_ptr, u32b *f1, u32b *f2, u32b *f3)
 	(*f1) = k_ptr->flags1;
 	(*f2) = k_ptr->flags2;
 	(*f3) = k_ptr->flags3;
+	(*f4) = k_ptr->flags4;
+	(*f5) = k_ptr->flags5;
+	(*f6) = k_ptr->flags6;
 
 	/* Show modifications to stats */
 	(*f1) |= (o_ptr->flags1 &
@@ -153,15 +159,18 @@ void object_flags_known(const object_type *o_ptr, u32b *f1, u32b *f2, u32b *f3)
 		(*f1) |= o_ptr->kn_flags1;
 		(*f2) |= o_ptr->kn_flags2;
 		(*f3) |= o_ptr->kn_flags3;
+		(*f4) |= o_ptr->kn_flags4;
+		(*f5) |= o_ptr->kn_flags5;
+		(*f6) |= o_ptr->kn_flags6;
 	}
 
-	/* Remove the Moria flags */
-	if (ironman_moria)
+	/*  Removed the Moria flags  */
+/*	if (ironman_moria)
 	{
 		(*f1) &= TR1_MORIA_MASK;
 		(*f2) &= TR2_MORIA_MASK;
 		(*f3) &= TR3_MORIA_MASK;
-	}
+	}*/
 }
 
 
@@ -171,10 +180,11 @@ void object_flags_known(const object_type *o_ptr, u32b *f1, u32b *f2, u32b *f3)
  */
 cptr item_activation(const object_type *o_ptr)
 {
-	u32b f1, f2, f3;
+	u32b f1, f2, f3, f4, f5, f6;
 
 	/* Extract the flags */
-	object_flags(o_ptr, &f1, &f2, &f3);
+	object_flags(o_ptr, &f1, &f2, &f3, &f4, &f5, &f6);
+   /*****   NEEDS   REWORKING   *****/
 
 	/* Require activation ability */
 	if (!(f3 & (TR3_ACTIVATE))) return ("nothing");
@@ -493,6 +503,7 @@ cptr item_activation(const object_type *o_ptr)
 
 	if (o_ptr->tval == TV_RING)
 	{
+      /*
 		switch (o_ptr->sval)
 		{
 			case SV_RING_FLAMES:
@@ -504,6 +515,7 @@ cptr item_activation(const object_type *o_ptr)
 			default:
 				return NULL;
 		}
+      */
 	}
 
    if (o_ptr->tval == TV_LITE)
@@ -662,14 +674,15 @@ bool identify_fully_aux(const object_type *o_ptr)
 {
 	int                     i = 0, j, k;
 
-	u32b f1, f2, f3;
+	u32b f1, f2, f3, f4, f5, f6;
 
 	cptr            info[128];
 
 
 	/* Extract the flags */
-	object_flags(o_ptr, &f1, &f2, &f3);
+	object_flags(o_ptr, &f1, &f2, &f3, &f4, &f5, &f6);
 
+   /*****   NEEDS   REWORKING   *****/
 
 	/* Mega-Hack -- describe activation */
 	if (f3 & (TR3_ACTIVATE))
@@ -808,39 +821,39 @@ bool identify_fully_aux(const object_type *o_ptr)
 		info[i++] = "It is very sharp and can cut your foes.";
 	}
 
-	if (f1 & (TR1_KILL_DRAGON))
+	if (f1 & (TR4_KILL_DRAGON))
 	{
 		info[i++] = "It is a great bane of dragons.";
 	}
-	else if (f1 & (TR1_SLAY_DRAGON))
+	else if (f1 & (TR4_SLAY_DRAGON))
 	{
 		info[i++] = "It is especially deadly against dragons.";
 	}
-	if (f1 & (TR1_SLAY_ORC))
+	if (f1 & (TR5_SLAY_ORC))
 	{
 		info[i++] = "It is especially deadly against orcs.";
 	}
-	if (f1 & (TR1_SLAY_TROLL))
+	if (f1 & (TR4_SLAY_TROLL))
 	{
 		info[i++] = "It is especially deadly against trolls.";
 	}
-	if (f1 & (TR1_SLAY_GIANT))
+	if (f1 & (TR4_SLAY_GIANT))
 	{
 		info[i++] = "It is especially deadly against giants.";
 	}
-	if (f1 & (TR1_SLAY_DEMON))
+	if (f1 & (TR4_SLAY_DEMON))
 	{
 		info[i++] = "It strikes at demons with holy wrath.";
 	}
-	if (f1 & (TR1_SLAY_UNDEAD))
+	if (f1 & (TR4_SLAY_UNDEAD))
 	{
 		info[i++] = "It strikes at undead with holy wrath.";
 	}
-	if (f1 & (TR1_SLAY_EVIL))
+	if (f1 & (TR5_SLAY_EVIL))
 	{
 		info[i++] = "It fights against evil with holy fury.";
 	}
-	if (f1 & (TR1_SLAY_ANIMAL))
+	if (f1 & (TR4_SLAY_ANIMAL))
 	{
 		info[i++] = "It is especially deadly against natural creatures.";
 	}
@@ -968,9 +981,9 @@ bool identify_fully_aux(const object_type *o_ptr)
 		info[i++] = "It provides resistance to disenchantment.";
 	}
 
-	if (f3 & (TR3_XXX7))
+	if (f3 & (TR3_RESTORE_MANA))
 	{
-		info[i++] = "It renders you XXX7'ed.";
+		info[i++] = "It restores your mana.";
 	}
 	if (f3 & (TR3_FEATHER))
 	{
@@ -1686,8 +1699,10 @@ bool item_tester_hook_tval(const object_type *o_ptr)
 
 bool item_tester_hook_is_blessed(const object_type *o_ptr)
 {
-	u32b f1, f2, f3;
-	object_flags(o_ptr, &f1, &f2, &f3);
+	u32b f1, f2, f3, f4, f5, f6;
+	object_flags(o_ptr, &f1, &f2, &f3, &f4, &f5, &f6);
+
+   /*****   NEEDS   REWORKING   *****/
 
 	/* Is it blessed? */
 	if (f3 & TR3_BLESSED) return (TRUE);
@@ -1734,15 +1749,7 @@ bool item_tester_hook_is_book(const object_type *o_ptr)
 {
 	switch (o_ptr->tval)
 	{
-		case TV_SORCERY_BOOK:
-		case TV_NATURE_BOOK:
-		case TV_CHAOS_BOOK:
-		case TV_DEATH_BOOK:
-		case TV_TRUMP_BOOK:
-		case TV_ARCANE_BOOK:
-		case TV_LIFE_BOOK:
-      case TV_CHI_BOOK:
-
+		case TV_SPELL_BOOK:
 		/* It is a book */
 		return (TRUE);
 	}
@@ -1778,8 +1785,8 @@ bool item_tester_okay(const object_type *o_ptr)
 	if (item_tester_tval)
 	{
 		/* Is it a spellbook? If so, we need a hack -- TY */
-		if ((item_tester_tval <= TV_DEATH_BOOK) &&
-			(item_tester_tval >= TV_LIFE_BOOK))
+		if ((item_tester_tval <= TV_SPELL_BOOK) &&
+			(item_tester_tval >= TV_SPELL_BOOK))
 			return check_book_realm(o_ptr->tval);
 		else
 			if (item_tester_tval != o_ptr->tval) return (FALSE);

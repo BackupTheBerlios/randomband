@@ -380,6 +380,9 @@ static void rd_item(object_type *o_ptr)
 	rd_u32b(&o_ptr->flags1);
 	rd_u32b(&o_ptr->flags2);
 	rd_u32b(&o_ptr->flags3);
+	rd_u32b(&o_ptr->flags4);
+	rd_u32b(&o_ptr->flags5);
+	rd_u32b(&o_ptr->flags6);
 
 	/* Lites changed in [Z] 2.6.0 */
 	if ((sf_version < 25) && (o_ptr->tval == TV_LITE))
@@ -480,11 +483,14 @@ static void rd_item(object_type *o_ptr)
 		/* The new flags */
 		rd_s32b(&o_ptr->cost);
 
-		rd_byte(&o_ptr->activate);
+		rd_u16b(&o_ptr->activate);
 
 		rd_u32b(&o_ptr->kn_flags1);
 		rd_u32b(&o_ptr->kn_flags2);
 		rd_u32b(&o_ptr->kn_flags3);
+		rd_u32b(&o_ptr->kn_flags4);
+		rd_u32b(&o_ptr->kn_flags5);
+		rd_u32b(&o_ptr->kn_flags6);
 
       rd_byte(&o_ptr->OCraftLevel);
       rd_byte(&o_ptr->CCraftLevel);
@@ -524,6 +530,9 @@ static void rd_item(object_type *o_ptr)
 		o_ptr->flags1 = k_ptr->flags1;
 		o_ptr->flags2 = k_ptr->flags2;
 		o_ptr->flags3 = k_ptr->flags3;
+		o_ptr->flags4 = k_ptr->flags4;
+		o_ptr->flags5 = k_ptr->flags5;
+		o_ptr->flags6 = k_ptr->flags6;
 
 		/* All done */
 		return;
@@ -552,12 +561,6 @@ static void rd_item(object_type *o_ptr)
 
 				/* Hack -- extract the "broken" flag */
 				if (!e_ptr->cost) o_ptr->ident |= (IDENT_BROKEN);
-
-				if (name2 == EGO_TRUMP)
-				{
-					/* Mega-Hack -- set activation */
-					o_ptr->activate = ACT_TELEPORT_1;
-				}
 
 				/* Change the price */
 				if (!e_ptr->cost)
@@ -597,6 +600,9 @@ static void rd_item(object_type *o_ptr)
 			o_ptr->kn_flags1 = o_ptr->flags1;
 			o_ptr->kn_flags2 = o_ptr->flags2;
 			o_ptr->kn_flags3 = o_ptr->flags3;
+			o_ptr->kn_flags4 = o_ptr->flags4;
+			o_ptr->kn_flags5 = o_ptr->flags5;
+			o_ptr->kn_flags6 = o_ptr->flags6;
 		}
 	}
 

@@ -797,8 +797,8 @@
 /*
  * Magic-books for the realms
  */
-#define REALM1_BOOK     (p_ptr->realm1 + TV_LIFE_BOOK - 1)
-#define REALM2_BOOK     (p_ptr->realm2 + TV_LIFE_BOOK - 1)
+#define REALM1_BOOK     /*(p_ptr->realm1 +*/ TV_SPELL_BOOK /*- 1)*/
+#define REALM2_BOOK     /*(p_ptr->realm2 +*/ TV_SPELL_BOOK /*- 1)*/
 
 
 /*
@@ -1284,158 +1284,10 @@
 #define FT_BUILD_INN			0x008C
 #define FT_BUILD_HEALER			0x008D
 
-/*** Artifact indexes (see "lib/edit/a_info.txt") ***/
-
 /*** Ego-Item indexes (see "lib/edit/e_info.txt") ***/
-
-/* Nothing */
-/* xxx */
-/* xxx */
-/* xxx */
-
-/* Body Armor */
-#define EGO_RESIST_ACID         4
-#define EGO_RESIST_ELEC         5
-#define EGO_RESIST_FIRE         6
-#define EGO_RESIST_COLD         7
-#define EGO_RESISTANCE          8
-#define EGO_ELVENKIND           9
-/* xxx */
-#define EGO_PERMANENCE          11
-/* xxx */
-/* xxx */
-/* xxx */
-/* xxx */
-
-/* Shields */
-#define EGO_ENDURE_ACID         16
-#define EGO_ENDURE_ELEC         17
-#define EGO_ENDURE_FIRE         18
-#define EGO_ENDURE_COLD         19
-#define EGO_ENDURANCE           20
-#define EGO_REFLECTION          21
-/* xxx */
-/* xxx */
-
-/* Crowns and Helms */
-#define EGO_INTELLIGENCE        24
-#define EGO_WISDOM              25
-#define EGO_BEAUTY              26
-#define EGO_MAGI                27
-#define EGO_MIGHT               28
-#define EGO_LORDLINESS          29
-#define EGO_SEEING              30
-#define EGO_INFRAVISION         31
-#define EGO_LITE                32
-#define EGO_TELEPATHY           33
-#define EGO_REGENERATION        34
-#define EGO_TELEPORTATION       35
-#define EGO_STUPIDITY           36
-#define EGO_NAIVETY             37
-#define EGO_UGLINESS            38
-#define EGO_SICKLINESS          39
-
-/* Cloaks */
-#define EGO_PROTECTION          40
-#define EGO_STEALTH             41
-#define EGO_AMAN                42
-#define EGO_AURA_FIRE           43
-#define EGO_ENVELOPING          44
-#define EGO_VULNERABILITY       45
-#define EGO_IRRITATION          46
-#define EGO_AURA_ELEC           47
-
-/* Gloves */
-#define EGO_FREE_ACTION         48
-#define EGO_SLAYING             49
-#define EGO_AGILITY             50
-#define EGO_POWER               51
-/* xxx */
-/* xxx */
-#define EGO_WEAKNESS            54
-#define EGO_CLUMSINESS          55
-
-/* Boots */
-#define EGO_SLOW_DESCENT        56
-#define EGO_QUIET               57
-#define EGO_MOTION              58
-#define EGO_SPEED               59
-/* xxx */
-#define EGO_NOISE               61
-#define EGO_SLOWNESS            62
-#define EGO_ANNOYANCE           63
-
-/* Weapons */
-#define EGO_HA                  64
-#define EGO_DF                  65
-#define EGO_BLESS_BLADE         66
-/* xxx */
-#define EGO_WEST                68
-#define EGO_ATTACKS             69
-#define EGO_SLAYING_WEAPON      70
-/* xxx */
-#define EGO_BRAND_ACID          72
-#define EGO_BRAND_ELEC          73
-#define EGO_BRAND_FIRE          74
-#define EGO_BRAND_COLD          75
-#define EGO_BRAND_POIS          76
-#define EGO_CHAOTIC             77
-#define EGO_SHARPNESS           78
-#define EGO_EARTHQUAKES         79
-#define EGO_SLAY_ANIMAL         80
-#define EGO_SLAY_EVIL           81
-#define EGO_SLAY_UNDEAD         82
-#define EGO_SLAY_DEMON          83
-#define EGO_SLAY_ORC            84
-#define EGO_SLAY_TROLL          85
-#define EGO_SLAY_GIANT          86
-#define EGO_SLAY_DRAGON         87
-#define EGO_KILL_ANIMAL         88
-#define EGO_KILL_EVIL           89
-#define EGO_KILL_UNDEAD         90
-#define EGO_KILL_DEMON          91
-#define EGO_KILL_ORC            92
-#define EGO_KILL_TROLL          93
-#define EGO_KILL_GIANT          94
-#define EGO_KILL_DRAGON         95
-#define EGO_VAMPIRIC            96
-/* xxx */
-/* xxx */
-#define EGO_TRUMP               98
-#define EGO_PATTERN             99
-#define EGO_DIGGING             100
-/* xxx */
-#define EGO_MORGUL              102
-/* xxx */
-
-/* Bows */
-#define EGO_ACCURACY            104
-#define EGO_VELOCITY            105
-/* xxx */
-/* xxx */
-#define EGO_EXTRA_MIGHT         108
-#define EGO_EXTRA_SHOTS         109
-/* xxx */
-/* xxx */
-
-/* Ammo */
-#define EGO_HURT_ANIMAL         112
-#define EGO_HURT_EVIL           113
-/* xxx */
-/* xxx */
-/* xxx */
-/* xxx */
-/* xxx */
-#define EGO_HURT_DRAGON         119
-#define EGO_SLAYING_BOLT        120
-#define EGO_LIGHTNING_BOLT      121
-#define EGO_FLAME               122
-#define EGO_FROST               123
-#define EGO_WOUNDING            124
-#define EGO_BACKBITING          125
-#define EGO_SHATTERED           126
-#define EGO_BLASTED             127
-
+/*
+ * Removed Temporarily (hopefully permanently)
+ */
 
 /* Activation effects for random artifacts */
 #define ACT_SUNLIGHT            1
@@ -1570,21 +1422,20 @@
 #define TV_POTION       75
 #define TV_FLASK        77
 #define TV_FOOD         80
-#define TV_LIFE_BOOK    90
-#define TV_SORCERY_BOOK 91
-#define TV_NATURE_BOOK  92
-#define TV_CHAOS_BOOK   93
-#define TV_DEATH_BOOK   94
-#define TV_TRUMP_BOOK   95
-#define TV_ARCANE_BOOK  96
-#define TV_CHI_BOOK     97
+#define TV_SPELL_BOOK   90
 #define TV_GOLD         100     /* Gold can only be picked up by players */
 
-#define TV_BOOKS_MIN    TV_LIFE_BOOK  /* First tval of spellbooks */
-#define TV_BOOKS_MAX    TV_CHI_BOOK  /* Last tval of spellbooks */
+#define TV_BOOKS_MIN    TV_SPELL_BOOK  /* First tval of spellbooks */
+#define TV_BOOKS_MAX    TV_SPELL_BOOK  /* Last tval of spellbooks */
 
 /* Any subvalue */
 #define SV_ANY 					255
+
+#define SV_BOOK_NONE          0
+#define SV_BOOK_CHEAP         1
+#define SV_BOOK_BOOK          2
+#define SV_BOOK_QUALITY       3
+#define SV_BOOK_MYSTIC        4
 
 /* The "sval" codes for TV_FIGURINE */
 #define SV_FIGURINE_NORMAL		0
@@ -1840,330 +1691,69 @@
 
 
 /* The "sval" codes for TV_AMULET */
-#define SV_AMULET_DOOM                   0
-#define SV_AMULET_TELEPORT               1
-#define SV_AMULET_ADORNMENT              2
-#define SV_AMULET_SLOW_DIGEST            3
-#define SV_AMULET_RESIST_ACID            4
-#define SV_AMULET_SEARCHING              5
-#define SV_AMULET_WISDOM                 6
-#define SV_AMULET_CHARISMA               7
-#define SV_AMULET_THE_MAGI               8
-#define SV_AMULET_REFLECTION             9
-#define SV_AMULET_CARLAMMAS             10
-#define SV_AMULET_INGWE                 11
-#define SV_AMULET_DWARVES               12
-#define SV_AMULET_NO_MAGIC              13
-#define SV_AMULET_NO_TELE               14
-#define SV_AMULET_RESISTANCE            15
+#define SV_AMULET_NONE                   0
+#define SV_AMULET_THIN_AMULET            1
+#define SV_AMULET_AMULET                 2
+#define SV_AMULET_HEAVY_AMULET           3
+#define SV_AMULET_JEWELED_AMULET         4
 
 /* The sval codes for TV_RING */
-#define SV_RING_WOE                      0
-#define SV_RING_AGGRAVATION              1
-#define SV_RING_WEAKNESS                 2
-#define SV_RING_STUPIDITY                3
-#define SV_RING_TELEPORTATION            4
-#define SV_RING_SLOW_DIGESTION           6
-#define SV_RING_FEATHER_FALL             7
-#define SV_RING_RESIST_FIRE              8
-#define SV_RING_RESIST_COLD              9
-#define SV_RING_SUSTAIN_STR             10
-#define SV_RING_SUSTAIN_INT             11
-#define SV_RING_SUSTAIN_WIS             12
-#define SV_RING_SUSTAIN_DEX             13
-#define SV_RING_SUSTAIN_CON             14
-#define SV_RING_SUSTAIN_CHR             15
-#define SV_RING_PROTECTION              16
-#define SV_RING_ACID                    17
-#define SV_RING_FLAMES                  18
-#define SV_RING_ICE                     19
-#define SV_RING_RESIST_POIS             20
-#define SV_RING_FREE_ACTION             21
-#define SV_RING_SEE_INVIS               22
-#define SV_RING_SEARCHING               23
-#define SV_RING_STR                     24
-#define SV_RING_INT                     25
-#define SV_RING_DEX                     26
-#define SV_RING_CON                     27
-#define SV_RING_ACCURACY                28
-#define SV_RING_DAMAGE                  29
-#define SV_RING_SLAYING                 30
-#define SV_RING_SPEED                   31
-#define SV_RING_BARAHIR                 32
-#define SV_RING_TULKAS                  33
-#define SV_RING_NARYA                   34
-#define SV_RING_NENYA                   35
-#define SV_RING_VILYA                   36
-#define SV_RING_POWER                   37
-#define SV_RING_RES_FEAR                38
-#define SV_RING_RES_LD                  39
-#define SV_RING_RES_NETHER              40
-#define SV_RING_RES_NEXUS               41
-#define SV_RING_RES_SOUND               42
-#define SV_RING_RES_CONFUSION           43
-#define SV_RING_RES_SHARDS              44
-#define SV_RING_RES_DISENCHANT          45
-#define SV_RING_RES_CHAOS               46
-#define SV_RING_RES_BLINDNESS           47
-#define SV_RING_LORDLY                  48
-#define SV_RING_ATTACKS                 49
+#define SV_RING_NONE                     0
+#define SV_RING_THIN_RING                1
+#define SV_RING_RING                     2
+#define SV_RING_HEAVY_RING               3
+#define SV_RING_JELEWED_RING             4
 
 /* The "sval" codes for TV_STAFF */
-#define SV_STAFF_DARKNESS                0
-#define SV_STAFF_SLOWNESS                1
-#define SV_STAFF_HASTE_MONSTERS          2
-#define SV_STAFF_SUMMONING               3
-#define SV_STAFF_TELEPORTATION           4
-#define SV_STAFF_IDENTIFY                5
-#define SV_STAFF_REMOVE_CURSE            6
-#define SV_STAFF_STARLITE                7
-#define SV_STAFF_LITE                    8
-#define SV_STAFF_MAPPING                 9
-#define SV_STAFF_DETECT_GOLD            10
-#define SV_STAFF_DETECT_ITEM            11
-#define SV_STAFF_DETECT_TRAP            12
-#define SV_STAFF_DETECT_DOOR            13
-#define SV_STAFF_DETECT_INVIS           14
-#define SV_STAFF_DETECT_EVIL            15
-#define SV_STAFF_CURE_LIGHT             16
-#define SV_STAFF_CURING                 17
-#define SV_STAFF_HEALING                18
-#define SV_STAFF_THE_MAGI               19
-#define SV_STAFF_SLEEP_MONSTERS         20
-#define SV_STAFF_SLOW_MONSTERS          21
-#define SV_STAFF_SPEED                  22
-#define SV_STAFF_PROBING                23
-#define SV_STAFF_DISPEL_EVIL            24
-#define SV_STAFF_POWER                  25
-#define SV_STAFF_HOLINESS               26
-#define SV_STAFF_GENOCIDE               27
-#define SV_STAFF_EARTHQUAKES            28
-#define SV_STAFF_DESTRUCTION            29
-
+#define SV_STAFF_NONE                    0
+#define SV_STAFF_CHEAP_STAFF             1
+#define SV_STAFF_STAFF                   2
+#define SV_STAFF_QUALITY_STAFF           3
 
 /* The "sval" codes for TV_WAND */
-#define SV_WAND_HEAL_MONSTER             0
-#define SV_WAND_HASTE_MONSTER            1
-#define SV_WAND_CLONE_MONSTER            2
-#define SV_WAND_TELEPORT_AWAY            3
-#define SV_WAND_DISARMING                4
-#define SV_WAND_TRAP_DOOR_DEST           5
-#define SV_WAND_STONE_TO_MUD             6
-#define SV_WAND_LITE                     7
-#define SV_WAND_SLEEP_MONSTER            8
-#define SV_WAND_SLOW_MONSTER             9
-#define SV_WAND_CONFUSE_MONSTER         10
-#define SV_WAND_FEAR_MONSTER            11
-#define SV_WAND_DRAIN_LIFE              12
-#define SV_WAND_POLYMORPH               13
-#define SV_WAND_STINKING_CLOUD          14
-#define SV_WAND_MAGIC_MISSILE           15
-#define SV_WAND_ACID_BOLT               16
-#define SV_WAND_CHARM_MONSTER           17
-#define SV_WAND_FIRE_BOLT               18
-#define SV_WAND_COLD_BOLT               19
-#define SV_WAND_ACID_BALL               20
-#define SV_WAND_ELEC_BALL               21
-#define SV_WAND_FIRE_BALL               22
-#define SV_WAND_COLD_BALL               23
-#define SV_WAND_WONDER                  24
-#define SV_WAND_ANNIHILATION            25
-#define SV_WAND_DRAGON_FIRE             26
-#define SV_WAND_DRAGON_COLD             27
-#define SV_WAND_DRAGON_BREATH           28
-#define SV_WAND_ROCKETS                 29
+#define SV_WAND_NONE                     0
+#define SV_WAND_CHEAP_WAND               1
+#define SV_WAND_WAND                     2
+#define SV_WAND_IRON_WAND                3
 
 /* The "sval" codes for TV_ROD */
-#define SV_ROD_DETECT_TRAP               0
-#define SV_ROD_DETECT_DOOR               1
-#define SV_ROD_IDENTIFY                  2
-#define SV_ROD_RECALL                    3
-#define SV_ROD_ILLUMINATION              4
-#define SV_ROD_MAPPING                   5
-#define SV_ROD_DETECTION                 6
-#define SV_ROD_PROBING                   7
-#define SV_ROD_CURING                    8
-#define SV_ROD_HEALING                   9
-#define SV_ROD_RESTORATION              10
-#define SV_ROD_SPEED                    11
-#define SV_ROD_PESTICIDE                12
-#define SV_ROD_TELEPORT_AWAY            13
-#define SV_ROD_DISARMING                14
-#define SV_ROD_LITE                     15
-#define SV_ROD_SLEEP_MONSTER            16
-#define SV_ROD_SLOW_MONSTER             17
-#define SV_ROD_DRAIN_LIFE               18
-#define SV_ROD_POLYMORPH                19
-#define SV_ROD_ACID_BOLT                20
-#define SV_ROD_ELEC_BOLT                21
-#define SV_ROD_FIRE_BOLT                22
-#define SV_ROD_COLD_BOLT                23
-#define SV_ROD_ACID_BALL                24
-#define SV_ROD_ELEC_BALL                25
-#define SV_ROD_FIRE_BALL                26
-#define SV_ROD_COLD_BALL                27
-#define SV_ROD_HAVOC                    28
-
+#define SV_ROD_NONE                      0
+#define SV_ROD_CHEAP_ROD                 1
+#define SV_ROD_ROD                       2
+#define SV_ROD_IRON_ROD                  3
 
 /* The "sval" codes for TV_SCROLL */
 
-#define SV_SCROLL_DARKNESS               0
-#define SV_SCROLL_AGGRAVATE_MONSTER      1
-#define SV_SCROLL_CURSE_ARMOR            2
-#define SV_SCROLL_CURSE_WEAPON           3
-#define SV_SCROLL_SUMMON_MONSTER         4
-#define SV_SCROLL_SUMMON_UNDEAD          5
-/* xxx (summon?) */
-#define SV_SCROLL_TRAP_CREATION          7
-#define SV_SCROLL_PHASE_DOOR             8
-#define SV_SCROLL_TELEPORT               9
-#define SV_SCROLL_TELEPORT_LEVEL        10
-#define SV_SCROLL_WORD_OF_RECALL        11
-#define SV_SCROLL_IDENTIFY              12
-#define SV_SCROLL_STAR_IDENTIFY         13
-#define SV_SCROLL_REMOVE_CURSE          14
-#define SV_SCROLL_STAR_REMOVE_CURSE     15
-#define SV_SCROLL_ENCHANT_ARMOR         16
-#define SV_SCROLL_ENCHANT_WEAPON_TO_HIT 17
-#define SV_SCROLL_ENCHANT_WEAPON_TO_DAM 18
-/* xxx enchant missile? */
-#define SV_SCROLL_STAR_ENCHANT_ARMOR    20
-#define SV_SCROLL_STAR_ENCHANT_WEAPON   21
-#define SV_SCROLL_RECHARGING            22
-#define SV_SCROLL_MUNDANITY             23
-#define SV_SCROLL_LIGHT                 24
-#define SV_SCROLL_MAPPING               25
-#define SV_SCROLL_DETECT_GOLD           26
-#define SV_SCROLL_DETECT_ITEM           27
-#define SV_SCROLL_DETECT_TRAP           28
-#define SV_SCROLL_DETECT_DOOR           29
-#define SV_SCROLL_DETECT_INVIS          30
-/* xxx (detect evil?) */
-#define SV_SCROLL_SATISFY_HUNGER        32
-#define SV_SCROLL_BLESSING              33
-#define SV_SCROLL_HOLY_CHANT            34
-#define SV_SCROLL_HOLY_PRAYER           35
-#define SV_SCROLL_MONSTER_CONFUSION     36
-#define SV_SCROLL_PROTECTION_FROM_EVIL  37
-#define SV_SCROLL_RUNE_OF_PROTECTION    38
-#define SV_SCROLL_TRAP_DOOR_DESTRUCTION 39
-/* xxx */
-#define SV_SCROLL_STAR_DESTRUCTION      41
-#define SV_SCROLL_DISPEL_UNDEAD         42
-/* xxx */
-#define SV_SCROLL_GENOCIDE              44
-#define SV_SCROLL_MASS_GENOCIDE         45
-#define SV_SCROLL_ACQUIREMENT           46
-#define SV_SCROLL_STAR_ACQUIREMENT      47
-#define SV_SCROLL_FIRE                  48
-#define SV_SCROLL_ICE                   49
-#define SV_SCROLL_CHAOS                 50
-#define SV_SCROLL_RUMOR                 51
-#define SV_SCROLL_ARTIFACT              52
-/* xxx */
-#define SV_SCROLL_SUPER_IDENTIFY        53
+#define SV_SCROLL_NONE                   0
+#define SV_SCROLL_CHEAP_SCROLL           1
+#define SV_SCROLL_SCROLL                 2
+#define SV_SCROLL_FINE_SCROLL            3
 
 /* The "sval" codes for TV_POTION */
-#define SV_POTION_WATER                  0
-#define SV_POTION_APPLE_JUICE            1
-#define SV_POTION_SLIME_MOLD             2
-/* xxx (fixed color) */
-#define SV_POTION_SLOWNESS               4
-#define SV_POTION_SALT_WATER             5
-#define SV_POTION_POISON                 6
-#define SV_POTION_BLINDNESS              7
-/* xxx */
-#define SV_POTION_CONFUSION              9
-/* xxx */
-#define SV_POTION_SLEEP                 11
-/* xxx */
-#define SV_POTION_LOSE_MEMORIES         13
-/* xxx */
-#define SV_POTION_RUINATION             15
-#define SV_POTION_DEC_STR               16
-#define SV_POTION_DEC_INT               17
-#define SV_POTION_DEC_WIS               18
-#define SV_POTION_DEC_DEX               19
-#define SV_POTION_DEC_CON               20
-#define SV_POTION_DEC_CHR               21
-#define SV_POTION_DETONATIONS           22
-#define SV_POTION_DEATH                 23
-#define SV_POTION_INFRAVISION           24
-#define SV_POTION_DETECT_INVIS          25
-#define SV_POTION_SLOW_POISON           26
-#define SV_POTION_CURE_POISON           27
-#define SV_POTION_BOLDNESS              28
-#define SV_POTION_SPEED                 29
-#define SV_POTION_RESIST_HEAT           30
-#define SV_POTION_RESIST_COLD           31
-#define SV_POTION_HEROISM               32
-#define SV_POTION_BERSERK_STRENGTH      33
-#define SV_POTION_CURE_LIGHT            34
-#define SV_POTION_CURE_SERIOUS          35
-#define SV_POTION_CURE_CRITICAL         36
-#define SV_POTION_HEALING               37
-#define SV_POTION_STAR_HEALING          38
-#define SV_POTION_LIFE                  39
-#define SV_POTION_RESTORE_MANA          40
-#define SV_POTION_RESTORE_EXP           41
-#define SV_POTION_RES_STR               42
-#define SV_POTION_RES_INT               43
-#define SV_POTION_RES_WIS               44
-#define SV_POTION_RES_DEX               45
-#define SV_POTION_RES_CON               46
-#define SV_POTION_RES_CHR               47
-#define SV_POTION_INC_STR               48
-#define SV_POTION_INC_INT               49
-#define SV_POTION_INC_WIS               50
-#define SV_POTION_INC_DEX               51
-#define SV_POTION_INC_CON               52
-#define SV_POTION_INC_CHR               53
-/* xxx */
-#define SV_POTION_AUGMENTATION          55
-#define SV_POTION_ENLIGHTENMENT         56
-#define SV_POTION_STAR_ENLIGHTENMENT    57
-#define SV_POTION_SELF_KNOWLEDGE        58
-#define SV_POTION_EXPERIENCE            59
-#define SV_POTION_RESISTANCE            60
-#define SV_POTION_CURING                61
-#define SV_POTION_INVULNERABILITY       62
-#define SV_POTION_NEW_LIFE              63
+#define SV_POTION_NONE                   0
+#define SV_POTION_TYPE_1                 1
+#define SV_POTION_TYPE_2                 2
+#define SV_POTION_TYPE_3                 3
 
 /* The "sval" codes for TV_FOOD */
-#define SV_FOOD_POISON                   0
-#define SV_FOOD_BLINDNESS                1
-#define SV_FOOD_PARANOIA                 2
-#define SV_FOOD_CONFUSION                3
-#define SV_FOOD_HALLUCINATION            4
-#define SV_FOOD_PARALYSIS                5
-#define SV_FOOD_WEAKNESS                 6
-#define SV_FOOD_SICKNESS                 7
-#define SV_FOOD_STUPIDITY                8
-#define SV_FOOD_NAIVETY                  9
-#define SV_FOOD_UNHEALTH                10
-#define SV_FOOD_DISEASE                 11
-#define SV_FOOD_CURE_POISON             12
-#define SV_FOOD_CURE_BLINDNESS          13
-#define SV_FOOD_CURE_PARANOIA           14
-#define SV_FOOD_CURE_CONFUSION          15
-#define SV_FOOD_CURE_SERIOUS            16
-#define SV_FOOD_RESTORE_STR             17
-#define SV_FOOD_RESTORE_CON             18
-#define SV_FOOD_RESTORING               19
-/* many missing mushrooms */
-#define SV_FOOD_BISCUIT                 32
-#define SV_FOOD_JERKY                   33
-#define SV_FOOD_RATION                  35
-#define SV_FOOD_SLIME_MOLD              36
-#define SV_FOOD_WAYBREAD                37
-#define SV_FOOD_PINT_OF_ALE             38
-#define SV_FOOD_PINT_OF_WINE            39
-
+#define SV_NONE                          0
+#define SV_FOOD_TINY_MUSHROOM            1
+#define SV_FOOD_SMALL_MUSHROOM           2
+#define SV_FOOD_MUSHROOM                 3
+#define SV_FOOD_LARGE_MUSHROOM           4
+#define SV_FOOD_HUGE_MUSHROOM            5
+#define SV_FOOD_RATION                   6
+#define SV_FOOD_BISCUIT                  7
+#define SV_FOOD_JERKY                    8
+#define SV_FOOD_SLIME_MOLD               9
+#define SV_FOOD_WAYBREAD                10
+#define SV_FOOD_PINT_OF_ALE             11
+#define SV_FOOD_PINT_OF_WINE            12
 
 /*
  * Special "sval" limit -- first "normal" food
  */
-#define SV_FOOD_MIN_FOOD                32
+#define SV_FOOD_MIN_FOOD                6
 
 /*
  * Special "sval" limit -- first "aimed" rod
@@ -2181,7 +1771,7 @@
 #define SV_BOOK_MIN_GOOD    2
 
 
-#define OBJ_GOLD_LIST   480     /* First "gold" entry */
+#define OBJ_GOLD_LIST   187     /* First "gold" entry */
 #define MAX_GOLD        18      /* Number of "gold" entries */
 
 /*
@@ -2641,8 +2231,8 @@
 #define TR1_DEX                 0x00000008L     /* DEX += "pval" */
 #define TR1_CON                 0x00000010L     /* CON += "pval" */
 #define TR1_CHR                 0x00000020L     /* CHR += "pval" */
-#define TR1_XXX1                0x00000040L     /* Later */
-#define TR1_XXX2                0x00000080L     /* Later */
+#define TR1_BLIND               0x00000040L     /* Later */
+#define TR1_FEAR                0x00000080L     /* Later */
 #define TR1_STEALTH             0x00000100L     /* Stealth += "pval" */
 #define TR1_SEARCH              0x00000200L     /* Search += "pval" */
 #define TR1_INFRA               0x00000400L     /* Infra += "pval" */
@@ -2651,15 +2241,15 @@
 #define TR1_BLOWS               0x00002000L     /* Blows += "pval" */
 #define TR1_CHAOTIC             0x00004000L
 #define TR1_VAMPIRIC            0x00008000L
-#define TR1_SLAY_ANIMAL         0x00010000L
-#define TR1_SLAY_EVIL           0x00020000L
-#define TR1_SLAY_UNDEAD         0x00040000L
-#define TR1_SLAY_DEMON          0x00080000L
-#define TR1_SLAY_ORC            0x00100000L
-#define TR1_SLAY_TROLL          0x00200000L
-#define TR1_SLAY_GIANT          0x00400000L
-#define TR1_SLAY_DRAGON         0x00800000L
-#define TR1_KILL_DRAGON         0x01000000L     /* Execute Dragon */
+#define TR1_CONFUSIION          0x00010000L
+#define TR1_HALLUCINATION       0x00020000L
+#define TR1_DIEASE              0x00040000L
+#define TR1_POISON              0x00080000L
+#define TR1_PARALYZE            0x00100000L
+#define TR1_RESTORE_STR         0x00200000L
+#define TR1_RESTORE_INT         0x00400000L
+#define TR1_RESTORE_WIS         0x00800000L
+#define TR1_RESTORE_DEX         0x01000000L     /* Execute Dragon */
 #define TR1_VORPAL              0x02000000L     /* Later */
 #define TR1_IMPACT              0x04000000L     /* Cause Earthquakes */
 #define TR1_BRAND_POIS          0x08000000L
@@ -2674,8 +2264,8 @@
 #define TR2_SUST_DEX            0x00000008L
 #define TR2_SUST_CON            0x00000010L
 #define TR2_SUST_CHR            0x00000020L
-#define TR2_XXX1                0x00000040L     /* Later */
-#define TR2_XXX2                0x00000080L     /* Later */
+#define TR2_RESTORE_CON         0x00000040L     /* Later */
+#define TR2_RESTORE_CHR         0x00000080L     /* Later */
 #define TR2_IM_ACID             0x00000100L
 #define TR2_IM_ELEC             0x00000200L
 #define TR2_IM_FIRE             0x00000400L
@@ -2705,10 +2295,10 @@
 #define TR3_SH_FIRE             0x00000001L     /* Immolation (Fire) */
 #define TR3_SH_ELEC             0x00000002L     /* Electric Sheath */
 #define TR3_QUESTITEM           0x00000004L     /* quest level item -KMW- */
-#define TR3_XXX4                0x00000008L     /* Later */
+#define TR3_RESTORE_STATS       0x00000008L     /* Later */
 #define TR3_NO_TELE             0x00000010L     /* Anti-teleportation */
 #define TR3_NO_MAGIC            0x00000020L     /* Anti-magic */
-#define TR3_XXX7                0x00000040L     /* Later */
+#define TR3_RESTORE_MANA        0x00000040L     /* Later */
 #define TR3_TY_CURSE            0x00000080L     /* The Ancient Curse */
 #define TR3_EASY_KNOW           0x00000100L     /* Aware -> Known */
 #define TR3_HIDE_TYPE           0x00000200L     /* Hide "pval" description */
@@ -2789,6 +2379,22 @@
 #define TR5_KILL_YEEK            0x00002000L
 #define TR5_SLAY_MIMIC           0x00004000L
 #define TR5_KILL_MIMIC           0x00008000L
+#define TR5_SLAY_EVIL            0x00010000L
+#define TR5_KILL_EVIL            0x00020000L
+#define TR5_XXX19                0x00040000L
+#define TR5_XXX20                0x00080000L
+#define TR5_XXX21                0x00100000L
+#define TR5_XXX22                0x00200000L
+#define TR5_XXX23                0x00400000L
+#define TR5_XXX24                0x00800000L
+#define TR5_XXX25                0x01000000L
+#define TR5_XXX26                0x02000000L
+#define TR5_XXX27                0x04000000L
+#define TR5_XXX28                0x08000000L
+#define TR5_XXX29                0x10000000L
+#define TR5_XXX30                0x20000000L
+#define TR5_XXX31                0x40000000L
+#define TR5_XXX32                0x80000000L
 
 /*  Extra Res and Sustains  */
 /*
@@ -2801,70 +2407,32 @@
 #define TR6_RES_1                0x00000008L
 #define TR6_RES_2                0x00000010L
 #define TR6_RES_3                0x00000020L
-#define TR6_EXTRA_DICE           0x00000040L
-#define TR6_EXTRA_SIDE           0x00000080L
-#define TR6_EXTRA_PVAL           0x00000100L
-#define TR6_EXTRA_TO_H           0x00000200L
-#define TR6_EXTRA_TO_D           0x00000400L
-#define TR6_EXTRA_TO_A           0x00000800L
-
-#define TR6_EQUIPABLE            0x00040000L
-#define TR6_ANY                  0x00080000L
-#define TR6_LIGHT                0x00100000L
-#define TR6_AMULET               0x00200000L
-#define TR6_RING                 0x00400000L
-#define TR6_ARMOR                0x00800000L
-#define TR6_WAND                 0x01000000L
-#define TR6_ROD                  0x02000000L
-#define TR6_STAFF                0x04000000L
-#define TR6_WEAPON               0x08000000L
-#define TR6_BOW                  0x10000000L
-#define TR6_SHOT                 0x20000000L
-#define TR6_FOOD                 0x40000000L
-#define TR6_NEGATIVE             0x80000000L
-
-/*
- * Non-Activation Effects Flags  (aka food stuffs (blind/fear/etc)
-
-   ***
-
-      Probably Should use NEGATIVE with normal effects to produce negative
-      effects.
-
-   ***
-
-   Needed Activations...
-   Cure Blindness
-   Cure Paranoia
-   Cure Confusion
-   Cure Disease
-   Restore Str, Int, Wis, Con, Dex, Chr, All
-   Lower Str, Int, Wis, Con, Dex, Chr, All
-   Temp Raise Str, Int, Wis, Con, Dex, Chr, All
- */
-
-#define TR7_BLIND                0x00000001L
-#define TR7_FEAR                 0x00000002L
-#define TR7_CONFUSION            0x00000004L
-#define TR7_HALLUCINATION        0x00000008L
-#define TR7_DISEASE              0x00000010L
-#define TR7_POISON               0x00000020L
-#define TR7_PARALYZE             0x00000040L
-
-#define TR7_RESTORE_STR          0x00000100L
-#define TR7_RESTORE_INT          0x00000200L
-#define TR7_RESTORE_WIS          0x00000400L
-#define TR7_RESTORE_DEX          0x00000800L
-#define TR7_RESTORE_CON          0x00001000L
-#define TR7_RESTORE_CHR          0x00002000L
-#define TR7_RESTORE_STATS        0x00004000L
-#define TR7_FOOD_1               0x00008000L
-#define TR7_FOOD_2               0x00010000L
-#define TR7_FOOD_3               0x00020000L
-#define TR7_RESTORE_MANA         0x00040000L
-#define TR7_RESTORE_HITS         0x00080000L
-
-
+#define TR6_EQUIPABLE            0x00000040L
+#define TR6_ANY                  0x00000080L
+#define TR6_LIGHT                0x00000100L
+#define TR6_AMULET               0x00000200L
+#define TR6_RING                 0x00000400L
+#define TR6_ARMOR                0x00000800L
+#define TR6_WAND                 0x00001000L
+#define TR6_ROD                  0x00002000L
+#define TR6_STAFF                0x00004000L
+#define TR6_WEAPON               0x00008000L
+#define TR6_BOW                  0x00010000L
+#define TR6_SHOT                 0x00020000L
+#define TR6_FOOD                 0x00040000L
+#define TR6_NEGATIVE             0x00080000L
+#define TR6_POTION               0x00100000L
+#define TR6_SCROLL               0x00200000L
+#define TR6_XXX23                0x00400000L
+#define TR6_XXX24                0x00800000L
+#define TR6_XXX25                0x01000000L
+#define TR6_XXX26                0x02000000L
+#define TR6_XXX27                0x04000000L
+#define TR6_XXX28                0x08000000L
+#define TR6_XXX29                0x10000000L
+#define TR6_XXX30                0x20000000L
+#define TR6_XXX31                0x40000000L
+#define TR6_XXX32                0x80000000L
 
 /*
  * Hack -- flag set 1 -- mask for "pval-dependant" flags.

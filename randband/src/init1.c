@@ -480,8 +480,8 @@ static cptr k_info_flags1[] =
 	"DEX",
 	"CON",
 	"CHR",
-	"XXX1",
-	"XXX2",
+	"BLIND",
+	"FEAR",
 	"STEALTH",
 	"SEARCH",
 	"INFRA",
@@ -490,15 +490,15 @@ static cptr k_info_flags1[] =
 	"BLOWS",
 	"CHAOTIC",
 	"VAMPIRIC",
-	"SLAY_ANIMAL",
-	"SLAY_EVIL",
-	"SLAY_UNDEAD",
-	"SLAY_DEMON",
-	"SLAY_ORC",
-	"SLAY_TROLL",
-	"SLAY_GIANT",
-	"SLAY_DRAGON",
-	"KILL_DRAGON",
+	"CONFUSION",
+	"HALLUCINATION",
+	"DISEASE",
+	"POISON",
+	"PARALYZE",
+	"RESTORE_STR",
+	"RESTORE_INT",
+	"RESTORE_WIS",
+	"RESTORE_DEX",
 	"VORPAL",
 	"IMPACT",
 	"BRAND_POIS",
@@ -519,8 +519,8 @@ static cptr k_info_flags2[] =
 	"SUST_DEX",
 	"SUST_CON",
 	"SUST_CHR",
-	"XXX1",
-	"XXX2",
+	"RESTORE_CON",
+	"RESTORE_CHR",
 	"IM_ACID",
 	"IM_ELEC",
 	"IM_FIRE",
@@ -555,10 +555,10 @@ static cptr k_info_flags3[] =
 	"SH_FIRE",
 	"SH_ELEC",
 	"QUESTITEM",
-	"XXX4",
+	"RESTORE_STATS",
 	"NO_TELE",
 	"NO_MAGIC",
-	"XXX7",
+	"RESTORE_MANA",
 	"TY_CURSE",
 	"EASY_KNOW",
 	"HIDE_TYPE",
@@ -584,6 +584,247 @@ static cptr k_info_flags3[] =
 	"CURSED",
 	"HEAVY_CURSE",
 	"PERMA_CURSE"
+};
+
+static cptr k_info_flags4[] =
+{
+   "SLAY_ANGEL",
+   "KILL_ANGEL",
+   "SLAY_ANIMAL",
+   "KILL_ANIMAL",
+   "SLAY_DRAGON",
+   "KILL_DRAGON",
+   "SLAY_INSECT",
+   "KILL_INSECT",
+   "SLAY_UNDEAD",
+   "KILL_UNDEAD",
+   "SLAY_KOBOLD",
+   "KILL_KOBOLD",
+   "SLAY_HUMANOID",
+   "KILL_HUMANOID",
+   "SLAY_MULTIHEAD",
+   "KILL_MULTIHEAD",
+   "SLAY_HORROR",
+   "KILL_HORROR",
+   "SLAY_GIANT",
+   "KILL_GIANT",
+   "SLAY_PLANT",
+   "KILL_PLANT",
+   "SLAY_TROLL",
+   "KILL_TROLL",
+   "SLAY_DEMON",
+   "KILL_DEMON",
+   "SLAY_AQUATIC",
+   "KILL_AQUATIC",
+   "SLAY_XENO",
+   "KILL_XENO",
+   "SLAY_HOUND",
+   "KILL_HOUND"
+};
+
+static cptr k_info_flags5[] =
+{
+   "SLAY_CONSTRUCT",
+   "KILL_CONSTRUCT",
+   "SLAY_FAERY",
+   "KILL_FAERY",
+   "SLAY_GOBLIN",
+   "KILL_GOBLIN",
+   "SLAY_NAGA",
+   "KILL_NAGA",
+   "SLAY_ORC",
+   "KILL_ORC",
+   "SLAY_WORM",
+   "KILL_WORM",
+   "SLAY_YEEK",
+   "KILL_YEEK",
+   "SLAY_MIMIC",
+   "KILL_MIMIC",
+   "SLAY_EVIL",
+   "KILL_EVIL",
+   "XXX19",
+   "XXX20",
+   "XXX21",
+   "XXX22",
+   "XXX23",
+   "XXX24",
+   "XXX25",
+   "XXX26",
+   "XXX27",
+   "XXX28",
+   "XXX29",
+   "XXX30",
+   "XXX31",
+   "XXX32"
+};
+
+static cptr k_info_flags6[] =
+{
+   "SUST_1",
+   "SUST_2",
+   "SUST_3",
+   "RES_1",
+   "RES_2",
+   "RES_3",
+   "EQUIPABLE",
+   "ANY",
+   "LIGHT",
+   "AMULET",
+   "RING",
+   "ARMOR",
+   "WAND",
+   "ROD",
+   "STAFF",
+   "WEAPON",
+   "BOW",
+   "SHOT",
+   "FOOD",
+   "NEGATIVE",
+   "POTION",
+   "SCROLL",
+   "XXX23",
+   "XXX24",
+   "XXX25",
+   "XXX26",
+   "XXX27",
+   "XXX28",
+   "XXX29",
+   "XXX30",
+   "XXX31",
+   "XXX32"
+};
+
+static cptr k_info_acts[] =
+{
+   "NONE",
+   "ACT_TELEPORT",
+   "ACT_RESTORE_STR",
+   "ACT_RESTORE_INT",
+   "ACT_RESTORE_WIS",
+   "ACT_RESTORE_DEX",
+   "ACT_RESTORE_CON",
+   "ACT_RESTORE_CHR",
+   "ACT_RESTORE_STATS",
+   "ACT_RESTORE_MANA",
+   "ACT_CURE_LW",
+   "ACT_BA_FIRE",
+   "ACT_BA_COLD",
+   "ACT_BA_ACID",
+   "ACT_BA_ELEC",
+   "ACT_ID_PLAIN",
+   "ACT_ID_FULL",
+   "ACT_CALL_CHAOS",
+   "ACT_REMOVE_CURSE",
+   "ACT_LITE",
+   "ACT_SUMMON_ANIMAL",
+   "ACT_SUMMON_PHANTOM",
+   "ACT_SUMMON_ELEMENTAL",
+   "ACT_SUMMON_DEMON",
+   "ACT_SUMMON_UNDEAD",
+   "ACT_PHASE_DOOR",
+   "ACT_TELEPORT_LEVEL",
+   "ACT_BO_CONFUSE",
+   "ACT_MAGIC_MAP",
+   "ACT_STAR_REMOVE_CURSE",
+   "ACT_DETECT_TREASURE",
+   "ACT_OBJECT_DETECT",
+   "ACT_TRAP_DETECT",
+   "ACT_DOOR_STAIR_DETECT",
+   "ACT_ACQUIREMENT",
+   "ACT_STAR_ACQUIREMENT",
+   "ACT_MASS_GENOCIDE",
+   "ACT_TRAP_CREATION",
+   "ACT_DEST_DOOR_TRAP",
+   "ACT_CREATE_ARTIFACT",
+   "ACT_RECHARGE",
+   "ACT_GENOCIDE",
+   "ACT_BA_DARKNESS",
+   "ACT_PROT_EVIL",
+   "ACT_SATIATE",
+   "ACT_DISP_UNDEAD",
+   "ACT_STAR_ENCHANT_WEAPON",
+   "ACT_CURSE_WEAPON",
+   "ACT_STAR_ENCHANT_ARMOR",
+   "ACT_CURSE_ARMOR",
+   "ACT_BLESS",
+   "ACT_HOLY_CHANT",
+   "ACT_HOLY_PRAYER",
+   "ACT_RECALL",
+   "ACT_STAR_DESTRUCTION",
+   "ACT_CURING",
+   "ACT_INVUNERABILITY",
+   "ACT_NEW_LIFE",
+   "ACT_CURE_SW",
+   "ACT_CURE_CW",
+   "ACT_HEALING",
+   "ACT_EXPERIENCE",
+   "ACT_SLEEP",
+   "ACT_POISON",
+   "ACT_LOSE_MEMORY",
+   "ACT_ENLIGHTENMENT",
+   "ACT_HEROISM",
+   "ACT_BERSERK_STRENGTH",
+   "ACT_BOLDNESS",
+   "ACT_RESTORE_LIFE",
+   "ACT_RES_FIRE",
+   "ACT_RES_COLD",
+   "ACT_SLOW_POISON",
+   "ACT_NEUTRALIZE_POISON",
+   "ACT_RESISTANCE",
+   "ACT_STAR_RESISTANCE",
+   "ACT_BO_LIGHT",
+   "ACT_BO_TAME_MONSTER",
+   "ACT_BO_COLD",
+   "ACT_BO_FIRE",
+   "ACT_STONE_TO_MUD",
+   "ACT_BO_POLYMORPH",
+   "ACT_BO_HEAL_MONSTER",
+   "ACT_BO_HASTE_MONSTER",
+   "ACT_BO_SLOW_MONSTER",
+   "ACT_BA_HEAL_MONSTER",
+   "ACT_BA_HASTE_MONSTER",
+   "ACT_BA_SLOW_MONSTER",
+   "ACT_BO_CONFUSE_MONSTER",
+   "ACT_BO_SLEEP_MONSTER",
+   "ACT_BO_DRAIN_LIFE",
+   "ACT_BO_MAGIC_MISSILE",
+   "ACT_BO_CLONE_MONSTER",
+   "ACT_BO_SCARE_MONSTER",
+   "ACT_BO_TELEPORT_OTHER",
+   "ACT_BO_DISARM",
+   "ACT_BA_POIS",
+   "ACT_BO_WONDER",
+   "ACT_BO_ACID",
+   "ACT_BA_DRAGON_FIRE",
+   "ACT_BA_DRAGON_ELEMENTAL",
+   "ACT_ANNIHILATION",
+   "ACT_BA_ROCKETS",
+   "ACT_SUMMON_HOSTILE",
+   "ACT_STARLIGHT",
+   "ACT_DISPELL_EVIL",
+   "ACT_PROBING",
+   "ACT_STAR_PROBING",
+   "ACT_POWER",
+   "ACT_IDENT",
+   "ACT_HOLINESS",
+   "ACT_HAVOC",
+   "ACT_FULL_DETECTION",
+   "ACT_DEATH",
+   "ACT_RUINATION",
+   "ACT_DETONATIONS",
+   "ACT_AUGMENTATION",
+   "ACT_LIFE",
+   "ACT_SELF_KNOWLEDGE",
+   "ACT_STAR_ENLIGHTENMENT",
+   "ACT_STAR_SELF_KNOWLEDGE",
+   "ACT_KNOWLEDGE",
+   "ACT_BA_SHINING",
+   "ACT_BA_LAW",
+   "ACT_BA_CONF",
+   "ACT_BA_SOUND",
+   "ACT_BA_CHAOS",
+   "ACT_BA_BALANCE",
+   "ACT_BA_POWER"
 };
 
 /*
@@ -1065,6 +1306,46 @@ static errr grab_one_kind_flag(object_kind *k_ptr, cptr what)
 		}
 	}
 
+	/* Check flags4 */
+	for (i = 0; i < 32; i++)
+	{
+		if (streq(what, k_info_flags4[i]))
+		{
+			k_ptr->flags4 |= (1L << i);
+			return (0);
+		}
+	}
+
+	/* Check flags5 */
+	for (i = 0; i < 32; i++)
+	{
+		if (streq(what, k_info_flags5[i]))
+		{
+			k_ptr->flags5 |= (1L << i);
+			return (0);
+		}
+	}
+
+	/* Check flags6 */
+	for (i = 0; i < 32; i++)
+	{
+		if (streq(what, k_info_flags6[i]))
+		{
+			k_ptr->flags6 |= (1L << i);
+			return (0);
+		}
+	}
+
+   /*  Check Activation Number  */
+   for (i = 0; i < 129; i++)
+   {
+      if (streq(what, k_info_acts[i]))
+      {
+         k_ptr->extra = i;
+         return (0);
+      }
+   }
+
 	/* Oops */
 	msg_format("Unknown object flag '%s'.", what);
 
@@ -1430,6 +1711,46 @@ static bool grab_one_ego_item_flag(ego_item_type *e_ptr, cptr what)
 		}
 	}
 
+	/* Check flags4 */
+	for (i = 0; i < 32; i++)
+	{
+		if (streq(what, k_info_flags4[i]))
+		{
+			e_ptr->flags4 |= (1L << i);
+			return (0);
+		}
+	}
+
+	/* Check flags5 */
+	for (i = 0; i < 32; i++)
+	{
+		if (streq(what, k_info_flags5[i]))
+		{
+			e_ptr->flags5 |= (1L << i);
+			return (0);
+		}
+	}
+
+	/* Check flags6 */
+	for (i = 0; i < 32; i++)
+	{
+		if (streq(what, k_info_flags6[i]))
+		{
+			e_ptr->flags6 |= (1L << i);
+			return (0);
+		}
+	}
+
+   /*  Check Activation Number  */
+   for (i = 0; i < 129; i++)
+   {
+      if (streq(what, k_info_acts[i]))
+      {
+         e_ptr->activation = i;
+         return (0);
+      }
+   }
+
 	/* Oops */
 	msg_format("Unknown ego-item flag '%s'.", what);
 
@@ -1587,7 +1908,7 @@ errr init_e_info_txt(FILE *fp, char *buf)
 				&eslot, &erating)) return (PARSE_ERROR_GENERIC);
 
 			/* Save the values */
-			e_ptr->slot = eslot;
+			e_ptr->slot = 0/*eslot*/;
 			e_ptr->rating = erating;
 
 			/* Next... */
@@ -1617,16 +1938,17 @@ errr init_e_info_txt(FILE *fp, char *buf)
 		/* Hack -- Process 'C' for "creation" */
 		if (buf[0] == 'C')
 		{
-			int th, td, ta, pv;
+			int th, td, ta, pv, pv2;
 
 			/* Scan for the values */
-			if (4 != sscanf(buf+2, "%d:%d:%d:%d",
-				&th, &td, &ta, &pv)) return (PARSE_ERROR_GENERIC);
+			if (5 != sscanf(buf+2, "%d:%d:%d:%d:%d",
+				&th, &td, &ta, &pv, &pv2)) return (PARSE_ERROR_GENERIC);
 
 			e_ptr->max_to_h = th;
 			e_ptr->max_to_d = td;
 			e_ptr->max_to_a = ta;
 			e_ptr->max_pval = pv;
+         e_ptr->max_pval2 = pv2;
 
 			/* Next... */
 			continue;

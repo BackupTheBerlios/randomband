@@ -2677,7 +2677,7 @@ player_magic magic_info[MAX_CLASS] =
 	{
 		/*** Mage ***/
 
-		TV_SORCERY_BOOK,
+		TV_SPELL_BOOK,
 		0,
 
 		A_INT,
@@ -3011,7 +3011,7 @@ player_magic magic_info[MAX_CLASS] =
 	{
 		/*** Priest ***/
 
-		TV_LIFE_BOOK,
+		TV_SPELL_BOOK,
 		0,
 
 		A_WIS,
@@ -3336,7 +3336,7 @@ player_magic magic_info[MAX_CLASS] =
 
 	{
 		/*** Rogue ***/
-		TV_SORCERY_BOOK,
+		TV_SPELL_BOOK,
 		0,
 
 		A_INT,
@@ -3658,7 +3658,7 @@ player_magic magic_info[MAX_CLASS] =
 	{
 		/*** Ranger ***/
 
-		TV_SORCERY_BOOK,
+		TV_SPELL_BOOK,
 		0,
 
 		A_INT,
@@ -3983,7 +3983,7 @@ player_magic magic_info[MAX_CLASS] =
 	{
 		/*** Paladin ***/
 
-		TV_LIFE_BOOK,
+		TV_SPELL_BOOK,
 		0,
 
 		A_WIS,
@@ -4303,7 +4303,7 @@ player_magic magic_info[MAX_CLASS] =
 	{
 		/*** Warrior-Mage ***/
 
-		TV_SORCERY_BOOK,
+		TV_SPELL_BOOK,
 		0,
 
 		A_INT,
@@ -4627,7 +4627,7 @@ player_magic magic_info[MAX_CLASS] =
 
 	{
 		/*** Chaos Warrior ***/
-		TV_SORCERY_BOOK,
+		TV_SPELL_BOOK,
 		0,
 
 		A_INT,
@@ -4945,7 +4945,7 @@ player_magic magic_info[MAX_CLASS] =
 	{
 		/*** Monk ***/
 
-		TV_LIFE_BOOK,
+		TV_SPELL_BOOK,
 		0,
 
 		A_WIS,
@@ -5270,7 +5270,7 @@ player_magic magic_info[MAX_CLASS] =
 	{
 		/*** Mindcrafter ***/
 
-		TV_LIFE_BOOK,
+		TV_SPELL_BOOK,
 		0,
 
 		A_WIS,
@@ -5583,7 +5583,7 @@ player_magic magic_info[MAX_CLASS] =
 	{
 		/*** High Mage ***/
 
-		TV_SORCERY_BOOK,
+		TV_SPELL_BOOK,
 		0,
 
 		A_INT,
@@ -5909,7 +5909,7 @@ player_magic magic_info[MAX_CLASS] =
 	{
 		/*** Chi Warrior ***/
 
-		TV_LIFE_BOOK,
+		TV_SPELL_BOOK,
 		0,
 
 		A_WIS,

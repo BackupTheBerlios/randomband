@@ -403,13 +403,7 @@ void do_cmd_drop(void)
 
 static bool high_level_book(const object_type *o_ptr)
 {
-	if ((o_ptr->tval == TV_LIFE_BOOK) ||
-	    (o_ptr->tval == TV_SORCERY_BOOK) ||
-	    (o_ptr->tval == TV_NATURE_BOOK) ||
-	    (o_ptr->tval == TV_CHAOS_BOOK) ||
-	    (o_ptr->tval == TV_DEATH_BOOK) ||
-	    (o_ptr->tval == TV_TRUMP_BOOK) ||
-       (o_ptr->tval == TV_CHI_BOOK))
+	if ((o_ptr->tval == TV_SPELL_BOOK))
 	{
 		if (o_ptr->sval > 1)
 			return TRUE;
@@ -466,11 +460,11 @@ bool destroy_item_aux(object_type *o_ptr, int amt)
 		{
 			if (p_ptr->realm1 == REALM_LIFE)
 			{
-				if (o_ptr->tval != TV_LIFE_BOOK) gain_expr = TRUE;
+				if (o_ptr->tval != TV_SPELL_BOOK) gain_expr = TRUE;
 			}
 			else
 			{
-				if (o_ptr->tval == TV_LIFE_BOOK) gain_expr = TRUE;
+				if (o_ptr->tval == TV_SPELL_BOOK) gain_expr = TRUE;
 			}
 		}
 
@@ -485,12 +479,12 @@ bool destroy_item_aux(object_type *o_ptr, int amt)
 			gain_exp(tester_exp * amt);
 		}
 
-		if (high_level_book(o_ptr) && o_ptr->tval == TV_LIFE_BOOK)
+		if (high_level_book(o_ptr) && o_ptr->tval == TV_SPELL_BOOK)
 		{
 			chg_virtue(V_UNLIFE, 1);
 			chg_virtue(V_VITALITY, -1);
 		}
-		else if (high_level_book(o_ptr) && o_ptr->tval == TV_DEATH_BOOK)
+		else if (high_level_book(o_ptr) && o_ptr->tval == TV_SPELL_BOOK)
 		{
 			chg_virtue(V_UNLIFE, -1);
 			chg_virtue(V_VITALITY, 1);

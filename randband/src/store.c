@@ -459,14 +459,7 @@ static void mass_produce(object_type *o_ptr)
 			break;
 		}
 
-		case TV_LIFE_BOOK:
-		case TV_SORCERY_BOOK:
-		case TV_NATURE_BOOK:
-		case TV_CHAOS_BOOK:
-		case TV_DEATH_BOOK:
-		case TV_TRUMP_BOOK:
-		case TV_ARCANE_BOOK:
-      case TV_CHI_BOOK:
+		case TV_SPELL_BOOK:
 		{
 			if (cost <= 50L) size += damroll(2, 3);
 			if (cost <= 500L) size += damroll(1, 3);
@@ -931,6 +924,9 @@ static int store_carry(object_type *o_ptr)
 	o_ptr->kn_flags1 = o_ptr->flags1;
 	o_ptr->kn_flags2 = o_ptr->flags2;
 	o_ptr->kn_flags3 = o_ptr->flags3;
+	o_ptr->kn_flags4 = o_ptr->flags4;
+	o_ptr->kn_flags5 = o_ptr->flags5;
+	o_ptr->kn_flags6 = o_ptr->flags6;
 
 	/* Erase the inscription */
 	o_ptr->inscription = 0;

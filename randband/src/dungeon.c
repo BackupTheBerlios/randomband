@@ -1246,7 +1246,7 @@ static void process_world(void)
 	u16b x, y;
 
 	object_type *o_ptr;
-	u32b f1 = 0 , f2 = 0 , f3 = 0;
+	u32b f1 = 0 , f2 = 0 , f3 = 0, f4 = 0, f5 = 0, f6 = 0;
 	int temp;
 	object_kind *k_ptr;
 	cave_type *c_ptr = area(p_ptr->py, p_ptr->px);
@@ -2051,7 +2051,7 @@ static void process_world(void)
 		/* Skip non-objects */
 		if (!o_ptr->k_idx) continue;
 
-		object_flags(o_ptr, &f1, &f2, &f3);
+		object_flags(o_ptr, &f1, &f2, &f3, &f4, &f5, &f6);
 
 		/* TY Curse */
 		if ((f3 & TR3_TY_CURSE) && one_in_(TY_CURSE_CHANCE))
@@ -2703,7 +2703,7 @@ static void process_command(void)
 				cptr which_power = "magic";
 				if (p_ptr->pclass == CLASS_MINDCRAFTER)
 					which_power = "psionic powers";
-				else if (mp_ptr->spell_book == TV_LIFE_BOOK)
+				else if (mp_ptr->spell_book == TV_SPELL_BOOK)
 					which_power = "prayer";
 
 				msg_format("An anti-magic shell disrupts your %s!", which_power);

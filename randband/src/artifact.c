@@ -582,7 +582,7 @@ int random_resistance(object_type *o_ptr, int specific, int artifact_bias)
 
 
 
-static int random_misc(object_type *o_ptr, int artifact_bias)
+int random_misc(object_type *o_ptr, int artifact_bias)
 {
 	switch (artifact_bias)
 	{
@@ -838,9 +838,13 @@ static int random_slay(object_type *o_ptr, int artifact_bias)
 			break;
 
 		case BIAS_RANGER:
-			if (!(o_ptr->flags1 & TR1_SLAY_ANIMAL))
+			if (!(o_ptr->flags4 & TR4_SLAY_ANIMAL))
 			{
-				o_ptr->flags1 |= TR1_SLAY_ANIMAL;
+				o_ptr->flags4 |= TR4_SLAY_ANIMAL;
+            if (one_in_(5))
+            {
+               o_ptr->flags4 |= TR4_KILL_ANIMAL;
+            }
 				if (one_in_(2)) return (artifact_bias);
 			}
 			break;
@@ -904,19 +908,31 @@ static int random_slay(object_type *o_ptr, int artifact_bias)
 
 		case BIAS_LAW:
 
-			if (!(o_ptr->flags1 & TR1_SLAY_EVIL))
+			if (!(o_ptr->flags5 & TR5_SLAY_EVIL))
 			{
-				o_ptr->flags1 |= TR1_SLAY_EVIL;
+				o_ptr->flags5 |= TR5_SLAY_EVIL;
+            if (one_in_(5))
+            {
+               o_ptr->flags5 |= TR5_KILL_EVIL;
+            }
 				if (one_in_(2)) return (artifact_bias);
 			}
-			if (!(o_ptr->flags1 & TR1_SLAY_UNDEAD))
+			if (!(o_ptr->flags4 & TR4_SLAY_UNDEAD))
 			{
-				o_ptr->flags1 |= TR1_SLAY_UNDEAD;
+				o_ptr->flags4 |= TR4_SLAY_UNDEAD;
+            if (one_in_(5))
+            {
+               o_ptr->flags4 |= TR4_KILL_UNDEAD;
+            }
 				if (one_in_(2)) return (artifact_bias);
 			}
-			if (!(o_ptr->flags1 & TR1_SLAY_DEMON))
+			if (!(o_ptr->flags4 & TR4_SLAY_DEMON))
 			{
-				o_ptr->flags1 |= TR1_SLAY_DEMON;
+				o_ptr->flags4 |= TR4_SLAY_DEMON;
+            if (one_in_(5))
+            {
+               o_ptr->flags4 |= TR4_KILL_DEMON;
+            }
 				if (one_in_(2)) return (artifact_bias);
 			}
 			break;
@@ -925,59 +941,15 @@ static int random_slay(object_type *o_ptr, int artifact_bias)
 	switch (randint1(34))
 	{
 		case 1:
-		case 2:
-			o_ptr->flags1 |= TR1_SLAY_ANIMAL;
-
+         o_ptr->flags1 |= TR1_CHAOTIC;
+			if (!artifact_bias && one_in_(4))
+				artifact_bias = BIAS_CHAOS;
+         break;
+  		case 2:
+			o_ptr->flags1 |= TR1_VAMPIRIC;
 			break;
-		case 3:
+      case 3:
 		case 4:
-			o_ptr->flags1 |= TR1_SLAY_EVIL;
-
-			if (!artifact_bias && one_in_(2))
-				artifact_bias = BIAS_LAW;
-			else if (!artifact_bias && one_in_(9))
-				artifact_bias = BIAS_PRIESTLY;
-			break;
-		case 5:
-		case 6:
-			o_ptr->flags1 |= TR1_SLAY_UNDEAD;
-
-			if (!artifact_bias && one_in_(9))
-				artifact_bias = BIAS_PRIESTLY;
-			break;
-		case 7:
-		case 8:
-			o_ptr->flags1 |= TR1_SLAY_DEMON;
-
-			if (!artifact_bias && one_in_(9))
-				artifact_bias = BIAS_PRIESTLY;
-			break;
-		case 9:
-		case 10:
-			o_ptr->flags1 |= TR1_SLAY_ORC;
-
-			break;
-		case 11:
-		case 12:
-			o_ptr->flags1 |= TR1_SLAY_TROLL;
-
-			break;
-		case 13:
-		case 14:
-			o_ptr->flags1 |= TR1_SLAY_GIANT;
-
-			break;
-		case 15:
-		case 16:
-			o_ptr->flags1 |= TR1_SLAY_DRAGON;
-
-			break;
-		case 17:
-			o_ptr->flags1 |= TR1_KILL_DRAGON;
-
-			break;
-		case 18:
-		case 19:
 			if (o_ptr->tval == TV_SWORD)
 			{
 				o_ptr->flags1 |= TR1_VORPAL;
@@ -990,37 +962,208 @@ static int random_slay(object_type *o_ptr, int artifact_bias)
 				o_ptr->flags1 |= TR1_IMPACT;
 			}
 			break;
-		case 20:
-		case 21:
-		case 22:
+      case 5:
+         if (!(artifact_bias == BIAS_LAW) &&
+             !(artifact_bias == BIAS_PRIESTLY))
+             o_ptr->flags4 |= TR4_SLAY_ANGEL;
+            if (one_in_(5))
+            {
+               o_ptr->flags4 |= TR4_KILL_ANGEL;
+            }
+         break;
+      case 6:
+			o_ptr->flags4 |= TR4_SLAY_ANIMAL;
+         if (one_in_(5))
+         {
+            o_ptr->flags4 |= TR4_KILL_ANIMAL;
+         }
+         break;
+      case 7:
+         o_ptr->flags4 |= TR4_SLAY_DRAGON;
+         if (one_in_(5))
+         {
+            o_ptr->flags4 |= TR4_KILL_DRAGON;
+         }
+         break;
+      case 8:
+         o_ptr->flags4 |= TR4_SLAY_INSECT;
+         if (one_in_(5))
+         {
+            o_ptr->flags4 |= TR4_KILL_INSECT;
+         }
+         break;
+      case 9:
+         o_ptr->flags4 |= TR4_SLAY_UNDEAD;
+         if (one_in_(5))
+         {
+            o_ptr->flags4 |= TR4_KILL_UNDEAD;
+         }
+         break;
+      case 10:
+         o_ptr->flags4 |= TR4_SLAY_KOBOLD;
+         if (one_in_(5))
+         {
+            o_ptr->flags4 |= TR4_KILL_KOBOLD;
+         }
+         break;
+      case 11:
+         o_ptr->flags4 |= TR4_SLAY_HUMANOID;
+         if (one_in_(5))
+         {
+            o_ptr->flags4 |= TR4_KILL_HUMANOID;
+         }
+         break;
+      case 12:
+         o_ptr->flags4 |= TR4_SLAY_MULTIHEAD;
+         if (one_in_(5))
+         {
+            o_ptr->flags4 |= TR4_KILL_MULTIHEAD;
+         }
+         break;
+      case 13:
+         o_ptr->flags4 |= TR4_SLAY_HORROR;
+         if (one_in_(5))
+         {
+            o_ptr->flags4 |= TR4_KILL_HORROR;
+         }
+         break;
+      case 14:
+         o_ptr->flags4 |= TR4_SLAY_GIANT;
+         if (one_in_(5))
+         {
+            o_ptr->flags4 |= TR4_KILL_GIANT;
+         }
+         break;
+      case 15:
+         o_ptr->flags4 |= TR4_SLAY_PLANT;
+         if (one_in_(5))
+         {
+            o_ptr->flags4 |= TR4_KILL_PLANT;
+         }
+         break;
+      case 16:
+         o_ptr->flags4 |= TR4_SLAY_TROLL;
+         if (one_in_(5))
+         {
+            o_ptr->flags4 |= TR4_KILL_TROLL;
+         }
+         break;
+      case 17:
+         o_ptr->flags4 |= TR4_SLAY_DEMON;
+         if (one_in_(5))
+         {
+            o_ptr->flags4 |= TR4_KILL_DEMON;
+         }
+         break;
+      case 18:
+         o_ptr->flags4 |= TR4_SLAY_AQUATIC;
+         if (one_in_(5))
+         {
+            o_ptr->flags4 |= TR4_KILL_AQUATIC;
+         }
+         break;
+      case 19:
+         o_ptr->flags4 |= TR4_SLAY_XENO;
+         if (one_in_(5))
+         {
+            o_ptr->flags4 |= TR4_KILL_XENO;
+         }
+         break;
+      case 20:
+         o_ptr->flags4 |= TR4_SLAY_HOUND;
+         if (one_in_(5))
+         {
+            o_ptr->flags4 |= TR4_KILL_HOUND;
+         }
+         break;
+      case 21:
+         o_ptr->flags5 |= TR5_SLAY_CONSTRUCT;
+         if (one_in_(5))
+         {
+            o_ptr->flags5 |= TR5_KILL_CONSTRUCT;
+         }
+         break;
+      case 22:
+         o_ptr->flags5 |= TR5_SLAY_FAERY;
+         if (one_in_(5))
+         {
+            o_ptr->flags5 |= TR5_KILL_FAERY;
+         }
+         break;
+      case 23:
+         o_ptr->flags5 |= TR5_SLAY_GOBLIN;
+         if (one_in_(5))
+         {
+            o_ptr->flags5 |= TR5_KILL_GOBLIN;
+         }
+         break;
+      case 24:
+         o_ptr->flags5 |= TR5_SLAY_NAGA;
+         if (one_in_(5))
+         {
+            o_ptr->flags5 |= TR5_KILL_NAGA;
+         }
+         break;
+      case 25:
+         o_ptr->flags5 |= TR5_SLAY_ORC;
+         if (one_in_(5))
+         {
+            o_ptr->flags5 |= TR5_KILL_ORC;
+         }
+         break;
+      case 26:
+         o_ptr->flags5 |= TR5_SLAY_WORM;
+         if (one_in_(5))
+         {
+            o_ptr->flags5 |= TR5_KILL_WORM;
+         }
+         break;
+      case 27:
+         o_ptr->flags5 |= TR5_SLAY_YEEK;
+         if (one_in_(5))
+         {
+            o_ptr->flags5 |= TR5_KILL_YEEK;
+         }
+         break;
+      case 28:
+         o_ptr->flags5 |= TR5_SLAY_MIMIC;
+         if (one_in_(5))
+         {
+            o_ptr->flags5 |= TR5_KILL_MIMIC;
+         }
+         break;
+      case 29:
+         o_ptr->flags5 |= TR5_SLAY_EVIL;
+         if (one_in_(5))
+         {
+            o_ptr->flags5 |= TR5_KILL_EVIL;
+         }
+         break;
+		case 30:
 			o_ptr->flags1 |= TR1_BRAND_FIRE;
 
 			if (!artifact_bias)
 				artifact_bias = BIAS_FIRE;
 			break;
-		case 23:
-		case 24:
+		case 31:
 			o_ptr->flags1 |= TR1_BRAND_COLD;
 
 			if (!artifact_bias)
 				artifact_bias = BIAS_COLD;
 			break;
-		case 25:
-		case 26:
+		case 32:
 			o_ptr->flags1 |= TR1_BRAND_ELEC;
 
 			if (!artifact_bias)
 				artifact_bias = BIAS_ELEC;
 			break;
-		case 27:
-		case 28:
+		case 33:
 			o_ptr->flags1 |= TR1_BRAND_ACID;
 
 			if (!artifact_bias)
 				artifact_bias = BIAS_ACID;
 			break;
-		case 29:
-		case 30:
+		case 34:
 			o_ptr->flags1 |= TR1_BRAND_POIS;
 
 			if (!artifact_bias && !one_in_(3))
@@ -1029,13 +1172,6 @@ static int random_slay(object_type *o_ptr, int artifact_bias)
 				artifact_bias = BIAS_NECROMANTIC;
 			else if (!artifact_bias)
 				artifact_bias = BIAS_ROGUE;
-			break;
-		case 31:
-		case 32:
-			o_ptr->flags1 |= TR1_VAMPIRIC;
-
-			if (!artifact_bias)
-				artifact_bias = BIAS_NECROMANTIC;
 			break;
 		default:
 			o_ptr->flags1 |= TR1_CHAOTIC;
@@ -1805,6 +1941,9 @@ bool create_artifact(object_type *o_ptr, bool a_scroll)
 		o_ptr->kn_flags1 = o_ptr->flags1;
 		o_ptr->kn_flags2 = o_ptr->flags2;
 		o_ptr->kn_flags3 = o_ptr->flags3;
+		o_ptr->kn_flags4 = o_ptr->flags4;
+		o_ptr->kn_flags5 = o_ptr->flags5;
+		o_ptr->kn_flags6 = o_ptr->flags6;
 	}
 	else
 	{
