@@ -1,0 +1,1841 @@
+# CVS: Last edit by $Author: the_one_relic $ on $Date: 2003/03/27 22:10:36 $
+# File: e_info.txt
+
+
+# This file is used to initialize the "lib/raw/e_info.raw" file, which is
+# used to initialize the "ego-item" information for the Angband game.
+
+# Do not modify this file unless you know exactly what you are doing,
+# unless you wish to risk possible system crashes and broken savefiles.
+
+# After modifying this file, delete the "lib/raw/e_info.raw" file.
+
+# The ego-item indexes are defined in "defines.h", and must not be changed.
+
+# Ego-items 1-63 are "armor", and 64-127 are "weapons"
+
+# Note that every "ego-item" type has a different "index", and can only be
+# created from items that belong to a certain "slot" in the equipment, if
+# one assumes that "ammo" belongs to an imaginary slot (23).  However, it
+# is possible for several "ego-item" types to have the same "textual name",
+# such as with "Armor of Resistance" and "Shield of Resistance".
+
+# === Understanding e_info.txt ===
+
+# N: serial number : ego type
+# X: inventory slot : rating
+# C: max to-hit : max to-dam : max to-ac : pval
+# W: depth : rarity : weight : cost
+# F: flag | flag | etc
+
+# 'N' indicates the beginning of an entry. The serial number must
+# increase for each new item.
+
+# 'C' is for creation bonusses - maximum to-hit, to-dam, to-ac, and
+# pval. Cursed ego-items will negate the given value.
+
+# 'W' is for extra information. Depth is the depth the object is
+# normally found at, rarity determines how common the object is,
+# weight is in tenth-pounds and cost is the items value.
+
+# 'F' is for flags. These are fairly self-explanatory. As many F:
+# lines may be used as are needed to specify all the flags and flags
+# are separated by the '|' symbol.
+
+
+# Version stamp (required)
+
+V:2.8.1
+
+N:1:of Strength
+X:0:10
+C:0:0:0:5
+W:10:2:0:275
+F:STR | ANY
+
+N:2:of Intelligence
+X:0:10
+C:0:0:0:5
+W:10:2:0:275
+F:INT | ANY
+
+N:3:of Wisdom
+X:0:10
+C:0:0:0:5
+W:10:2:0:275
+F:WIS | ANY
+
+N:4:of Dexterity
+X:0:10
+C:0:0:0:5
+W:10:2:0:275
+F:DEX | ANY
+
+N:5:of Constitution
+X:0:10
+C:0:0:0:5
+W:10:2:0:275
+F:CON | ANY
+
+N:6:of Charisma
+X:0:10
+C:0:0:0:5
+W:10:2:0:275
+F:CHR | ANY
+
+N:7:of *Strength*
+X:0:15
+C:0:0:0:5
+W:10:2:0:1250
+F:STR | SUST_STR | EQUIPABLE
+
+N:8:of *Intelligence*
+X:0:15
+C:0:0:0:5
+W:10:2:0:1250
+F:INT | SUST_INT | EQUIPABLE
+
+N:9:of *Wisdom*
+X:0:15
+C:0:0:0:5
+W:10:2:0:1250
+F:WIS | SUST_WIS | EQUIPABLE
+
+N:10:of *Dexterity*
+X:0:15
+C:0:0:0:5
+W:10:2:0:1250
+F:DEX | SUST_DEX | EQUIPABLE
+
+N:11:of *Constitution*
+X:0:15
+C:0:0:0:5
+W:10:2:0:1250
+F:CON | SUST_CON | EQUIPABLE
+
+N:12:of *Charisma*
+X:0:15
+C:0:0:0:5
+W:10:2:0:1250
+F:CHR | SUST_CHR | EQUIPABLE
+
+N:13:of Sustain Strength
+X:0:10
+C:0:0:0:5
+W:10:2:2:50
+F:SUST_STR | EQUIPABLE
+
+N:14:of Sustain Intelligence
+X:0:10
+C:0:0:0:5
+W:10:2:2:50
+F:SUST_INT | EQUIPABLE
+
+N:15:of Sustain Wisdom
+X:0:10
+C:0:0:0:5
+W:10:2:2:50
+F:SUST_WIS | EQUIPABLE
+
+N:16:of Sustain Dexterity
+X:0:10
+C:0:0:0:5
+W:10:2:2:50
+F:SUST_DEX | EQUIPABLE
+
+N:17:of Sustain Constitution
+X:0:10
+C:0:0:0:5
+W:10:2:2:50
+F:SUST_CON | EQUIPABLE
+
+N:18:of Sustain Charisma
+X:0:10
+C:0:0:0:5
+W:10:2:2:50
+F:SUST_CHR | EQUIPABLE
+
+N:19:of Stealth
+X:0:10
+C:0:0:0:3
+W:0:1:0:200
+F:STEALTH | EQUIPABLE
+
+N:20:of Searching
+X:0:10
+C:0:0:0:3
+W:0:1:0:200
+F:SEARCH | EQUIPABLE
+
+N:21:of Infravision
+X:0:10
+C:0:0:0:3
+W:0:1:0:200
+F:INFRA | EQUIPABLE
+
+N:22:of Digging
+X:2:4
+W:0:1:0:500
+C:0:0:0:5
+F:TUNNEL | EQUIPABLE |
+F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
+
+N:23:of Speed
+X:0:25
+W:20:4:0:10000
+C:0:0:0:10
+F:SPEED | HIDE_TYPE | ANY
+
+N:24:of Extra Attacks
+X:0:20
+W:50:3:0:2500
+C:0:0:0:1
+F:BLOWS | EQUIPABLE
+
+N:25:(Holy Avenger)
+X:2:30
+W:15:6:0:3000
+C:6:6:4:4
+F:WIS | SUST_1 | RES_1 | WEAPON |
+F:SLAY_EVIL | SLAY_UNDEAD | SLAY_DEMON |
+F:SEE_INVIS | BLESSED | RES_FEAR
+
+N:26:(Defender)
+X:2:25
+W:15:6:0:5000
+C:4:4:8:4
+F:STEALTH | SUST_1 | WEAPON |
+F:FREE_ACT | SEE_INVIS | FEATHER | REGEN |
+F:RES_ACID | RES_ELEC | RES_FIRE | RES_COLD |
+F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
+
+N:27:(Blessed)
+X:2:20
+W:10:6:0:1000
+C:0:0:0:3
+F:WIS | RES_1 | WEAPONS |
+F:BLESSED
+
+N:28:of Westernesse
+X:2:20
+W:15:6:0:3000
+C:5:5:0:2
+F:STR | DEX | CON | RES_2 | SUST_1 | WEAPON |
+F:SLAY_ORC | SLAY_TROLL | SLAY_GIANT |
+F:FREE_ACT | SEE_INVIS
+
+N:29:of Slaying
+X:0:15
+W:75:3:0:2000
+C:5:5:0:0
+F:EQUIPABLE | SHOT
+
+N:30:of Melting
+X:1:15
+W:10:6:0:1000
+F:BRAND_ACID | RES_ACID | IGNORE_ACID | WEAPON | SHOT
+
+N:31:of Shocking
+X:1:20
+W:0:6:0:750
+F:BRAND_ELEC | RES_ELEC | IGNORE_ELEC | WEAPON | SHOT
+
+N:32:of Burning
+X:1:20
+W:0:6:0:750
+F:BRAND_FIRE | RES_FIRE | IGNORE_FIRE | LITE | WEAPON | SHOT
+
+N:33:of Freezing
+X:1:15
+W:10:6:0:750
+F:BRAND_COLD | RES_COLD | IGNORE_COLD | WEAPON | SHOT
+
+N:34:of Venom
+X:1:20
+W:10:6:0:1500
+F:BRAND_POIS | RES_POIS | WEAPON | SHOT
+
+N:35:(Chaotic)
+X:2:28
+W:0:6:0:1500
+F:CHAOTIC | RES_CHAOS | IGNORE_ELEC | IGNORE_ACID | IGNORE_FIRE | WEAPON
+
+N:36:of Sharpness
+X:2:20
+W:50:2:0:1500
+F:VORPAL | TUNNEL | WEAPON
+
+N:37:of Earthquakes
+X:2:20
+W:50:2:0:2000
+F:TUNNEL | IMPACT | WEAPON
+
+N:38:(Vampiric)
+X:2:25
+W:70:3:0:2000
+F:VAMPIRIC | HOLD_LIFE | WEAPON
+
+N:39:(Trump Weapon)
+X:2:22
+W:30:3:0:1500
+C:4:4:0:2
+F:SLAY_EVIL | TELEPORT | FREE_ACT | SEARCH | WEAPON |
+F:REGEN | SLOW_DIGEST | RES_NEXUS | ACTIVATE
+
+N:40:(Pattern Weapon)
+X:2:26
+W:50:6:0:2500
+C:6:6:0:2
+F:STR | CON | RES_2 | WEAPON
+F:SLAY_EVIL | SLAY_DEMON | SLAY_UNDEAD |
+F:FREE_ACT | SEE_INVIS |
+
+N:42:of Morgul
+X:0:0
+W:5:1:0:0
+C:20:20:10:0
+F:SEE_INVIS | AGGRAVATE | HEAVY_CURSE | CURSED | NEGATIVE | EQUIPABLE
+
+N:43:of Slay Animal
+X:1:18
+W:30:3:0:750
+C:0:0:0:0
+F:SLAY_ANIMAL | WEAPON | SHOT
+
+N:44:of *Slay* Animal
+X:1:24
+W:30:3:0:1125
+C:0:0:0:0
+F:SLAY_ANIMAL | KILL_ANIMAL | WEAPON | SHOT
+
+N:45:of Slay Angel
+X:1:18
+W:50:3:0:750
+C:0:0:0:0
+F:SLAY_ANGEL | WEAPON | SHOT
+
+N:46:of *Slay* Angel
+X:1:24
+W:50:3:0:1125
+C:0:0:0:0
+F:SLAY_ANGEL | KILL_ANGEL | WEAPON | SHOT
+
+N:47:of Slay Dragon
+X:1:18
+W:30:3:0:750
+C:0:0:0:0
+F:SLAY_DRAGON | WEAPON | SHOT
+
+N:48:of *Slay* Dragon
+X:1:24
+W:30:3:0:1125
+C:0:0:0:0
+F:SLAY_DRAGON | KILL_DRAGON | WEAPON | SHOT
+
+N:49:of Slay Insect
+X:1:18
+W:30:3:0:750
+C:0:0:0:0
+F:SLAY_INSECT | WEAPON | SHOT
+
+N:50:of *Slay* Insect
+X:1:24
+W:30:3:0:1125
+C:0:0:0:0
+F:SLAY_INSECT | KILL_INSECT | WEAPON | SHOT
+
+N:51:of Slay Undead
+X:1:18
+W:30:3:0:750
+C:0:0:0:0
+F:SLAY_UNDEAD | WEAPON | SHOT
+
+N:52:of *Slay* Undead
+X:1:24
+W:30:3:0:1125
+C:0:0:0:0
+F:SLAY_UNDEAD | KILL_UNDEAD | WEAPON | SHOT
+
+N:53:of Slay Kobold
+X:1:18
+W:30:3:0:750
+C:0:0:0:0
+F:SLAY_KOBOLD | WEAPON | SHOT
+
+N:54:of *Slay* Kobold
+X:1:24
+W:30:3:0:1125
+C:0:0:0:0
+F:SLAY_KOBOLD | KILL_KOBOLD | WEAPON | SHOT
+
+N:55:of Slay Humanoid
+X:1:18
+W:30:3:0:750
+C:0:0:0:0
+F:SLAY_HUMANOID | WEAPON | SHOT
+
+N:56:of *Slay* Humanoid
+X:1:24
+W:30:3:0:1125
+C:0:0:0:0
+F:SLAY_HUMANOID | KILL_HUMANOID | WEAPON | SHOT
+
+N:57:of Slay Multiheaded
+X:1:18
+W:30:3:0:750
+C:0:0:0:0
+F:SLAY_MULTIHEAD | WEAPON | SHOT
+
+N:58:of *Slay* Multiheaded
+X:1:24
+W:30:3:0:1125
+C:0:0:0:0
+F:SLAY_MULTIHEAD | KILL_MULTIHEAD | WEAPON | SHOT
+
+N:59:of Slay Horror
+X:1:18
+W:30:3:0:750
+C:0:0:0:0
+F:SLAY_HORROR | WEAPON | SHOT
+
+N:60:of *Slay* Horror
+X:1:24
+W:30:3:0:1125
+C:0:0:0:0
+F:SLAY_HORROR | KILL_HORROR | WEAPON | SHOT
+
+N:61:of Slay Giant
+X:1:18
+W:30:3:0:750
+C:0:0:0:0
+F:SLAY_GIANT | WEAPON | SHOT
+
+N:62:of *Slay* Giant
+X:1:24
+W:30:3:0:1125
+C:0:0:0:0
+F:SLAY_GIANT | KILL_GIANT | WEAPON | SHOT
+
+N:63:of Slay Plant
+X:1:18
+W:30:3:0:750
+C:0:0:0:0
+F:SLAY_PLANT | WEAPON | SHOT
+
+N:64:of *Slay* Plant
+X:1:24
+W:30:3:0:1125
+C:0:0:0:0
+F:SLAY_PLANT | KILL_PLANT | WEAPON | SHOT
+
+N:65:of Slay Troll
+X:1:18
+W:30:3:0:750
+C:0:0:0:0
+F:SLAY_TROLL | WEAPON | SHOT
+
+N:66:of *Slay* Troll
+X:1:24
+W:30:3:0:1125
+C:0:0:0:0
+F:SLAY_TROLL | KILL_TROLL | WEAPON | SHOT
+
+N:67:of Slay Demon
+X:1:18
+W:30:3:0:750
+C:0:0:0:0
+F:SLAY_DEMON | WEAPON | SHOT
+
+N:68:of *Slay* Demon
+X:1:24
+W:30:3:0:1125
+C:0:0:0:0
+F:SLAY_DEMON | KILL_DEMON | WEAPON | SHOT
+
+N:69:of Slay Aquatic
+X:1:18
+W:30:3:0:750
+C:0:0:0:0
+F:SLAY_AQUATIC | WEAPON | SHOT
+
+N:70:of *Slay* Aquatic
+X:1:24
+W:30:3:0:1125
+C:0:0:0:0
+F:SLAY_AQUATIC | KILL_AQUATIC | WEAPON | SHOT
+
+N:71:of Slay Xeno
+X:1:18
+W:30:3:0:750
+C:0:0:0:0
+F:SLAY_XENO | WEAPON | SHOT
+
+N:72:of *Slay* Xeno
+X:1:24
+W:30:3:0:1125
+C:0:0:0:0
+F:SLAY_XENO | KILL_XENO | WEAPON | SHOT
+
+N:73:of Slay Hound
+X:1:18
+W:30:3:0:750
+C:0:0:0:0
+F:SLAY_HOUND | WEAPON | SHOT
+
+N:74:of *Slay* Hound
+X:1:24
+W:30:3:0:1125
+C:0:0:0:0
+F:SLAY_HOUND | KILL_HOUND | WEAPON | SHOT
+
+N:75:of Slay Construct
+X:1:18
+W:30:3:0:750
+C:0:0:0:0
+F:SLAY_CONSTRUCT | WEAPON | SHOT
+
+N:76:of *Slay* Construct
+X:1:24
+W:30:3:0:1125
+C:0:0:0:0
+F:SLAY_CONSTRUCT | KILL_CONSTRUCT | WEAPON | SHOT
+
+N:77:of Slay Faery
+X:1:18
+W:30:3:0:750
+C:0:0:0:0
+F:SLAY_FAERY | WEAPON | SHOT
+
+N:78:of *Slay* Faery
+X:1:24
+W:30:3:0:1125
+C:0:0:0:0
+F:SLAY_FAERY | KILL_FAERY | WEAPON | SHOT
+
+N:79:of Slay Goblin
+X:1:18
+W:30:3:0:750
+C:0:0:0:0
+F:SLAY_GOBLIN | WEAPON | SHOT
+
+N:80:of *Slay* Goblin
+X:1:24
+W:30:3:0:1125
+C:0:0:0:0
+F:SLAY_GOBLIN | KILL_GOBLIN | WEAPON | SHOT
+
+N:81:of Slay Naga
+X:1:18
+W:30:3:0:750
+C:0:0:0:0
+F:SLAY_NAGA | WEAPON | SHOT
+
+N:82:of *Slay* Naga
+X:1:24
+W:30:3:0:1125
+C:0:0:0:0
+F:SLAY_NAGA | KILL_NAGA | WEAPON | SHOT
+
+N:83:of Slay Orc
+X:1:18
+W:30:3:0:750
+C:0:0:0:0
+F:SLAY_ORC | WEAPON | SHOT
+
+N:84:of *Slay* Orc
+X:1:24
+W:30:3:0:1125
+C:0:0:0:0
+F:SLAY_ORC | KILL_ORC | WEAPON | SHOT
+
+N:85:of Slay Worm
+X:1:18
+W:30:3:0:750
+C:0:0:0:0
+F:SLAY_WORM | WEAPON | SHOT
+
+N:86:of *Slay* Worm
+X:1:24
+W:30:3:0:1125
+C:0:0:0:0
+F:SLAY_WORM | KILL_WORM | WEAPON | SHOT
+
+N:87:of Slay Yeek
+X:1:18
+W:30:3:0:750
+C:0:0:0:0
+F:SLAY_YEEK | WEAPON | SHOT
+
+N:88:of *Slay* Yeek
+X:1:24
+W:30:3:0:1125
+C:0:0:0:0
+F:SLAY_YEEK | KILL_YEEK | WEAPON | SHOT
+
+N:89:of Slay Mimic
+X:1:18
+W:30:3:0:750
+C:0:0:0:0
+F:SLAY_MIMIC | WEAPON | SHOT
+
+N:90:of *Slay* Mimic
+X:1:24
+W:30:3:0:1125
+C:0:0:0:0
+F:SLAY_MIMIC | KILL_MIMIC | WEAPON | SHOT
+
+# Destroyed Weapon
+N:91:(Shattered)
+X:0:0
+W:0:0:0:0
+C:5:5:0:0
+F:WEAPON | BOW
+
+# Destroyed Body Armor or Other Equipment
+N:92:(Blasted)
+X:0:0
+W:0:0:0:0
+C:0:0:10:0
+F:EQUIPABLE
+
+N:93:of Resist Acid
+X:0:16
+W:0:4:0:1000
+F:RES_ACID | IGNORE_ACID | EQUIPABLE
+
+N:94:of Resist Lightning
+X:0:10
+W:0:4:0:400
+F:RES_ELEC | IGNORE_ELEC | EQUIPABLE
+
+N:95:of Resist Fire
+X:0:14
+W:0:4:0:800
+F:RES_FIRE | IGNORE_FIRE | EQUIPABLE
+
+N:96:of Resist Cold
+X:0:12
+W:0:4:0:600
+F:RES_COLD | IGNORE_COLD | EQUIPABLE
+
+N:97:of Resistance
+X:0:20
+W:15:8:0:5000
+C:0:0:10:0
+F:RES_ACID | RES_ELEC | RES_FIRE | RES_COLD | EQUIPABLE |
+F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
+
+N:98:of Elvenkind
+X:0:25
+W:30:16:0:10000
+C:0:0:10:3
+F:STEALTH | EQUIPABLE |
+F:RES_ACID | RES_ELEC | RES_FIRE | RES_COLD |
+F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
+
+N:99:of Permanence
+X:0:30
+W:0:1:0:20000
+C:0:0:10:0
+F:SUST_STR | SUST_DEX | SUST_CON | SUST_INT | SUST_WIS | SUST_CHR |
+F:HOLD_LIFE | RES_ACID | RES_ELEC | RES_FIRE | RES_COLD |
+F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD | EQUIPABLE
+
+N:100:of Defense
+X:0:20
+W:25:8:0:5000
+C:0:0:10:0
+F:RES_3 | RES_3 | SUST_1 | EQUIPABLE
+F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
+
+N:101:of Reflection
+X:0:20
+W:50:8:0:5000
+C:0:0:5:0
+F:REFLECT | EQUIPABLE
+F:IGNORE_ELEC | IGNORE_ACID | IGNORE_COLD | IGNORE_FIRE
+
+N:102:of the *Magi*
+X:0:15
+W:40:2:0:7500
+C:0:0:0:3
+F:INT | SUST_INT | EQUIPABLE |
+F:RES_ACID | RES_ELEC | RES_FIRE | RES_COLD |
+F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
+
+N:103:of Might
+X:0:19
+W:50:2:0:2000
+C:0:0:0:3
+F:STR | DEX | CON | SUST_STR | SUST_DEX | SUST_CON | FREE_ACT | EQUIPABLE
+
+N:104:of Lordliness
+X:0:17
+W:20:2:0:2000
+C:0:0:0:3
+F:WIS | CHR | SUST_WIS | SUST_CHR
+F:RES_2 | SUST_2 | EQUIPABLE
+
+N:105:of Seeing
+X:0:8
+W:30:2:0:1000
+C:0:0:0:5
+F:SEARCH | RES_BLIND | SEE_INVIS | EQUIPABLE
+
+N:106:of Light
+X:0:6
+W:0:2:0:500
+F:LITE | RES_LITE | EQUIPABLE
+
+N:107:of Telepathy
+X:0:20
+W:30:2:0:10000
+F:TELEPATHY | EQUIPABLE
+
+N:108:of Regeneration
+X:0:10
+W:0:2:0:1000
+F:REGEN | EQUIPABLE
+
+N:109:of Teleportation
+X:0:0
+W:0:2:0:0
+F:TELEPORT | EQUIPABLE
+
+N:110:of Stupidity
+X:0:0
+C:0:0:0:5
+W:0:2:0:0
+F:INT | NEGATIVE | EQUIPABLE
+
+N:111:of Naivety
+X:0:0
+C:0:0:0:5
+W:0:2:0:0
+F:WIS | NEGATIVE | EQUIPABLE
+
+N:112:of Ugliness
+X:0:0
+C:0:0:0:5
+W:0:2:0:0
+F:CHR | NEGATIVE | EQUIPABLE
+
+N:113:of Sickliness
+X:0:0
+C:0:0:0:5
+W:0:2:0:0
+F:STR | DEX | CON | NEGATIVE | EQUIPABLE
+
+N:114:of Protection
+X:0:10
+W:0:1:0:50
+C:0:0:10:0
+F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD | EQUIPABLE
+
+N:115:of Aman
+X:0:20
+W:50:8:0:2000
+C:0:0:20:3
+F:STEALTH | RES_1
+F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD | EQUIPABLE
+
+N:116:of Immolation
+X:0:16
+W:50:8:0:1000
+C:0:0:4:0
+F:IGNORE_ACID | IGNORE_FIRE | SH_FIRE | RES_FIRE | EQUIPABLE
+
+N:117:of Enveloping
+X:0:0
+W:0:1:0:0
+C:10:10:0:0
+F:EQUIPABLE
+
+N:118:of Vulnerability
+X:0:0
+W:0:1:0:0
+C:0:0:50:0
+F:AGGRAVATE | NEGATIVE | EQUIPABLE
+
+N:119:of Irritation
+X:0:0
+W:0:1:0:0
+C:15:15:0:0
+F:AGGRAVATE | NEGATIVE | EQUIPABLE
+
+N:120:of Electricity
+X:0:16
+W:50:8:0:1000
+C:0:0:4:0
+F:IGNORE_ACID | IGNORE_ELEC | SH_ELEC | RES_ELEC | EQUIPABLE
+
+N:121:of Free Action
+X:0:11
+W:0:1:0:1000
+C:0:0:0:0
+F:FREE_ACT | EQUIPABLE
+
+N:122:of Agility
+X:0:14
+W:0:3:0:1000
+C:0:0:0:5
+F:DEX | FREE_ACT | HIDE_TYPE | EQUIPABLE
+
+N:123:of Power
+X:0:22
+W:20:4:0:1000
+C:5:5:0:5
+F:STR | SHOW_MODS | HIDE_TYPE | EQUIPABLE
+
+N:124:of Weakness
+X:0:0
+W:0:1:0:0
+C:0:0:0:10
+F:STR | NEGATIVE | ANY
+
+N:125:of Clumsiness
+X:0:0
+W:0:1:0:0
+C:0:0:0:10
+F:DEX | NEGATIVE | ANY
+
+N:126:of Levitation
+X:0:7
+W:30:4:0:250
+C:0:0:0:0
+F:FEATHER | EQUIPABLE
+
+N:127:of Noise
+X:0:0
+W:0:1:0:0
+C:0:0:0:0
+F:AGGRAVATE | NEGATIVE | EQUIPABLE
+
+N:128:of Slowness
+X:0:0
+W:20:4:0:0
+C:0:0:0:5
+F:SPEED | NEGATIVE | ANY
+
+N:129:of Annoyance
+X:0:0
+W:35:1:0:0
+C:0:0:0:10
+F:SPEED | AGGRAVATE | NEGATIVE | ANY
+
+N:130:of Accuracy
+X:0:10
+W:0:1:0:50
+C:15:5:0:0
+F:EQUIPABLE
+
+N:131:of Damage
+X:0:10
+W:20:1:0:50
+C:5:15:0:0
+F:EQUIPABLE
+
+N:132:of Extra Might
+X:3:20
+W:40:1:0:1000
+C:5:10:0:0
+F:XTRA_MIGHT | BOW
+
+N:133:of Extra Shots
+X:3:20
+C:10:5:0:0
+W:50:1:0:1000
+F:XTRA_SHOTS | BOW
+
+N:134:of Backbiting
+X:1:0
+W:1:1:0:0
+C:50:50:0:0
+F:NEGATIVE | SHOT
+
+N:135:of the Village Idiot
+X:0:0
+C:0:0:0:10
+W:0:0:0:0
+F:INT | WIS | NEGATIVE | EQUIPABLE
+
+N:136:of *Resistance*
+X:0:16
+W:0:4:0:1500
+C:0:0:0:0
+F:RES_3 | RES_3 | ANY
+
+N:137:of Sustaining
+X:0:16
+W:0:4:0:900
+C:0:0:0:0
+F:SUST_2 | EQUIPABLE
+
+N:138:of *Sustaining*
+X:0:16
+W:0:7:0:1500
+C:0:0:0:0
+F:SUST_2 | SUST_2 | EQUIPABLE
+
+N:139:of Resist Poison
+X:0:10
+W:0:6:0:1100
+C:0:0:0:0
+F:RES_POIS | ANY
+
+N:140:of Resist Nether
+X:0:14
+W:0:6:0:1050
+C:0:0:0:0
+F:RES_NETH | ANY
+
+N:141:of Resist Light
+X:0:10
+W:0:6:0:350
+C:0:0:0:0
+F:RES_LITE | ANY
+
+N:142:of Resist Dark
+X:0:14
+W:0:6:0:400
+C:0:0:0:0
+F:RES_DARK | ANY
+
+N:143:of Bravery
+X:0:10
+W:0:3:0:600
+C:0:0:0:0
+F:RES_FEAR | ANY
+
+N:144:of Clear Thoughts
+X:0:14
+W:0:7:0:1250
+C:0:0:0:0
+F:RES_CONF | ANY
+
+N:145:of Resist Chaos
+X:0:10
+W:0:3:0:1100
+C:0:0:0:0
+F:RES_CHAOS | ANY
+
+N:146:of Resist Disenchantment
+X:0:14
+W:0:8:0:2500
+C:0:0:0:0
+F:RES_DISEN | ANY
+
+N:147:of Resist Blindness
+X:0:10
+W:0:3:0:650
+C:0:0:0:0
+F:RES_BLIND | ANY
+
+N:148:of Resist Nexsus
+X:0:14
+W:0:5:0:800
+C:0:0:0:0
+F:RES_NEXSUS | ANY
+
+N:149:of Sound Resistance
+X:0:10
+W:0:5:0:750
+C:0:0:0:0
+F:RES_SOUND | ANY
+
+N:150:of Resist Shards
+X:0:14
+W:0:5:0:1050
+C:0:0:0:0
+F:RES_SHARD | ANY
+
+N:151:of Slow Digestion
+X:0:16
+W:0:0:0:100
+C:0:0:0:0
+F:SLOW_DIGEST | EQUIPABLE
+
+N:152:of Blindness
+X:0:0
+W:0:0:0:0
+C:0:0:0:0
+F:BLIND | NEGATIVE | ANY
+
+N:153:of Fear
+X:0:0
+W:0:0:0:0
+C:0:0:0:0
+F:FEAR | NEGATIVE | ANY
+
+N:154:of Confusion
+X:0:0
+W:0:0:0:0
+C:0:0:0:0
+F:CONFUSION | NEGATIVE | ANY
+
+N:155:of Hallucination
+X:0:0
+W:0:0:0:0
+C:0:0:0:0
+F:HALLUCINATION | NEGATIVE | ANY
+
+N:156:of Disease
+X:0:0
+W:0:0:0:0
+C:0:0:0:0
+F:DISEASE | NEGATIVE | ANY
+
+N:157:of Posion
+X:0:0
+W:0:0:0:0
+C:0:0:0:0
+F:POISON | NEGATIVE | ANY
+
+N:158:of Paralysis
+X:0:0
+W:0:0:0:0
+C:0:0:0:0
+F:PARALYZE | NEGATIVE | ANY
+
+N:159:of Restore Strength
+X:0:10
+W:7:1:0:150
+C:0:0:0:0
+F:ACT_RESTORE_STR | ANY
+
+N:160:of Restore Intelligence
+X:0:10
+W:7:1:0:200
+C:0:0:0:0
+F:ACT_RESTORE_INT | ANY
+
+N:161:of Restore Wisdom
+X:0:10
+W:7:1:0:200
+C:0:0:0:0
+F:ACT_RESTORE_WIS | ANY
+
+N:162:of Restore Dexterity
+X:0:10
+W:7:1:0:150
+C:0:0:0:0
+F:ACT_RESTORE_DEX | ANY
+
+N:163:of Restore Constitution
+X:0:10
+W:7:1:0:100
+C:0:0:0:0
+F:ACT_RESTORE_CON | ANY
+
+N:164:of Restore Charisma
+X:0:10
+W:7:1:0:0
+C:0:0:0:0
+F:ACT_RESTORE_CHR | ANY
+
+N:165:of Restoration
+X:0:10
+W:7:1:0:500
+C:0:0:0:0
+F:ACT_RESTORE_STATS | ANY
+
+N:166:of Mana
+X:0:10
+W:7:1:0:225
+C:0:0:0:0
+F:ACT_RESTORE_MANA | ANY
+
+N:167:of Health
+X:0:10
+W:1:0:0:50
+C:0:0:0:0
+F:ACT_CURE_LW | ANY
+
+N:168:of Flames
+X:0:15
+W:15:4:0:300
+C:0:0:0:0
+F:RES_FIRE | ACT_BA_FIRE | EQUIPABLE
+
+N:169:of Ice
+X:0:15
+W:15:4:0:300
+C:0:0:0:0
+F:RES_COLD | ACT_BA_COLD | EQUIPABLE
+
+N:170:of Acid
+X:0:15
+W:15:4:0:300
+C:0:0:0:0
+F:RES_ACID | ACT_BA_ACID | EQUIPABLE
+
+N:171:of Electricity
+X:0:15
+W:15:4:0:300
+C:0:0:0:0
+F:RES_ELEC | ACT_BA_ELEC | EQUIPABLE
+
+N:172:of Woe
+X:0:0
+W:25:0:2:0
+C:0:0:0:0
+F:CURSED | NEGATIVE | INT | EQUIPABLE
+
+N:173:of Combat
+X:0:20
+W:35:0:2:500
+C:0:5:0:0
+F:EQUIPABLE
+
+N:174:of Skill
+X:0:20
+W:35:0:2:500
+C:5:0:0:0
+F:EQUIPABLE
+
+N:175:of Protection
+X:0:12
+W:20:0:2:200
+C:0:0:5:0
+F:EQUIPABLE
+
+N:176:of Aggravation
+X:0:0
+W:5:0:2:0
+C:0:0:0:0
+F:AGGRAVATE | CURSED | NEGATIVE | ANY
+
+N:177:of See Invisible
+X:0:7
+W:10:0:2:340
+C:0:0:0:0
+F:SEE_INVIS | ANY
+
+N:178:of Brilliance
+X:0:10
+W:35:0:3:500
+C:0:0:0:5
+F:INT | WIS | HIDE_TYPE | EQUIPABLE
+
+N:179:of Adornment
+X:0:2
+W:3:0:3:20
+C:0:0:0:0
+F:EQUIPABLE
+
+N:180:of the Magi
+X:0:13
+W:75:0:3:5000
+C:0:0:0:3
+F:FREE_ACT | SEE_INVIS | SEARCH | EQUIPABLE
+F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
+
+N:181:of Destruction
+X:0:0
+W:30:0:3:0
+C:0:0:0:5
+F:NEGATIVE | HEAVY_CURSE | STR | INT | WIS | DEX | CON | CHR |
+F:TY_CURSE | NO_TELE | NO_MAGIC | REGEN | HIDE_TYPE | EQUIPABLE
+
+N:182:of Hardness
+X:0:8
+W:15:0:1:125
+C:0:0:5:0
+F:EQUIPABLE
+
+N:183:of Identification
+X:0:3
+W:2:0:1:50
+C:0:0:0:0
+F:ACT_ID_PLAIN | ANY
+
+N:184:of *Identification
+X:0:5
+W:40:0:1:500
+C:0:0:0:0
+F:ACT_ID_FULL | ANY
+
+N:185:of Logrus
+X:0:9
+W:75:0:5:2500
+C:0:0:0:0
+F:ACT_CALL_CHAOS | ANY
+
+N:186:of Remove Curse
+X:0:2
+W:15:0:2:0
+C:0:0:0:0
+F:ANY
+
+N:187:of *Light*
+X:0:7
+W:23:0:3:33
+C:0:0:0:0
+F:RES_LITE | LITE | ACT_LITE | ANY
+
+N:188:of Animal Summoning
+X:0:13
+W:32:0:3:500
+C:0:0:0:0
+F:ACT_SUMMON_ANIMAL | ANY
+
+N:189:of Phantom Summoning
+X:0:18
+W:45:0:3:1250
+C:0:0:0:0
+F:ACT_SUMMON_PHANTOM | ANY
+
+N:190:of Elemental Summoning
+X:0:24
+W:60:0:3:1250
+C:0:0:0:0
+F:ACT_SUMMON_ELEMENTAL | ANY
+
+N:191:of Demon Summoning
+X:0:28
+W:60:0:3:1250
+C:0:0:0:0
+F:ACT_SUMMON_DEMON | ANY
+
+N:192:of Undead Summoning
+X:0:14
+W:25:0:2:1000
+C:0:0:0:0
+F:ACT_SUMMON_UNDEAD | ANY
+
+N:193:of Blinking
+X:0:5
+W:10:0:4:200
+C:0:0:0:0
+F:ACT_PHASEDOOR | ANY
+
+N:194:of Level Teleportation
+X:0:7
+W:12:0:1:75
+C:0:0:0:0
+F:ACT_TELEPORT_LEVEL | ANY
+
+N:195:of Monster Confusion
+X:0:4
+W:4:0:2:40
+C:0:0:0:0
+F:ACT_BO_CONFUSE | ANY
+
+N:196:of Mapping
+X:0:1
+W:7:0:1:50
+C:0:0:0:0
+F:ACT_MAGIC_MAP | ANY
+
+N:198:of *Remove Curse*
+X:0:11
+W:75:0:5:8000
+C:0:0:0:0
+F:ACT_STAR_REMOVE_CURSE | ANY
+
+N:199:of Treasure Detection
+X:0:1
+W:0:0:5:5
+C:0:0:0:0
+F:ACT_DETECT_TREASURE | ANY
+
+N:200:of Object Detection
+X:0:1
+W:0:0:5:5
+C:0:0:0:0
+F:ACT_OBJECT_DETECT | ANY
+
+N:201:of Trap Detection
+X:0:2
+W:5:0:5:5
+C:0:0:0:0
+F:ACT_TRAP_DETECT | ANY
+
+N:202:of Door/Stair Location
+X:0:1
+W:5:0:5:35
+C:0:0:0:0
+F:ACT_DOOR_STAIR_DETECT | ANY
+
+N:203:of Acquirement
+X:0:25
+W:50:0:5:100000
+C:0:0:0:0
+F:ACT_ACQUIREMENT | ANY
+
+N:204:of *Acquirement*
+X:0:50
+W:90:0:5:200000
+C:0:0:0:0
+F:ACT_STAR_ACQUIREMENT | ANY
+
+N:205:of Mass Genocide
+X:0:23
+W:75:0:5:5000
+C:0:0:0:0
+F:ACT_MASS_GENOCIDE | ANY
+
+N:206:of Detect Invisible
+X:0:4
+W:1:0:5:15
+C:0:0:0:0
+F:SEE_INVIS | ANY
+
+N:207:of Trap Creation
+X:0:0
+W:5:0:5:0
+C:0:0:0:0
+F:ACT_TRAP_CREATION | NEGATIVE | CURSED | ANY
+
+N:208:of Trap/Door Destruction
+X:0:4
+W:10:0:4:50
+C:0:0:0:0
+F:ACT_DEST_DOOR | ANY
+
+N:209:of Artifact Creation
+X:0:40
+W:100:0:5:300000
+C:0:0:0:0
+F:ACT_CREATE_ARTIFACT | ANY
+
+N:210:of Recharging
+X:0:2
+W:40:0:4:200
+C:0:0:0:0
+F:ACT_RECHARGE | ANY
+
+N:211:of Genocide
+X:0:7
+W:65:0:5:1000
+C:0:0:0:0
+F:ACT_GENOCIDE | ANY
+
+N:212:of Darkness
+X:0:0
+W:1:0:5:0
+C:0:0:0:0
+F:ACT_BA_DARKNESS | ANY
+
+N:213:of Protection from Evil
+X:0:6
+W:52:0:4:200
+C:0:0:0:0
+F:ACT_PROT_EVIL | ANY
+
+N:214:of Satisfy Hunger
+X:0:3
+W:5:0:5:10
+C:0:0:0:0
+F:ACT_SATIATE | ANY
+
+N:215:of Dispell Undead
+X:0:8
+W:65:0:5:300
+C:0:0:0:0
+F:ACT_DISP_UNDEAD | ANY
+
+N:216:of *Enchant Weapon*
+X:0:3
+W:50:0:5:400
+C:0:0:0:0
+F:ACT_STAR_ENCHANT_WEAPON | ANY
+
+N:217:of Curse Weapon
+X:0:0:
+W:25:0:5:0
+C:0:0:0:0
+F:ACT_CURSE_WEAPON | ANY
+
+N:218:of *Enchant Armor*
+X:0:3
+W:50:0:5:400
+C:0:0:0:0
+F:ACT_STAR_ENCHANT_ARMOR | ANY
+
+N:219:of Curse Armor
+X:0:0:
+W:25:0:5:0
+C:0:0:0:0
+F:ACT_CURSE_ARMOR | ANY
+
+N:220:of Blessing
+X:0:3
+W:1:0:5:15
+C:0:0:0:0
+F:ACT_BLESS | ANY
+
+N:221:of Holy Chant
+X:0:5
+W:17:0:5:40
+C:0:0:0:0
+F:ACT_HOLY_CHANT | ANY
+
+N:222:of Holy Prayer
+X:0:7
+W:43:0:5:80
+C:0:0:0:0
+F:ACT_HOLY_PRAYER | ANY
+
+N:223:of Recall
+X:0:1
+W:5:0:3:70
+C:0:0:0:0
+F:ACT_RECALL | ANY
+
+N:224:of *Destruction*
+X:0:6
+W:65:0:5:500
+C:0:0:0:0
+F:ACT_STAR_DESTRUCTION | ANY
+
+N:225:of Curing
+X:0:4
+W:18:0:4:100
+C:0:0:0:0
+F:ACT_CURING | ANY
+
+N:226:of Invunerability
+X:0:7
+W:105:0:4:100000
+C:0:0:0:0
+F:ACT_INVUNERABILITY | ANY
+
+N:227:of New Life
+X:0:16
+W:100:0:4:50000
+C:0:0:0:0
+F:ACT_NEW_LIFE | ANY
+
+N:228:of Cure Wounds
+X:0:1
+W:5:0:4:75
+C:0:0:0:0
+F:ACT_CURE_SW | ANY
+
+N:229:of *Cure Wounds*
+X:0:2
+W:20:0:5:300
+C:0:0:0:0
+F:ACT_CURE_CW | ANY
+
+N:230:of Healing
+X:0:4
+W:26:0:4:700
+C:0:0:0:0
+F:ACT_HEALING | ANY
+
+N:231:of Experience
+X:0:9
+W:75:0:4:50000
+C:0:0:0:0
+F:ACT_EXPERIENCE | ANY
+
+N:232:of Sleep
+X:0:0
+W:0:0:4:0
+C:0:0:0:0
+F:ACT_SLEEP | ANY
+
+N:233:of Poison
+X:0:0
+W:3:0:4:5
+C:0:0:0:0
+F:ACT_POISON | ANY
+
+N:234:of Lose Memories
+X:0:0
+W:10:0:4:0
+C:0:0:0:0
+F:ACT_LOSE_MEMORY | ANY
+
+N:235:of Enlightenment
+X:0:5
+W:43:0:4:800
+C:0:0:0:0
+F:ACT_ENLIGHTENMENT | ANY
+
+N:236:of Heroism
+X:0:7
+W:1:0:4:35
+C:0:0:0:0
+F:ACT_HEROISM | ANY
+
+N:237:of Berserk Strength
+X:0:2
+W:3:0:2:100
+C:0:0:0:0
+F:ACT_BERSERK_STRENGTH | ANY
+
+N:238:of Boldness
+X:0:1
+W:1:0:4:10
+C:0:0:0:0
+F:ACT_BOLDNESS | ANY
+
+N:239:of Restore Life Levels
+X:0:5
+W:25:0:3:1500
+C:0:0:0:0
+F:ACT_RESTORE_LIFE | ANY
+
+N:240:of Resist Heat
+X:0:1
+W:4:0:4:30
+C:0:0:0:0
+F:ACT_RES_FIRE | ANY
+
+N:241:of Resist Cold
+X:0:1
+W:4:0:4:30
+C:0:0:0:0
+F:ACT_RES_COLD | ANY
+
+N:242:of Slow Poison
+X:0:1
+W:1:0:4:25
+C:0:0:0:0
+F:ACT_SLOW_POISON | ANY
+
+N:243:of Neutralize Poison
+X:0:1
+W:5:0:4:75
+C:0:0:0:0
+F:ACT_NEUTRALIZE_POISON | ANY
+
+N:244:of Resistance
+X:0:2
+W:35:0:4:250
+C:0:0:0:0
+F:ACT_RESISTANCE_1 | ANY
+
+N:245:of *Resistance*
+X:0:2
+W:70:0:4:500
+C:0:0:0:0
+F:ACT_RESISTANCE_2 | ANY
+
+N:246:of Light Bolts
+X:0:1
+W:3:0:10:200
+C:0:0:0:0
+F:ACT_BO_LIGHT | ANY
+
+N:247:of Tame Monster
+X:0:1
+W:52:0:10:1000
+C:0:0:0:0
+F:ACT_BO_TAME_MONSTER | ANY
+
+N:248:of Frost Bolts
+X:0:2
+W:35:0:10:400
+C:0:0:0:0
+F:ACT_BO_COLD | ANY
+
+N:249:of Fire Bolts
+X:0:2
+W:50:0:10:500
+C:0:0:0:0
+F:ACT_BO_FIRE | ANY
+
+N:250:of Stone to Mud
+X:0:1
+W:10:0:10:300
+C:0:0:0:0
+F:ACT_STONE_TO_MUD | ANY
+
+N:251:of Polymorphing
+X:0:3
+W:35:0:10:300
+C:0:0:0:0
+F:ACT_BO_POLYMORPH | ANY
+
+N:252:of Monster Healing
+X:0:1
+W:2:0:8:50
+C:0:0:0:0
+F:ACT_BO_HEAL_MONSTER | ANY
+
+N:253:of Hasting Monsters
+X:0:1
+W:2:0:9:50
+C:0:0:0:0
+F:ACT_BO_HASTE_MONSTER | ANY
+
+N:254:of Slow Monster
+X:0:1
+W:4:0:6:250
+C:0:0:0:0
+F:ACT_BO_SLOW_MONSTER | ANY
+
+N:255:of Monster Healing
+X:0:1
+W:2:0:8:50
+C:0:0:0:0
+F:ACT_BA_HEAL_MONSTER | ANY
+
+N:256:of Hasting Monsters
+X:0:1
+W:2:0:9:50
+C:0:0:0:0
+F:ACT_BA_HASTE_MONSTER | ANY
+
+N:257:of Slow Monster
+X:0:1
+W:4:0:6:250
+C:0:0:0:0
+F:ACT_BA_SLOW_MONSTER | ANY
+
+N:258:of Confuse Monster
+X:0:1
+W:5:0:10:250
+C:0:0:0:0
+F:ACT_BO_CONFUSE_MONSTER | ANY
+
+N:259:of Sleep Monster
+X:0:1
+W:5:0:10:250
+C:0:0:0:0
+F:ACT_BO_SLEEP_MONSTER | ANY
+
+N:260:of Life Draining
+X:0:3
+W:75:0:10:1200
+C:0:0:0:0
+F:ACT_DRAIN_LIFE | ANY
+
+N:271:of Magic Missile
+X:0:1
+W:2:0:10:100
+C:0:0:0:0
+F:ACT_BO_MAGIC_MISSILE |ANY
+
+N:272:of Clone Monster
+X:0:1
+W:15:0:10:0
+C:0:0:0:0
+F:ACT_BO_CLONE_MONSTER | ANY
+
+N:273:of Scare Monster
+X:0:2
+W:17:0:10:300
+C:0:0:0:0
+F:ACT_BO_SCARE_MONSTER | ANY
+
+N:274:of Teleport Other
+X:0:3
+W:35:0:10:350
+C:0:0:0:0
+F:ACT_BO_TELEPORT_OTHER | ANY
+
+N:275:of Disarming
+X:0:1
+W:35:0:10:300
+C:0:0:0:0
+F:ACT_BO_DISARM | ANY
+
+N:276:of Lightning Balls
+X:0:6
+W:41:0:10:1200
+C:0:0:0:0
+F:ACT_BA_ELEC | ANY
+
+N:277:of Cold Balls
+X:0:7
+W:45:0:10:1500
+C:0:0:0:0
+F:ACT_BA_COLD | ANY
+
+N:278:of Fire Balls
+X:0:8
+W:55:0:10:1800
+C:0:0:0:0
+F:ACT_BA_FIRE | ANY
+
+N:279:of Poison Clouds
+X:0:3
+W:5:0:10:200
+C:0:0:0:0
+F:ACT_BA_POIS | ANY
+
+N:280:of Acid Balls
+X:0:10
+W:55:0:10:1650
+C:0:0:0:0
+F:ACT_BA_ACID | ANY
+
+N:281:of Wonder
+X:0:1
+W:3:0:10:150
+C:0:0:0:0
+F:ACT_WONDER | ANY
+
+N:282:of Acid Bolts
+X:0:2
+W:40:0:10:950
+C:0:0:0:0
+F:ACT_BO_ACID | ANY
+
+N:283:of Dragon's Flame
+X:0:12
+W:75:0:10:5000
+C:0:0:0:0
+F:ACT_BA_DRAGON_FIRE | ANY |
+F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
+
+N:284:of Dragon's Breath
+X:0:13
+W:75:0:9:6000
+C:0:0:0:0
+F:ACT_BA_DRAGON_ELEMENTAL | ANY |
+F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
+
+N:285:of Annihilation
+X:0:15
+W:85:0:10:8000
+C:0:0:0:0
+F:ACT_ANNIHILATION | ANY |
+F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
+
+N:286:of Rockets
+X:0:17
+W:95:0:10:20000
+C:0:0:0:0
+F:ACT_BA_ROCKETS | ANY |
+F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
+
+N:287:of Summoning
+X:0:2
+W:10:0:50:0
+C:0:0:0:0
+F:ACT_SUMMON_HOSTILE | ANY
+
+N:288:of Starlight
+X:0:3
+W:15:0:50:500
+C:0:0:0:0
+F:ACT_STARLIGHT | ANY
+
+N:289:of Dispell Evil
+X:0:5
+W:75:0:50:2000
+C:0:0:0:0
+F:ACT_DISPELL_EVIL | ANY
+
+N:290:of Probing
+X:0:2
+W:20:0:50:100
+C:0:0:0:0
+F:ACT_PROBING | ANY
+
+N:291:of *Probing*
+X:0:4
+W:35:0:0:300
+C:0:0:0:0
+F:ACT_PROBING_2 | ANY
+
+N:292:of Power
+X:0:7
+W:95:0:0:10000
+C:0:0:0:0
+F:ACT_POWER | ANY
+
+N:293:of Perception
+X:0:1
+W:17:0:50:400
+C:0:0:0:0
+F:ACT_IDENT | ANY
+
+N:294:of Holiness
+X:0:11
+W:100:0:50:15000
+C:0:0:0:0
+F:ACT_HOLINESS | ANY
+
+N:295:of Havoc
+X:0:14
+W:95:0:15:30000
+C:0:0:0:0
+F:ACT_HAVOC | ANY
+
+N:296:of Detection
+X:0:8
+W:52:0:0:5000
+C:0:0:0:0
+F:ACT_FULL_DETECTION | ANY
+
+N:297:of Death
+X:0:3
+W:40:0:4:0
+C:0:0:0:0
+F:ACT_DEATH | ANY
+
+N:298:of Ruination
+X:0:1
+W:30:0:4:0
+C:0:0:0:0
+F:ACT_RUINATION | ANY
+
+N:299:of Detonations
+X:0:3
+W:90:0:4:10000
+C:0:0:0:0
+F:ACT_DETONATIONS | ANY
+
+N:300:of Augmentation
+X:0:12
+W:50:0:4:20000
+C:0:0:0:0
+F:ACT_AUGMENTATION | ANY
+
+N:301:of Life
+X:0:9
+W:90:0:4:5000
+C:0:0:0:0
+F:ACT_LIFE | ANY
+
+N:302:of Self Knowledge
+X:0:5
+W:45:0:4:1000
+C:0:0:0:0
+F:ACT_SELF_KNOWLEDGE | ANY
+
+N:303:of *Enlightenment*
+X:0:8
+W:95:0:4:20000
+C:0:0:0:0
+F:ACT_STAR_ENLIGHTENMENT | ANY
+
+N:304:of Lordly Protection
+X:0:17
+W:105:0:2:100000
+C:0:0:0:0
+F:RES_DISEN | RES_POIS | HOLD_LIFE | FREE_ACT | RES_3 | SUST_2 | EQUIPABLE
+
+N:305:of Anti-Magic
+X:0:11
+W:85:0:3:10000
+C:0:0:0:0
+F:NO_MAGIC
+F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD | EQUIPABLE
+
+N:306:of Anti-Teleportation
+X:0:8
+W:52:0:3:15000
+C:0:0:0:0
+F:NO_TELE
+F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD | EQUIPABLE
+
+N:307:of *Self Knowledge*
+X:0:5
+W:45:0:4:3000
+C:0:0:0:0
+F:ACT_STAR_SELF_KNOWLEDGE | ANY
+
+N:308:of Knowledge
+X:0:3
+W:40:0:5:650
+C:0:0:0:0
+F:ACT_KNOWLEDGE | ANY
+
