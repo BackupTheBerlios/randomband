@@ -1,0 +1,465 @@
+# CVS: Last edit by $Author: the_one_relic $ on $Date: 2003/03/27 22:04:40 $
+# File: f_info.txt
+
+
+# This file is used to initialize the "lib/raw/f_info.raw" file, which is
+# used to initialize the "terrain feature" information for the Angband game.
+
+# Do not modify this file unless you know exactly what you are doing,
+# unless you wish to risk possible system crashes and broken savefiles.
+
+# After modifying this file, delete the "lib/raw/f_info.raw" file.
+
+# Note that the terrain feature are grouped into very regular groups,
+# such that each of the bits in the feature type conveys information.
+
+# Note that terrain feature zero contains the "darkness" picture.
+
+# === Understanding f_info.txt ===
+
+# N:serial number:terrain name
+# G:symbol:color
+
+# N' indicates the beginning of an entry. The serial number must
+# increase for each new item.
+
+# 'G' is for graphics - symbol and color. There are 16 colors, as
+# follows:
+
+# D - Dark Gray    w - White          s - Gray          o - Orange
+# r - Red          g - Green          b - Blue          u - Brown
+# d - Black        W - Light Gray     v - Violet        y - Yellow
+# R - Light Red    G - Light Green    B - Light Blue    U - Light Brown
+
+
+# Version stamp (required)
+
+V:2.8.1
+
+
+# 0x00 --> nothing
+
+N:0:nothing
+G: :w
+
+
+# 0x01 --> open floor
+
+N:1:open floor
+G:.:w
+
+# 0x02 --> invisible trap (drawn as open floor)
+
+N:2:invisible trap
+G:.:w
+
+# 0x03 --> glyph of warding
+
+N:3:glyph of warding
+G:;:y
+
+# 0x04 --> open door
+
+N:4:open door
+G:':U
+
+# 0x05 --> broken door
+
+N:5:broken door
+G:':u
+
+# 0x06 --> up stairs (perm)
+
+N:6:up staircase
+G:<:w
+
+# 0x07 --> down stairs (perm)
+
+N:7:down staircase
+G:>:w
+
+N:8:sand
+G:.:y
+
+N:9:salt
+G:.:s
+
+N:10:wet mud
+G:.:u
+
+N:11:dry mud
+G:.:D
+
+N:12:tiled floor
+G:.:r
+
+N:13:wooden floor
+G:.:s
+
+N:14:pebbles
+G:.:D
+
+N:15:solidified lava
+G:::D
+
+# 0x10 --> visible trap -- trap door
+N:16:trap door
+G:^:w
+
+# 0x11 --> visible trap -- open pit
+
+N:17:pit
+G:^:s
+
+# 0x12 --> visible trap -- spiked pit
+
+N:18:pit
+G:^:s
+
+# 0x13 --> visible trap -- poison pit
+
+N:19:pit
+G:^:s
+
+# 0x14 --> visible trap -- rune -- summon
+
+N:20:evil rune
+G:^:G
+
+# 0x15 --> visible trap -- rune -- teleport
+
+N:21:strange rune
+G:^:o
+
+# 0x16 --> visible trap -- spot -- fire
+
+N:22:discolored spot
+G:^:u
+
+# 0x17 --> visible trap -- spot -- acid
+
+N:23:discolored spot
+G:^:u
+
+# 0x18 --> visible trap -- dart -- slow
+
+N:24:dart trap
+G:^:r
+
+# 0x19 --> visible trap -- dart -- lose str
+
+N:25:dart trap
+G:^:r
+
+# 0x1A --> visible trap -- dart -- lose dex
+
+N:26:dart trap
+G:^:r
+
+# 0x1B --> visible trap -- dart -- lose con
+
+N:27:dart trap
+G:^:r
+
+# 0x1C --> visible trap -- gas -- blind
+
+N:28:gas trap
+G:^:g
+
+# 0x1D --> visible trap -- gas -- confuse
+
+N:29:gas trap
+G:^:g
+
+# 0x1E --> visible trap -- gas -- poison
+
+N:30:gas trap
+G:^:g
+
+# 0x1F --> visible trap -- gas -- sleep
+
+N:31:gas trap
+G:^:g
+
+# 0x2x --> closed door
+
+N:32:door
+G:+:U
+
+# Pillar
+N:33:pillar
+G:#:D
+
+
+# 0x30 --> secret door
+
+N:48:granite wall
+G:#:w
+
+# 0x31 --> rubble
+
+N:49:pile of rubble
+G:::w
+
+# 0x32 --> magma vein
+
+N:50:magma vein
+G:#:s
+
+# 0x33 --> quartz vein
+
+N:51:quartz vein
+G:#:s
+
+# 0x34 --> magma vein + treasure
+# This terrain type may not actually be needed...
+N:52:magma vein
+G:#:s
+
+# 0x35 --> quartz vein + treasure
+# This terrain type may not actually be needed...
+N:53:quartz vein
+G:#:s
+
+# 0x36 --> magma vein + known treasure
+
+N:54:magma vein with treasure
+G:*:o
+
+# 0x37 --> quartz vein + known treasure
+
+N:55:quartz vein with treasure
+G:*:o
+
+# 0x38 --> granite wall -- basic
+
+N:56:granite wall
+G:#:w
+
+# 0x39 --> granite wall -- inner
+
+N:57:granite wall
+G:#:w
+
+# 0x3A --> granite wall -- outer
+
+N:58:granite wall
+G:#:w
+
+# 0x3B --> granite wall -- solid
+
+N:59:granite wall
+G:#:w
+
+# 0x3C --> permanent wall -- basic (perm)
+
+N:60:permanent wall
+G:#:w
+
+# 0x3D --> permanent wall -- inner (perm)
+
+N:61:permanent wall
+G:#:w
+
+# 0x3E --> permanent wall -- outer (perm)
+
+N:62:permanent wall
+G:#:w
+
+# 0x3F --> permanent wall -- solid (perm)
+
+N:63:permanent wall
+G:#:w
+
+N:64:explosive rune
+G:*:R
+
+N:65:Pattern startpoint
+G:*:w
+
+N:66:section of the Pattern
+G:*:B
+
+N:67:section of the Pattern
+G:*:b
+
+N:68:section of the Pattern
+G:*:B
+
+N:69:section of the Pattern
+G:*:b
+
+N:70:section of the Pattern
+G:*:s
+
+N:71:section of the Pattern (discharged)
+G:*:s
+
+N:72:Pattern exit
+G:*:w
+
+N:73:corrupted section of the Pattern
+G:*:D
+
+# 0x4A --> shop -- general store (perm)
+
+N:74:General Store
+G:1:U
+
+# 0x4B --> shop -- armoury (perm)
+
+N:75:Armoury
+G:2:s
+
+# 0x4C --> shop -- weapon shop (perm)
+
+N:76:Weapon Smiths
+G:3:w
+
+# 0x4D --> shop -- temple (perm)
+
+N:77:Temple
+G:4:g
+
+# 0x4E --> shop -- alchemist (perm)
+
+N:78:Alchemy Shop
+G:5:b
+
+# 0x4F --> shop -- magic shop (perm)
+
+N:79:Magic Shop
+G:6:r
+
+# 0x50 --> shop -- black market (perm)
+
+N:80:Black Market
+G:7:D
+
+# 0x51 --> shop -- home (perm)
+
+N:81:Home
+G:8:y
+
+# 0x52 --> shop -- bookstore (perm)
+
+N:82:Bookstore
+G:9:o
+
+# 0x53 --> terrain -- deep water
+
+N:83:deep water
+G:~:b
+
+N:84:shallow water
+G:~:B
+
+N:85:deep lava
+G:~:R
+
+N:86:shallow lava
+G:~:r
+
+N:87:dark pit
+G:#:D
+
+N:88:dirt
+G:.:u
+
+N:89:patch of grass
+G:.:g
+
+N:90:compact rune
+G:^:D
+
+N:91:invisible wall
+G:.:w
+
+N:92:very deep water
+G:~:D
+
+N:93:deep acid
+G:~:g
+
+N:94:shallow acid
+G:~:G
+
+N:95:submerged tree
+G:%:b
+
+N:96:tree
+G:%:G
+
+N:97:rock face
+G:::u
+
+N:98:snow covered rock face
+G:::s
+
+N:99:boulder
+G:::y
+
+N:100:pine tree
+G:%:g
+
+N:101:snow covered tree
+G:%:w
+
+N:102:obelisk
+G:;:b
+
+N:103:pillar
+G:#:w
+
+N:112:stone fence
+G:::b
+
+N:113:well
+G:~:v
+
+N:114:fountain
+G:~:U
+
+N:115:jungle
+G:%:D
+
+
+
+
+N:128:bush
+G:%:y
+
+N:129:dead bush
+G:%:s
+
+N:130:long grass
+G:;:U
+
+#rock on general terrain
+
+N:131:rock
+G:::U
+
+#rock on snow
+
+N:132:rock
+G:::U
+
+# dead tree on general terrain
+
+N:133:dead tree
+G:%:u
+
+# dead tree on snow
+
+N:134:dead tree
+G:%:u
+
+N:135:snow
+G:.:s
+
+N:136:thick swamp
+G:;:g
+
+N:137:swamp
+G:;:G

@@ -1,0 +1,16 @@
+# CVS: Last edit by $Author: the_one_relic $ on $Date: 2003/03/27 22:15:53 $
+# File: graf-dos.prf
+
+#
+# This file defines special attr/char mappings for use in "graphics" mode
+#
+# See "lib/help/command.txt" and "src/files.c" for more information.
+#
+
+# Standard file
+?:[EQU $GRAF old]
+%:graf-xxx.prf
+
+# New tiles
+?:[EQU $GRAF new]
+%:graf-new.prf
