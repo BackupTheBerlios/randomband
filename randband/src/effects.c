@@ -1899,7 +1899,7 @@ bool set_food(int v)
  * Note that this function (used by stat potions) now restores
  * the stat BEFORE increasing it.
  */
-bool inc_stat(int stat)
+bool inc_stat(int stat, int power)
 {
 	int value, gain;
 
@@ -1909,34 +1909,7 @@ bool inc_stat(int stat)
 	/* Cannot go above 18/100 */
 	if (value < 18+100)
 	{
-		/* Gain one (sometimes two) points */
-		if (value < 18)
-		{
-			gain = ((randint0(100) < 75) ? 1 : 2);
-			value += gain;
-		}
-
-		/* Gain 1/6 to 1/3 of distance to 18/100 */
-		else if (value < 18+98)
-		{
-			/* Approximate gain value */
-			gain = (((18+100) - value) / 2 + 3) / 2;
-
-			/* Paranoia */
-			if (gain < 1) gain = 1;
-
-			/* Apply the bonus */
-			value += randint1(gain) + gain / 2;
-
-			/* Maximal value */
-			if (value > 18+99) value = 18 + 99;
-		}
-
-		/* Gain one point at a time */
-		else
-		{
-			value++;
-		}
+      value += power;
 
 		/* Save the new value */
 		p_ptr->stat_cur[stat] = value;
@@ -2086,13 +2059,16 @@ bool dec_stat(int stat, int amount, int permanent)
 /*
  * Restore a stat.  Return TRUE only if this actually makes a difference.
  */
-bool res_stat(int stat)
+bool res_stat(int stat, int power)
 {
 	/* Restore if needed */
 	if (p_ptr->stat_cur[stat] != p_ptr->stat_max[stat])
 	{
-		/* Restore */
-		p_ptr->stat_cur[stat] = p_ptr->stat_max[stat];
+   	/* Restore */
+      if (p_ptr->stat_cur[stat] + power > p_ptr->stat_max[stat])
+   		p_ptr->stat_cur[stat] = p_ptr->stat_max[stat];
+         else
+         p_ptr->stat_cur[stat] = p_ptr->stat_max[stat] += power;
 
 		/* Recalculate bonuses */
 		p_ptr->update |= (PU_BONUS);
@@ -2126,6 +2102,66 @@ bool hp_player(int num)
 		{
 			p_ptr->chp = p_ptr->mhp;
 			p_ptr->chp_frac = 0;
+		}
+
+		/* Redraw */
+		p_ptr->redraw |= (PR_HP);
+
+		/* Window stuff */
+		p_ptr->window |= (PW_PLAYER);
+
+		/* Heal 0-4 */
+		if (num < 5)
+		{
+			msg_print("You feel a little better.");
+		}
+
+		/* Heal 5-14 */
+		else if (num < 15)
+		{
+			msg_print("You feel better.");
+		}
+
+		/* Heal 15-34 */
+		else if (num < 35)
+		{
+			msg_print("You feel much better.");
+		}
+
+		/* Heal 35+ */
+		else
+		{
+			msg_print("You feel very good.");
+		}
+
+		/* Notice */
+		return (TRUE);
+	}
+
+	/* Ignore */
+	return (FALSE);
+}
+
+/*
+ * Increase players hit points, notice effects
+ */
+bool sp_player(int num)
+{
+	/* Healing needed */
+	if (p_ptr->csp < p_ptr->msp)
+	{
+		chg_virtue(V_CHANCE, -1);
+		if ((num > 0) && (p_ptr->csp < (p_ptr->msp / 3)))
+			chg_virtue(V_TEMPERANCE, 1);
+
+		/* Gain hitpoints */
+		p_ptr->csp += num;
+
+		/* Enforce maximum */
+		if (p_ptr->csp >= p_ptr->msp)
+		{
+			p_ptr->csp = p_ptr->msp;
+			p_ptr->csp_frac = 0;
 		}
 
 		/* Redraw */
@@ -2242,10 +2278,10 @@ bool do_dec_stat(int stat)
 /*
  * Restore lost "points" in a stat
  */
-bool do_res_stat(int stat)
+bool do_res_stat(int stat, int power)
 {
 	/* Attempt to increase */
-	if (res_stat(stat))
+	if (res_stat(stat, power))
 	{
 		/* Message */
 		msg_format("You feel less %s.", desc_stat_neg[stat]);
@@ -2262,29 +2298,16 @@ bool do_res_stat(int stat)
 /*
  * Gain a "point" in a stat
  */
-bool do_inc_stat(int stat)
+bool do_inc_stat(int stat, int power)
 {
 	bool res;
 
 	/* Restore strength */
-	res = res_stat(stat);
+	res = res_stat(stat, power);
 
 	/* Attempt to increase */
-	if (inc_stat(stat))
+	if (inc_stat(stat, power))
 	{
-		if (stat == A_WIS)
-		{
-			chg_virtue(V_ENLIGHTEN, 1);
-			chg_virtue(V_FAITH, 1);
-		}
-		else if (stat == A_INT)
-		{
-			chg_virtue(V_KNOWLEDGE, 1);
-			chg_virtue(V_ENLIGHTEN, 1);
-		}
-		else if (stat == A_CON)
-			chg_virtue(V_VITALITY, 1);
-
 		/* Message */
 		msg_format("Wow!  You feel very %s!", desc_stat_pos[stat]);
 

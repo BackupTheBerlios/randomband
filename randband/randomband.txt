@@ -22,6 +22,28 @@
 
    ---
 
+   May 20, 2003
+
+   RandomBand 0.3.3
+
+      New ego system is mostly working.
+      Actmagic system is now working.
+      Both of these should be complete in the next version.
+         You will still need to rename the files new_?_info.txt
+         to their proper ?_info.txt.  These won't be done till I
+         am done making egos.
+
+   ---
+
+   April 4, 2003
+
+   Forgot to update the number.
+
+      Got CVS working so I now have the following.
+      No player magic right now.
+      New ego system with over 300 ego types.
+      Reduced number of object kinds, many became egos.
+
    RandomBand 0.3.1
 
    March 27,  2003

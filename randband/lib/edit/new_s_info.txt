@@ -46,7 +46,7 @@ struct magic_type
    byte eff1;        /* Multiplier */
    byte eff2;        /* Divider */
    u32b f1;          /* Flags for Realm */
-   byte activation;  /* Actiavtion power to make casting from */
+   u16b activation;  /* Actiavtion power to make casting from */
 };
 
 

@@ -248,7 +248,6 @@ static u16b select_building(byte pop, byte magic, byte law, u16b *build,
 	/* Draw stairs first for small towns */
 	if ((build_num < 11) && (!build[BUILD_STAIRS])) return (BUILD_STAIRS);
 
-
 	for (i = 0; i < MAX_CITY_BUILD; i++)
 	{
 		/* Work out total effects due to location */
@@ -272,7 +271,7 @@ static u16b select_building(byte pop, byte magic, byte law, u16b *build,
 	if (build_num > 11)
 	{
 		/* Hack - Dungeons are not in large cities */
-		wild_build[BUILD_STAIRS].gen = 0;
+/*		wild_build[BUILD_STAIRS].gen = 0;*/
 
 		/* Hack - Increase possibility of 'general' features */
 		for (i = 0; i < MAX_CITY_BUILD; i++)

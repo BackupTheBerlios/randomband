@@ -842,7 +842,8 @@ void object_aware(object_type *o_ptr)
 {
 #ifndef SCRIPT_OBJ_KIND
 	/* Fully aware of the effects */
-	k_info[o_ptr->k_idx].aware = TRUE;
+	e_info[o_ptr->ego_num].aware = TRUE;
+   o_ptr->aware = TRUE;
 #else /* SCRIPT_OBJ_KIND */
 	/* Fully aware of the effects */
 	o_ptr->aware = TRUE;
@@ -857,7 +858,7 @@ void object_tried(object_type *o_ptr)
 {
 #ifndef SCRIPT_OBJ_KIND
 	/* Mark it as tried (even if "aware") */
-	k_info[o_ptr->k_idx].tried = TRUE;
+	e_info[o_ptr->ego_num].tried = TRUE;
 #else /* SCRIPT_OBJ_KIND */
 	o_ptr->tried = TRUE;
 #endif /* SCRIPT_OBJ_KIND */
@@ -937,8 +938,8 @@ s32b flag_cost(const object_type *o_ptr, int plusses)
 	if (f1 & TR1_SEARCH) total += (50 * cost_matrix[plusses]);
 	if (f1 & TR1_INFRA) total += (30 * cost_matrix[plusses]);
 	if (f1 & TR1_TUNNEL) total += (20 * cost_matrix[plusses]);
-	if ((f1 & TR1_SPEED) && (plusses > 0)) total += (500 * sqvalue(cost_matrix[plusses]));
-	if ((f1 & TR1_BLOWS) && (plusses > 0)) total += (500 * sqvalue(cost_matrix[plusses]));
+	if ((f1 & TR1_SPEED) && (plusses > 0)) total += (2500 * cost_matrix[plusses]);
+	if ((f1 & TR1_BLOWS) && (plusses > 0)) total += (2500 * cost_matrix[plusses]);
 
 /*  NEEDS  WORK  */
 /*
@@ -1111,6 +1112,9 @@ s32b flag_cost(const object_type *o_ptr, int plusses)
 */
 	}
 
+   if (total < 0) total = 0;
+   if (total > 2000000) total = 2000000;
+
 	return total;
 }
 
@@ -1204,10 +1208,10 @@ s32b object_value_real(const object_type *o_ptr)
 			if (f1 & (TR1_TUNNEL)) value += (cost_matrix[o_ptr->pval] * 20L);
 
 			/* Give credit for extra attacks */
-			if (f1 & (TR1_BLOWS)) value += (sqvalue(cost_matrix[o_ptr->pval]) * 500L);
+			if (f1 & (TR1_BLOWS)) value += (cost_matrix[o_ptr->pval] * 2500L);
 
 			/* Give credit for speed bonus */
-			if (f1 & (TR1_SPEED)) value += (sqvalue(cost_matrix[o_ptr->pval]) * 500L);
+			if (f1 & (TR1_SPEED)) value += (cost_matrix[o_ptr->pval] * 2500L);
 
 			break;
 		}
@@ -1284,7 +1288,7 @@ s32b object_value_real(const object_type *o_ptr)
 
          if ((o_ptr->ac - k_ptr->ac) > 0)
 
-         value += (cost_matrix[sqvalue(o_ptr->ac - k_ptr->ac)] * 5L);
+         value += (cost_matrix[o_ptr->ac - k_ptr->ac] * 5L);
 
          /* Give credit for hit bonus */
 /*			value += (sqvalue(o_ptr->to_h - k_ptr->to_h) * 7L);*/
@@ -1363,6 +1367,7 @@ s32b object_value_real(const object_type *o_ptr)
 
 	/* No negative value */
 	if (value < 0) value = 0;
+   if (value > 2000000) value = 2000000;
 
 	/* Return the value */
 	return (value);
@@ -2284,10 +2289,10 @@ static void init_ego_item(object_type *o_ptr, int ego)
 
 	/* Hack -- acquire "cursed" flag */
 	if (e_ptr->flags3 & (TR3_CURSED)) o_ptr->ident |= (IDENT_CURSED);
-	if (e_ptr->flags6 & (TR6_NEGATIVE)) o_ptr->ident |= (IDENT_CURSED);
+/*	if (e_ptr->flags6 & (TR6_NEGATIVE)) o_ptr->ident |= (IDENT_CURSED);*/
 
 	/* Hack -- apply extra penalties if needed */
-	if (cursed_p(o_ptr) || broken_p(o_ptr))
+	if (cursed_p(o_ptr) || broken_p(o_ptr) || (e_ptr->flags6 & (TR6_NEGATIVE)))
 	{
 		/* Hack -- obtain bonuses */
 		if (e_ptr->max_to_h) o_ptr->to_h -= randint1(e_ptr->max_to_h);
@@ -2360,6 +2365,12 @@ void add_ego_flags(object_type *o_ptr, int ego)
 	o_ptr->kn_flags5 = e_ptr->flags5;
 	o_ptr->kn_flags6 = e_ptr->flags6;
 
+   o_ptr->ego_num = e_ptr->ego_num;
+
+   o_ptr->aware = e_ptr->aware;
+
+   if (e_ptr->activation) o_ptr->activate = e_ptr->activation;
+
 	/* Save the inscription */
 	o_ptr->xtra_name = quark_add(e_name + e_ptr->name);
 
@@ -2382,7 +2393,7 @@ void add_ego_flags(object_type *o_ptr, int ego)
  * Hack -- note special processing for weapon/digger
  * Hack -- note special rating boost for dragon scale mail
  */
-static void a_m_aux_1(object_type *o_ptr, int level, int lev_dif, byte flags)
+static void a_m_aux_1(object_type *o_ptr, int level, int lev_dif, byte flags, bool store_make)
 {
 	int tohit1 = w_bonus(10, lev_dif);
 	int todam1 = w_bonus(10, lev_dif);
@@ -2459,7 +2470,7 @@ static void a_m_aux_1(object_type *o_ptr, int level, int lev_dif, byte flags)
 				/* Roll for a random artifact */
 				if (one_in_(40))
 				{
-					(void)create_artifact(o_ptr, FALSE);
+					(void)create_artifact(o_ptr, FALSE, store_make);
 
 					break;
 				}
@@ -2502,7 +2513,7 @@ static void a_m_aux_1(object_type *o_ptr, int level, int lev_dif, byte flags)
 				/* Roll for a random artifact */
 				if (one_in_(21))
 				{
-					(void)create_artifact(o_ptr, FALSE);
+					(void)create_artifact(o_ptr, FALSE, store_make);
 
 					break;
 				}
@@ -2607,7 +2618,7 @@ static void dragon_resist(object_type * o_ptr)
  * Hack -- note special processing for crown/helm
  * Hack -- note special processing for robe of permanence
  */
-static void a_m_aux_2(object_type *o_ptr, int level, int lev_dif, byte flags)
+static void a_m_aux_2(object_type *o_ptr, int level, int lev_dif, byte flags, bool store_make)
 {
 	int toac1 = w_bonus(10, lev_dif);
 
@@ -2679,7 +2690,7 @@ static void a_m_aux_2(object_type *o_ptr, int level, int lev_dif, byte flags)
 				/* Roll for a random artifact */
 				if (one_in_(21))
 				{
-					(void)create_artifact(o_ptr, FALSE);
+					(void)create_artifact(o_ptr, FALSE, store_make);
 
 					break;
 				}
@@ -2715,7 +2726,7 @@ static void a_m_aux_2(object_type *o_ptr, int level, int lev_dif, byte flags)
 					/* Roll for random artifact */
 					if (one_in_(21))
 					{
-						(void)create_artifact(o_ptr, FALSE);
+						(void)create_artifact(o_ptr, FALSE, store_make);
 
 						break;
 					}
@@ -2738,7 +2749,7 @@ static void a_m_aux_2(object_type *o_ptr, int level, int lev_dif, byte flags)
 				/* Roll for a random artifact */
 				if (one_in_(20))
 				{
-					(void)create_artifact(o_ptr, FALSE);
+					(void)create_artifact(o_ptr, FALSE, store_make);
 
 					break;
 				}
@@ -2771,7 +2782,7 @@ static void a_m_aux_2(object_type *o_ptr, int level, int lev_dif, byte flags)
 				/* Roll for a random artifact */
 				if (one_in_(20))
 				{
-					(void)create_artifact(o_ptr, FALSE);
+					(void)create_artifact(o_ptr, FALSE, store_make);
 
 					break;
 				}
@@ -2804,7 +2815,7 @@ static void a_m_aux_2(object_type *o_ptr, int level, int lev_dif, byte flags)
 				/* Roll for a random artifact */
 				if (one_in_(20))
 				{
-					(void)create_artifact(o_ptr, FALSE);
+					(void)create_artifact(o_ptr, FALSE, store_make);
 
 					break;
 				}
@@ -2848,7 +2859,7 @@ static void a_m_aux_2(object_type *o_ptr, int level, int lev_dif, byte flags)
 					/* Roll for a random artifacts */
 					if (one_in_(20))
 					{
-						(void)create_artifact(o_ptr, FALSE);
+						(void)create_artifact(o_ptr, FALSE, store_make);
 
 						break;
 					}
@@ -2887,7 +2898,7 @@ static void a_m_aux_2(object_type *o_ptr, int level, int lev_dif, byte flags)
 				/* Roll for a random artifact */
 				if (one_in_(20))
 				{
-					(void)create_artifact(o_ptr, FALSE);
+					(void)create_artifact(o_ptr, FALSE, store_make);
 
 					break;
 				}
@@ -2956,7 +2967,7 @@ static void a_m_aux_2(object_type *o_ptr, int level, int lev_dif, byte flags)
  * Hack -- note special "pval boost" code for ring of speed
  * Hack -- note that some items must be cursed (or blessed)
  */
-static void a_m_aux_3(object_type *o_ptr, int level, int lev_dif, byte flags)
+static void a_m_aux_3(object_type *o_ptr, int level, int lev_dif, byte flags, bool store_make)
 {
    u32b f1, f2, f3, f4, f5, f6;
 
@@ -2990,7 +3001,7 @@ static void a_m_aux_3(object_type *o_ptr, int level, int lev_dif, byte flags)
 		/* Roll for a random artifact */
 		if (one_in_(20))
 		{
-			(void)create_artifact(o_ptr, FALSE);
+			(void)create_artifact(o_ptr, FALSE, store_make);
 		}
 	}
 
@@ -3043,7 +3054,7 @@ static void a_m_aux_3(object_type *o_ptr, int level, int lev_dif, byte flags)
  *
  * Hack -- note the special code for various items
  */
-static void a_m_aux_4(object_type *o_ptr, int level, int lev_dif, byte flags)
+static void a_m_aux_4(object_type *o_ptr, int level, int lev_dif, byte flags, bool store_make)
 {
 	object_kind *k_ptr = &k_info[o_ptr->k_idx];
 
@@ -3380,7 +3391,7 @@ void add_ego_power(int power, object_type *o_ptr)
  * "good" and "great" arguments are false.  As a total hack, if "great" is
  * true, then the item gets 3 extra "attempts" to become an artifact.
  */
-void apply_magic(object_type *o_ptr, int lev, int lev_dif, byte flags)
+void apply_magic(object_type *o_ptr, int lev, int lev_dif, byte flags, bool store)
 {
 	int f;
 
@@ -3422,7 +3433,7 @@ void apply_magic(object_type *o_ptr, int lev, int lev_dif, byte flags)
 		case TV_ARROW:
 		case TV_BOLT:
 		{
-			a_m_aux_1(o_ptr, lev, lev_dif, flags);
+			a_m_aux_1(o_ptr, lev, lev_dif, flags, store);
 			break;
 		}
 
@@ -3436,20 +3447,20 @@ void apply_magic(object_type *o_ptr, int lev, int lev_dif, byte flags)
 		case TV_GLOVES:
 		case TV_BOOTS:
 		{
-			a_m_aux_2(o_ptr, lev, lev_dif, flags);
+			a_m_aux_2(o_ptr, lev, lev_dif, flags, store);
 			break;
 		}
 
 		case TV_RING:
 		case TV_AMULET:
 		{
-			a_m_aux_3(o_ptr, lev, lev_dif, flags);
+			a_m_aux_3(o_ptr, lev, lev_dif, flags, store);
 			break;
 		}
 
 		default:
 		{
-			a_m_aux_4(o_ptr, lev, lev_dif, flags);
+			a_m_aux_4(o_ptr, lev, lev_dif, flags, store);
 			break;
 		}
 	}
@@ -3681,7 +3692,7 @@ bool make_object(object_type *o_ptr, u16b delta_level, obj_theme theme)
 	object_prep(o_ptr, k_idx);
 
 	/* Apply magic (allow artifacts) */
-	apply_magic(o_ptr, base, base - k_info[k_idx].level, flags);
+	apply_magic(o_ptr, base, base - k_info[k_idx].level, flags, FALSE);
 
 	/* Hack -- generate multiple spikes/missiles/ mushrooms */
 	switch (o_ptr->tval)

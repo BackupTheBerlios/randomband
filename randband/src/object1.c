@@ -193,7 +193,7 @@ cptr item_activation(const object_type *o_ptr)
 	{
 		switch (o_ptr->activate)
 		{
-			case ACT_SUNLIGHT:
+/*			case ACT_SUNLIGHT:
 			{
 				return "beam of sunlight every 10 turns";
 			}
@@ -495,9 +495,10 @@ cptr item_activation(const object_type *o_ptr)
 			}
 			default:
 			{
-				/* No randart activation */
+				 No randart activation
 				break;
 			}
+         */
 		}
 	}
 

@@ -701,7 +701,7 @@ bool monster_death(int m_idx, bool explode)
 		/* Prepare to make a Blade of Chaos */
 		object_prep(q_ptr, lookup_kind(TV_SWORD, SV_BLADE_OF_CHAOS));
 
-		apply_magic(q_ptr, object_level, 0, 0);
+		apply_magic(q_ptr, object_level, 0, 0, FALSE);
 
 		/* Drop it in the dungeon */
 		(void)drop_near(q_ptr, -1, y, x);
@@ -3574,9 +3574,9 @@ void gain_level_reward(int chosen_reward)
 				chaos_patrons[p_ptr->chaos_patron]);
 			msg_print("'Stay, mortal, and let me mold thee.'");
 			if (one_in_(3) && !(chaos_stats[p_ptr->chaos_patron] < 0))
-				(void)do_inc_stat(chaos_stats[p_ptr->chaos_patron]);
+				(void)do_inc_stat(chaos_stats[p_ptr->chaos_patron], 1);
 			else
-				(void)do_inc_stat(randint0(A_MAX));
+				(void)do_inc_stat(randint0(A_MAX), 1);
 			break;
 		case REW_LOSE_ABL:
 			msg_format("The voice of %s booms out:",
@@ -3608,7 +3608,7 @@ void gain_level_reward(int chosen_reward)
 			msg_print("'Receive this modest gift from me!'");
 			for (i = 0; i < A_MAX; i++)
 			{
-				(void)do_inc_stat(i);
+				(void)do_inc_stat(i, 1);
 			}
 			break;
 		case REW_HURT_LOT:
@@ -3632,7 +3632,7 @@ void gain_level_reward(int chosen_reward)
 			(void)hp_player(5000);
 			for (i = 0; i < A_MAX; i++)
 			{
-				(void)do_res_stat(i);
+				(void)do_res_stat(i, 200);
 			}
 			break;
 		case REW_CURSE_WP:

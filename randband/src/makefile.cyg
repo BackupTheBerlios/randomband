@@ -14,6 +14,7 @@ CFLAGS  =       -Wall -W -pedantic -mno-cygwin -O2 -fno-strength-reduce -DUSE_TR
 
 SRCS = \
 	angband.rc \
+   actmagic.c \
 	artifact.c \
 	avatar.c \
 	birth.c \
@@ -77,6 +78,7 @@ SRCS = \
 
 EXOBJS = \
 	angband.res \
+   actmagic.o \
 	artifact.o \
 	avatar.o \
 	birth.o \
@@ -201,6 +203,9 @@ angband.res : angband.rc
 #
 
 artifact.o: artifact.c $(INCS)
+	$(CC) $(CFLAGS) $(INCDIRS) -c -o $@ $<
+
+actmagic.o: actmagic.c $(INCS)
 	$(CC) $(CFLAGS) $(INCDIRS) -c -o $@ $<
 
 avatar.o: avatar.c $(INCS)

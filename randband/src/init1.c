@@ -824,7 +824,63 @@ static cptr k_info_acts[] =
    "ACT_BA_SOUND",
    "ACT_BA_CHAOS",
    "ACT_BA_BALANCE",
-   "ACT_BA_POWER"
+   "ACT_BA_POWER",
+
+
+   "ACT_INC_STR",
+   "ACT_INC_INT",
+   "ACT_INC_WIS",
+   "ACT_INC_DEX",
+   "ACT_INC_CON",
+   "ACT_INC_CHR",
+   "ACT_STR_TEMP",
+   "ACT_INT_TEMP",
+   "ACT_WIS_TEMP",
+   "ACT_DEX_TEMP",
+   "ACT_CON_TEMP",
+   "ACT_CHR_TEMP",
+   "ACT_STR_SUST_TEMP",
+   "ACT_INT_SUST_TEMP",
+   "ACT_WIS_SUST_TEMP",
+   "ACT_DEX_SUST_TEMP",
+   "ACT_CON_SUST_TEMP",
+   "ACT_CHR_SUST_TEMP",
+   "ACT_TEMP_STEALTH",
+   "ACT_TEMP_SEARCH",
+   "ACT_TEMP_INFRA",
+   "ACT_TEMP_SPEED",
+   "ACT_DEC_INT",
+   "ACT_DEC_WIS",
+   "ACT_DEC_CHR",
+   "ACT_DEC_STR",
+   "ACT_DEC_DEX",
+   "ACT_DEC_CON",
+   "ACT_TEMP_SLOW",
+   "ACT_TEMP_STAR_RESIST",
+   "ACT_TEMP_SUSTAIN",
+   "ACT_TEMP_STAR_SUSTAIN",
+   "ACT_TEMP_RES_POISON",
+   "ACT_TEMP_RES_NETHER",
+   "ACT_TEMP_RES_LIGHT",
+   "ACT_TEMP_RES_DARK",
+   "ACT_TEMP_FEARLESS",
+   "ACT_TEMP_RES_CONFUSION",
+   "ACT_TEMP_RES_CHAOS",
+   "ACT_TEMP_RES_DISENCHANT",
+   "ACT_TEMP_RES_BLINDNESS",
+   "ACT_TEMP_RES_NEXUS",
+   "ACT_TEMP_RES_SOUND",
+   "ACT_TEMP_RES_SHARDS",
+   "ACT_BLINDNESS",
+   "ACT_FEAR",
+   "ACT_CONFUSION",
+   "ACT_HALLUCINATION",
+   "ACT_DISEASE",
+   "ACT_PARALYSIS",
+   "ACT_AGGRAVATION",
+   "ACT_TEMP_SEE_INVIS",
+   "ACT_TEMP_TELEPATHY",
+   "ACT_TELEPORT"
 };
 
 /*
@@ -1337,7 +1393,7 @@ static errr grab_one_kind_flag(object_kind *k_ptr, cptr what)
 	}
 
    /*  Check Activation Number  */
-   for (i = 0; i < 129; i++)
+   for (i = 0; i < 182; i++)
    {
       if (streq(what, k_info_acts[i]))
       {
@@ -1742,7 +1798,7 @@ static bool grab_one_ego_item_flag(ego_item_type *e_ptr, cptr what)
 	}
 
    /*  Check Activation Number  */
-   for (i = 0; i < 129; i++)
+   for (i = 0; i < 182; i++)
    {
       if (streq(what, k_info_acts[i]))
       {
@@ -1851,6 +1907,8 @@ errr init_e_info_txt(FILE *fp, char *buf)
 
 			/* Point at the "info" */
 			e_ptr = &e_info[i];
+
+         e_ptr->ego_num = i;
 
 			/* Hack -- Verify space */
 			if (e_head->name_size + strlen(s) + 8 > fake_name_size) return (PARSE_ERROR_OUT_OF_MEMORY);

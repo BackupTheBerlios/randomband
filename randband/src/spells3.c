@@ -1888,7 +1888,7 @@ bool artifact_scroll(void)
 		o_ptr->number = 1;
 	}
 
-	okay = create_artifact(o_ptr, TRUE);
+	okay = create_artifact(o_ptr, TRUE, FALSE);
 
 	/* Failure */
 	if (!okay)
@@ -1935,7 +1935,7 @@ static void bad_luck(object_type *o_ptr)
 			o_ptr->number = number;
 
 			/* Apply bad magic */
-			apply_magic(o_ptr, p_ptr->depth, 0, OC_FORCE_BAD);
+			apply_magic(o_ptr, p_ptr->depth, 0, OC_FORCE_BAD, FALSE);
 		}
 
 		/* Now curse it */

@@ -534,6 +534,7 @@ static void wr_item(const object_type *o_ptr)
 	wr_byte(o_ptr->tval);
 	wr_byte(o_ptr->sval);
 	wr_s16b(o_ptr->pval);
+   wr_s16b(o_ptr->pval2);
 
 	wr_byte(o_ptr->discount);
 	wr_byte(o_ptr->number);
@@ -551,6 +552,8 @@ static void wr_item(const object_type *o_ptr)
 	wr_byte(o_ptr->ident);
 
 	wr_byte(o_ptr->marked);
+
+   wr_u16b(o_ptr->ego_num);
 
 	wr_u32b(o_ptr->flags1);
 	wr_u32b(o_ptr->flags2);
@@ -604,6 +607,8 @@ static void wr_item(const object_type *o_ptr)
    wr_byte(o_ptr->CCraftLevel);
    wr_u32b(o_ptr->O_Durability);
    wr_u32b(o_ptr->C_Durability);
+
+   wr_byte(o_ptr->aware);
 }
 
 

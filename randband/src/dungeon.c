@@ -896,12 +896,12 @@ static bool pattern_effect(void)
 		(void)set_cut(0);
 		(void)set_blind(0);
 		(void)set_afraid(0);
-		(void)do_res_stat(A_STR);
-		(void)do_res_stat(A_INT);
-		(void)do_res_stat(A_WIS);
-		(void)do_res_stat(A_DEX);
-		(void)do_res_stat(A_CON);
-		(void)do_res_stat(A_CHR);
+		(void)do_res_stat(A_STR, 200);
+		(void)do_res_stat(A_INT, 200);
+		(void)do_res_stat(A_WIS, 200);
+		(void)do_res_stat(A_DEX, 200);
+		(void)do_res_stat(A_CON, 200);
+		(void)do_res_stat(A_CHR, 200);
 		(void)restore_level();
 		(void)hp_player(1000);
 		c_ptr->feat = FEAT_PATTERN_OLD;

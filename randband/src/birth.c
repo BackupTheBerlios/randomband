@@ -1567,7 +1567,7 @@ static void player_outfit(void)
 
 		/* Hack -- Give the player some arrows */
 		object_prep(q_ptr, lookup_kind(TV_BOW, SV_SHORT_BOW));
-      apply_magic(q_ptr, 10, 30, OC_FORCE_GOOD);
+      apply_magic(q_ptr, 10, 30, OC_FORCE_GOOD, FALSE);
 
 		/* These objects are "storebought" */
 		q_ptr->ident |= IDENT_STOREB;
@@ -1617,7 +1617,7 @@ static void player_outfit(void)
 		/* Hack -- Give the player an object */
 		object_prep(q_ptr, lookup_kind(tv, sv));
 
-      apply_magic(q_ptr, 10, 30, OC_FORCE_GOOD);
+      apply_magic(q_ptr, 10, 30, OC_FORCE_GOOD, FALSE);
 
 		/* Assassins begin the game with a poisoned dagger */
 		if (tv == TV_SWORD && p_ptr->pclass == CLASS_ROGUE &&

@@ -785,12 +785,12 @@ static bool cast_life_spell(int spell)
 	case 26:
 		return bless_weapon();
 	case 27: /* Restoration */
-		(void)do_res_stat(A_STR);
-		(void)do_res_stat(A_INT);
-		(void)do_res_stat(A_WIS);
-		(void)do_res_stat(A_DEX);
-		(void)do_res_stat(A_CON);
-		(void)do_res_stat(A_CHR);
+		(void)do_res_stat(A_STR, 200);
+		(void)do_res_stat(A_INT, 200);
+		(void)do_res_stat(A_WIS, 200);
+		(void)do_res_stat(A_DEX, 200);
+		(void)do_res_stat(A_CON, 200);
+		(void)do_res_stat(A_CHR, 200);
 		(void)restore_level();
 		break;
 	case 28: /* Healing True */
@@ -2841,12 +2841,12 @@ static bool cast_chi_spell(int spell)
 		(void)fire_ball(dummy, dir, (plev * 2), randint1(3)+1);
 		break;
 	case 26: /*  Restoration  */
-		(void)do_res_stat(A_STR);
-		(void)do_res_stat(A_INT);
-		(void)do_res_stat(A_WIS);
-		(void)do_res_stat(A_DEX);
-		(void)do_res_stat(A_CON);
-		(void)do_res_stat(A_CHR);
+		(void)do_res_stat(A_STR, 200);
+		(void)do_res_stat(A_INT, 200);
+		(void)do_res_stat(A_WIS, 200);
+		(void)do_res_stat(A_DEX, 200);
+		(void)do_res_stat(A_CON, 200);
+		(void)do_res_stat(A_CHR, 200);
 		(void)restore_level();
       break;
 	case 27: /*  Summoning  */

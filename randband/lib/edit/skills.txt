@@ -2,71 +2,72 @@
    Skill             Effect
 
    Weapons
-      Sword
-      Axe
-      Hafted
-      Polearm
+1     Sword
+2     PoleArm
+3     Hafted
    Bows
-      Sling
-      Bow
-      Crossbow
+4     Sling
+5     Bow
+6     Crossbow
    Thrown
-      Weapons
-      Other
+7     Weapons
+8     Other
    Unarmed
-      Karate (aka Monk combat)
-   Assasinate        x3 damage if successful
+9     Karate (aka Monk combat)
+10 Assasinate        x3 damage if successful
 
-   Digging
+11 Digging
    MagicalResistance
-      Acid/Fire/Cold/Poison/Elec
-      Fear/Blind/Conf/Sound
-      Light/Dark/Shard/Nether/Nexus/Chaos
-      Disenchantment/Hold Life/Free Action
-   Stealth
+12    Acid/Fire/Cold/Poison/Elec
+13    Fear/Blind/Conf/Sound
+14    Light/Dark/Shard/Nether/Nexus/Chaos
+15    Disenchantment/Hold Life/Free Action
+16 Stealth
    Perception        (psuedo ids only)
-      Surroundings   (hints about what is on level if successful?)
-      Equipment
-      Magical
-   Searching
-   Trap Disarming
+17    Surroundings   (hints about what is on level if successful?)
+18    Equipment
+19    Magical
+20 Searching
+21 Trap Disarming
    Magical Devices
-      Rods
-      Staves
-      Wands
-      Activations
+22    Rods
+23    Staves
+24    Wands
+25    Activations
 
-   Health
-   Mystic Power
-   Dodging
+26 Health
+27 Mystic Power
+28 Dodging
    Repair
-      Weapons
-      Armor
-      Equipment
+29    Weapons
+30    Armor
+31    Equipment
+32 Merchant
 
    Magic Realms
-      General
-      Life
-      Death
-      Nature
-      Trump
-      Chaos
-      Sorcery
-      Chi
-      Elemental
-      Arcane
+33    General
+34    Life
+35    Death
+36    Nature
+37    Trump
+38    Chaos
+39    Sorcery
+40    Chi
+41    Elemental
+42    Arcane
 
    Lore              (partial or full info ids)
-      Food
-      Weapons
-      Armor
-      Magic
-      Artifact
+43    Food  (Mushrooms, Potions)
+44    Weapons (Any)
+45    Armor (Any)
+46    Magic (Rods, Staffs, Wands)
+47    Artifact (Any)
       Monster Lore
-         Power
-         Magic
-         Attack
+48       Power
+49       Magic
+50       Attack
 
+   (49)
 
 typedef struct player_race player_race;
 
@@ -148,6 +149,8 @@ struct player_type
 
    s16b stat_max[A_MAX];   /* Current "maximal" stat values */
    s16b stat_cur[A_MAX];   /* Current "natural" stat values */
+   s16b stat_tmp[A_MAX];   /*  Current "temp" stat values  */
+   s16b stat_tim[A_MAX];   /*  Current "time" till effect ends values  */
 
    s16b fast;              /* Timed -- Fast */
    s16b fast_val;
@@ -169,6 +172,7 @@ struct player_type
    s16b shield;            /* Timed -- Shield Spell */
    s16b blessed;           /* Timed -- Blessed */
    s16b tim_invis;         /* Timed -- See Invisible */
+   s16b tim_invis_val;
    s16b tim_infra;         /* Timed -- Infra Vision */
    s16b tim_infra_val;
 
@@ -184,8 +188,8 @@ struct player_type
    s16b opp_pois_val;
    s16b tim_esp;           /* Timed ESP */
    s16b wraith_form;       /* Timed wraithform */
-   s16b resist_magic;      /* Timed Resist Magic (later) */
-   s16b res_magic_val;
+   s16b resist_magic[MAX_REALMS];      /* Timed Resist Magic (later) */
+   s16b res_magic_val[MAX_REALMS];
 
    u32b muta1;             /* Mutations */
    u32b muta2;             /* Mutations */

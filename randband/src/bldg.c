@@ -414,9 +414,21 @@ static void display_build(const field_type *f_ptr, const store_type *b_ptr)
 
 	factor = ((factor + 100) * bo_ptr->inflate) / 400;
 
+   msg_print(NULL);
+	msg_format("%d  -  %d !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", f_ptr->data[0], b_ptr->owner);
+   msg_print(NULL);
 	Term_clear();
-	sprintf(tmp_str, "%s (%s) %s", owner_name, race_name, build_name);
-	prt(tmp_str, 2, 1);
+
+	sprintf(tmp_str, "%d - %d", f_ptr->data[0], b_ptr->owner);
+   prt(tmp_str,3,1);
+	sprintf(tmp_str, "%s", owner_name);
+   prt(tmp_str,3,1);
+	sprintf(tmp_str, "(%s)",race_name);
+   prt(tmp_str,4,1);
+	sprintf(tmp_str, "%s",build_name);
+   prt(tmp_str,5,1);
+/*	sprintf(tmp_str, "%s (%s) %s", owner_name, race_name, build_name);*/
+/*	prt(tmp_str, 2, 1);*/
 	prt("You may:", 19, 0);
 
 
@@ -1772,12 +1784,12 @@ bool building_healer(void)
 {
 	bool paid = FALSE;
 
-	if (do_res_stat(A_STR)) paid = TRUE;
-	if (do_res_stat(A_INT)) paid = TRUE;
-	if (do_res_stat(A_WIS)) paid = TRUE;
-	if (do_res_stat(A_DEX)) paid = TRUE;
-	if (do_res_stat(A_CON)) paid = TRUE;
-	if (do_res_stat(A_CHR)) paid = TRUE;
+	if (do_res_stat(A_STR, 200)) paid = TRUE;
+	if (do_res_stat(A_INT, 200)) paid = TRUE;
+	if (do_res_stat(A_WIS, 200)) paid = TRUE;
+	if (do_res_stat(A_DEX, 200)) paid = TRUE;
+	if (do_res_stat(A_CON, 200)) paid = TRUE;
+	if (do_res_stat(A_CHR, 200)) paid = TRUE;
 
 	if (paid)
 	{
@@ -1842,12 +1854,12 @@ static void bldg_process_command(building_type *bldg, int i)
 			paid = TRUE;
 			break;
 		case BACT_RESTORE: /* needs work */
-			if (do_res_stat(A_STR)) paid = TRUE;
-			if (do_res_stat(A_INT)) paid = TRUE;
-			if (do_res_stat(A_WIS)) paid = TRUE;
-			if (do_res_stat(A_DEX)) paid = TRUE;
-			if (do_res_stat(A_CON)) paid = TRUE;
-			if (do_res_stat(A_CHR)) paid = TRUE;
+			if (do_res_stat(A_STR, 200)) paid = TRUE;
+			if (do_res_stat(A_INT, 200)) paid = TRUE;
+			if (do_res_stat(A_WIS, 200)) paid = TRUE;
+			if (do_res_stat(A_DEX, 200)) paid = TRUE;
+			if (do_res_stat(A_CON, 200)) paid = TRUE;
+			if (do_res_stat(A_CHR, 200)) paid = TRUE;
 			break;
 		case BACT_GOLD: /* set timed reward flag */
 			if (!p_ptr->rewards[BACT_GOLD])

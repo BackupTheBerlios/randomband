@@ -35,7 +35,7 @@
 /*
  * Current version string
  */
-#define VERSION_STRING	"0.3.1"
+#define VERSION_STRING	"0.3.3"
 
 
 /*
@@ -1289,93 +1289,197 @@
  * Removed Temporarily (hopefully permanently)
  */
 
-/* Activation effects for random artifacts */
-#define ACT_SUNLIGHT            1
-#define ACT_BO_MISS_1           2
-#define ACT_BA_POIS_1           3
-#define ACT_BO_ELEC_1           4
-#define ACT_BO_ACID_1           5
-#define ACT_BO_COLD_1           6
-#define ACT_BO_FIRE_1           7
-#define ACT_BA_COLD_1           8
-#define ACT_BA_FIRE_1           9
-#define ACT_DRAIN_1             10
-#define ACT_BA_COLD_2           11
-#define ACT_BA_ELEC_2           12
-#define ACT_DRAIN_2             13
-#define ACT_VAMPIRE_1           14
-#define ACT_BO_MISS_2           15
-#define ACT_BA_FIRE_2           16
-#define ACT_BA_COLD_3           17
-#define ACT_BA_ELEC_3           18
-#define ACT_WHIRLWIND           19
-#define ACT_VAMPIRE_2           20
-#define ACT_CALL_CHAOS          21
-#define ACT_ROCKET              22
-#define ACT_DISP_EVIL           23
-#define ACT_BA_MISS_3           24
-#define ACT_DISP_GOOD           25
-/* 26 - 50 unused */
-#define ACT_CONFUSE             51
-#define ACT_SLEEP               52
-#define ACT_QUAKE               53
-#define ACT_TERROR              54
-#define ACT_TELE_AWAY           55
-#define ACT_BANISH_EVIL         56
-#define ACT_GENOCIDE            57
-#define ACT_MASS_GENO           58
-/* 59 - 64 unused */
-#define ACT_CHARM_ANIMAL        65
-#define ACT_CHARM_UNDEAD        66
-#define ACT_CHARM_OTHER         67
-#define ACT_CHARM_ANIMALS       68
-#define ACT_CHARM_OTHERS        69
-#define ACT_SUMMON_ANIMAL       70
-#define ACT_SUMMON_PHANTOM      71
-#define ACT_SUMMON_ELEMENTAL    72
-#define ACT_SUMMON_DEMON        73
-#define ACT_SUMMON_UNDEAD       74
-/* 75 - 80 unused */
-#define ACT_CURE_LW             81
-#define ACT_CURE_MW             82
-#define ACT_CURE_POISON         83
-#define ACT_REST_LIFE           84
-#define ACT_REST_ALL            85
-#define ACT_CURE_700            86
-#define ACT_CURE_1000           87
-/* 88 - 90 unused */
-#define ACT_ESP                 91
-#define ACT_BERSERK             92
-#define ACT_PROT_EVIL           93
-#define ACT_RESIST_ALL          94
-#define ACT_SPEED               95
-#define ACT_XTRA_SPEED          96
-#define ACT_WRAITH              97
-#define ACT_INVULN              98
-#define ACT_TELEPORT_1			99
-/* 100 - 110 unused */
-#define ACT_LIGHT               111
-#define ACT_MAP_LIGHT           112
-#define ACT_DETECT_ALL          113
-#define ACT_DETECT_XTRA         114
-#define ACT_ID_FULL             115
-#define ACT_ID_PLAIN            116
-#define ACT_RUNE_EXPLO          117
-#define ACT_RUNE_PROT           118
-#define ACT_SATIATE             119
-#define ACT_DEST_DOOR           120
-#define ACT_STONE_MUD           121
-#define ACT_RECHARGE            122
-#define ACT_ALCHEMY             123
-#define ACT_DIM_DOOR            124
-#define ACT_TELEPORT_2          125
-#define ACT_RECALL              126
-/* 127 unused */
-/* 128 - 255 Artifact activations */
+/*  New Activation Index  */
+/*
+ * This will probably be a bit messy and not sorted
+ */
+
+#define ACT_NONE                 0
+#define ACT_TELEPORT             1
+#define ACT_RESTORE_STR          2
+#define ACT_RESTORE_INT          3
+#define ACT_RESTORE_WIS          4
+#define ACT_RESTORE_DEX          5
+#define ACT_RESTORE_CON          6
+#define ACT_RESTORE_CHR          7
+#define ACT_RESTORE_STATS        8
+#define ACT_RESTORE_MANA         9
+#define ACT_CURE_LW              10
+#define ACT_BA_FIRE              11
+#define ACT_BA_COLD              12
+#define ACT_BA_ACID              13
+#define ACT_BA_ELEC              14
+#define ACT_ID_PLAIN             15
+#define ACT_ID_FULL              16
+#define ACT_CALL_CHAOS           17
+#define ACT_REMOVE_CURSE         18
+#define ACT_LITE                 19
+#define ACT_SUMMON_ANIMAL        20
+#define ACT_SUMMON_PHANTOM       21
+#define ACT_SUMMON_ELEMENTAL     22
+#define ACT_SUMMON_DEMON         23
+#define ACT_SUMMON_UNDEAD        24
+#define ACT_PHASE_DOOR           25
+#define ACT_TELEPORT_LEVEL       26
+#define ACT_BO_CONFUSE           27
+#define ACT_MAGIC_MAP            28
+#define ACT_STAR_REMOVE_CURSE    29
+#define ACT_DETECT_TREASURE      30
+#define ACT_OBJECT_DETECT        31
+#define ACT_TRAP_DETECT          32
+#define ACT_DOOR_STAIR_DETECT    33
+#define ACT_ACQUIREMENT          34
+#define ACT_STAR_ACQUIREMENT     35
+#define ACT_MASS_GENOCIDE        36
+#define ACT_TRAP_CREATION        37
+#define ACT_DEST_DOOR_TRAP       38
+#define ACT_CREATE_ARTIFACT      39
+#define ACT_RECHARGE             40
+#define ACT_GENOCIDE             41
+#define ACT_BA_DARKNESS          42
+#define ACT_PROT_EVIL            43
+#define ACT_SATIATE              44
+#define ACT_DISP_UNDEAD          45
+#define ACT_STAR_ENCHANT_WEAPON  46
+#define ACT_CURSE_WEAPON         47
+#define ACT_STAR_ENCHANT_ARMOR   48
+#define ACT_CURSE_ARMOR          49
+#define ACT_BLESS                50
+#define ACT_HOLY_CHANT           51
+#define ACT_HOLY_PRAYER          52
+#define ACT_RECALL               53
+#define ACT_STAR_DESTRUCTION     54
+#define ACT_CURING               55
+#define ACT_INVUNERABILITY       56
+#define ACT_NEW_LIFE             57
+#define ACT_CURE_SW              58
+#define ACT_CURE_CW              59
+#define ACT_HEALING              60
+#define ACT_EXPERIENCE           61
+#define ACT_SLEEP                62
+#define ACT_POISON               63
+#define ACT_LOSE_MEMORY          64
+#define ACT_ENLIGHTENMENT        65
+#define ACT_HEROISM              66
+#define ACT_BERSERK_STRENGTH     67
+#define ACT_BOLDNESS             68
+#define ACT_RESTORE_LIFE         69
+#define ACT_RES_FIRE             70
+#define ACT_RES_COLD             71
+#define ACT_SLOW_POISON          72
+#define ACT_NEUTRALIZE_POISON    73
+#define ACT_RESISTANCE           74
+#define ACT_STAR_RESISTANCE      75
+#define ACT_BO_LIGHT             76
+#define ACT_BO_TAME_MONSTER      77
+#define ACT_BO_COLD              78
+#define ACT_BO_FIRE              79
+#define ACT_STONE_TO_MUD         80
+#define ACT_BO_POLYMORPH         81
+#define ACT_BO_HEAL_MONSTER      82
+#define ACT_BO_HASTE_MONSTER     83
+#define ACT_BO_SLOW_MONSTER      84
+#define ACT_BA_HEAL_MONSTER      85
+#define ACT_BA_HASTE_MONSTER     86
+#define ACT_BA_SLOW_MONSTER      87
+#define ACT_BO_CONFUSE_MONSTER   88
+#define ACT_BO_SLEEP_MONSTER     89
+#define ACT_BO_DRAIN_LIFE        90
+#define ACT_BO_MAGIC_MISSILE     91
+#define ACT_BO_CLONE_MONSTER     92
+#define ACT_BO_SCARE_MONSTER     93
+#define ACT_BO_TELEPORT_OTHER    94
+#define ACT_BO_DISARM            95
+#define ACT_BA_POIS              96
+#define ACT_BO_WONDER            97
+#define ACT_BO_ACID              98
+#define ACT_BA_DRAGON_FIRE       99
+#define ACT_BA_DRAGON_ELEMENTAL  100
+#define ACT_ANNIHILATION         101
+#define ACT_BA_ROCKETS           102
+#define ACT_SUMMON_HOSTILE       103
+#define ACT_STARLIGHT            104
+#define ACT_DISPELL_EVIL         105
+#define ACT_PROBING              106
+#define ACT_STAR_PROBING         107
+#define ACT_POWER                108
+#define ACT_IDENT                109
+#define ACT_HOLINESS             110
+#define ACT_HAVOC                111
+#define ACT_FULL_DETECTION       112
+#define ACT_DEATH                113
+#define ACT_RUINATION            114
+#define ACT_DETONATIONS          115
+#define ACT_AUGMENTATION         116
+#define ACT_LIFE                 117
+#define ACT_SELF_KNOWLEDGE       118
+#define ACT_STAR_ENLIGHTENMENT   119
+#define ACT_STAR_SELF_KNOWLEDGE  120
+#define ACT_KNOWLEDGE            121
+#define ACT_BA_SHINING           122
+#define ACT_BA_LAW               123
+#define ACT_BA_CONF              124
+#define ACT_BA_SOUND             125
+#define ACT_BA_CHAOS             126
+#define ACT_BA_BALANCE           127
+#define ACT_BA_POWER             128
+/*  Defined Power Above  */
+/*  Non repertitive activations below  */
+#define ACT_INC_STR              129
+#define ACT_INC_INT              130
+#define ACT_INC_WIS              131
+#define ACT_INC_DEX              132
+#define ACT_INC_CON              133
+#define ACT_INC_CHR              134
+#define ACT_STR_TEMP             135
+#define ACT_INT_TEMP             136
+#define ACT_WIS_TEMP             137
+#define ACT_DEX_TEMP             138
+#define ACT_CON_TEMP             139
+#define ACT_CHR_TEMP             140
+#define ACT_STR_SUST_TEMP        141
+#define ACT_INT_SUST_TEMP        142
+#define ACT_WIS_SUST_TEMP        143
+#define ACT_DEX_SUST_TEMP        144
+#define ACT_CON_SUST_TEMP        145
+#define ACT_CHR_SUST_TEMP        146
+#define ACT_TEMP_STEALTH         147
+#define ACT_TEMP_SEARCH          148
+#define ACT_TEMP_INFRA           149
+#define ACT_TEMP_SPEED           150
+#define ACT_DEC_STR              151
+#define ACT_DEC_INT              152
+#define ACT_DEC_WIS              153
+#define ACT_DEC_DEX              154
+#define ACT_DEC_CON              155
+#define ACT_DEC_CHR              156
+#define ACT_TEMP_SLOW            157
+#define ACT_TEMP_STAR_RESIST     158
+#define ACT_TEMP_SUSTAIN         159
+#define ACT_TEMP_STAR_SUSTAIN    160
+#define ACT_TEMP_RES_POISON      161
+#define ACT_TEMP_RES_NETHER      162
+#define ACT_TEMP_RES_LIGHT       163
+#define ACT_TEMP_RES_DARK        164
+#define ACT_TEMP_FEARLESS        165
+#define ACT_TEMP_RES_CONFUSION   166
+#define ACT_TEMP_RES_CHAOS       167
+#define ACT_TEMP_RES_DISENCHANT  168
+#define ACT_TEMP_RES_BLINDNESS   169
+#define ACT_TEMP_RES_NEXUS       170
+#define ACT_TEMP_RES_SOUND       171
+#define ACT_TEMP_RES_SHARDS      172
+#define ACT_BLINDNESS            173
+#define ACT_FEAR                 174
+#define ACT_CONFUSION            175
+#define ACT_HALLUCINATION        176
+#define ACT_DISEASE              177
+#define ACT_PARALYSIS            178
+#define ACT_AGGRAVATION          179
+#define ACT_TEMP_SEE_INVIS       180
+#define ACT_TEMP_TELEPATHY       181
 
 /*** Object "tval" and "sval" codes ***/
-
-
 /*
  * The values for the "tval" field of various objects.
  *
@@ -2186,7 +2290,6 @@
 #define IDENT_MENTAL    0x20    /* Item information is known */
 #define IDENT_CURSED    0x40    /* Item is temporarily cursed */
 #define IDENT_BROKEN    0x80    /* Item is permanently worthless */
-
 
 
 /*

@@ -303,6 +303,11 @@ struct ego_item_type
 	u32b flags6;		/* Ego-Item Flags, set 3 */
 
    u16b activation;  /*  Activation Effect  */
+
+   bool aware;       /*  Aware of this type of Ego  */
+   bool tried;
+
+   u16b ego_num;     /*  Ego Num  */
 };
 
 
@@ -776,6 +781,7 @@ struct object_type
 
 	u16b inscription;	/* Inscription index */
 	u16b xtra_name;      /* Extra Name (Artifacts and ego items) */
+   u16b ego_num;
 
 	u32b flags1;        /* Flags, set 1 */
 	u32b flags2;        /* Flags, set 2 */
@@ -806,6 +812,8 @@ struct object_type
    u32b O_Durability;/* Original Durability level (HP) */
    u32b C_Durability;/* Current Durability level (HP) */
 
+	bool aware;			/* The player is "aware" of the item's effects */
+
 #ifdef SCRIPT_OBJ_KIND
 	char *name;
 
@@ -822,7 +830,6 @@ struct object_type
 	bool easy_know;		/* This object is always known (if aware) */
 
 
-	bool aware;			/* The player is "aware" of the item's effects */
 
 	bool tried;			/* The player has "tried" one of the items */
 #endif /* SCRIPT_OBJ_KIND */

@@ -685,7 +685,7 @@ extern void object_copy(object_type *o_ptr, const object_type *j_ptr);
 extern void add_ego_flags(object_type *o_ptr, int ego);
 extern bool make_artifact(object_type *o_ptr);
 extern void add_ego_power(int power, object_type *o_ptr);
-extern void apply_magic(object_type *o_ptr, int lev, int lev_dif, byte flags);
+extern void apply_magic(object_type *o_ptr, int lev, int lev_dif, byte flags, bool store);
 extern void init_match_hook(byte tval, byte sval);
 extern byte kind_is_match(int k_idx);
 extern void init_match_theme(obj_theme theme);
@@ -1002,13 +1002,14 @@ extern bool set_oppose_pois(int v);
 extern bool set_stun(int v);
 extern bool set_cut(int v);
 extern bool set_food(int v);
-extern bool inc_stat(int stat);
+extern bool inc_stat(int stat, int power);
 extern bool dec_stat(int stat, int amount, int permanent);
-extern bool res_stat(int stat);
+extern bool res_stat(int stat, int power);
 extern bool hp_player(int num);
+extern bool sp_player(int num);
 extern bool do_dec_stat(int stat);
-extern bool do_res_stat(int stat);
-extern bool do_inc_stat(int stat);
+extern bool do_res_stat(int stat, int power);
+extern bool do_inc_stat(int stat, int power);
 extern bool restore_level(void);
 extern bool lose_all_info(void);
 extern void gain_exp(s32b amount);
@@ -1048,7 +1049,7 @@ extern bool clean_shot(int y1, int x1, int y2, int x2, bool friendly);
 extern bool monst_spell_monst(int m_idx);
 
 /* artifact.c */
-extern bool create_artifact(object_type *o_ptr, bool a_scroll);
+extern bool create_artifact(object_type *o_ptr, bool a_scroll, bool store_made);
 extern int random_resistance(object_type *o_ptr, int specific, int artifact_bias);
 extern int random_misc(object_type *o_ptr, int artifact_bias);
 extern bool activate_effect(object_type *o_ptr);
@@ -1248,6 +1249,9 @@ extern bool field_action_issupplies_tester(field_type *f_ptr, vptr input);
 /* compress.c */
 extern void test_compress_module(void);
 
+extern bool act_magic(int px, int py, int act_num, int s_lev, int s_fail,
+                      int s_base, int s_bonus, int act_mult, int act_div,
+                      int cast_penalty, int beam_pct);
 
 /*
  * Hack -- conditional (or "bizarre") externs

@@ -7,7 +7,7 @@
 
 OBJS = \
       main.o main-ibm.o \
-      artifact.o avatar.o birth.o bldg.o \
+      actmagic.o artifact.o avatar.o birth.o bldg.o \
 	cave.o cmd1.o cmd2.o cmd3.o \
 	cmd4.o cmd5.o cmd6.o dungeon.o \
 	effects.o fields.o files.o flavor.o generate.o \

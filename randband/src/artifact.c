@@ -1191,7 +1191,7 @@ static void give_activation_power(object_type *o_ptr, int artifact_bias)
 
 	switch (artifact_bias)
 	{
-		case BIAS_ELEC:
+/*		case BIAS_ELEC:
 			chance = 101;
 			if (!one_in_(3))
 				type = ACT_BO_ELEC_1;
@@ -1350,14 +1350,17 @@ static void give_activation_power(object_type *o_ptr, int artifact_bias)
 			else
 				type = ACT_CURE_POISON;
 			break;
+         */
 	}
 
 	while (!type || (randint1(100) >= chance))
 	{
-		type = randint1(255);
+/*  TEMP FIX  */
+		type = randint1(181);
+      chance = 75;
 		switch (type)
 		{
-			case ACT_SUNLIGHT:
+/*			case ACT_SUNLIGHT:
 			case ACT_BO_MISS_1:
 			case ACT_BA_POIS_1:
 			case ACT_BO_ELEC_1:
@@ -1452,6 +1455,7 @@ static void give_activation_power(object_type *o_ptr, int artifact_bias)
 				break;
 			default:
 				chance = 0;
+      */
 		}
 	}
 
@@ -1515,7 +1519,7 @@ static void get_random_name(char *return_name, byte tval, int power)
 }
 
 
-bool create_artifact(object_type *o_ptr, bool a_scroll)
+bool create_artifact(object_type *o_ptr, bool a_scroll, bool store_made)
 {
 	object_type forge;
    object_type *to_ptr;
@@ -1557,14 +1561,14 @@ bool create_artifact(object_type *o_ptr, bool a_scroll)
    if (ArtPct[2] <= ART_ARMOR_PCT) CanMake[2] = 1; else CanMake[2] = 0;
    if (ArtPct[3] <= ART_JEWELRY_PCT) CanMake[3] = 1; else CanMake[3] = 0;
 
-   if (!(a_scroll)) /*  Normally Generated Artifact Change Only  */
+   if (!(a_scroll) && !(store_made)) /*  Normally Generated Artifact Change Only  */
    {
       while(TRUE && TotalArts > 0)
       {
          /* use kind_is_match */
          object_wipe(o_ptr);
          make_object(o_ptr, 15, qreward_theme[p_ptr->pclass]);
-         if(!(o_ptr->flags3 & TR3_INSTA_ART)) apply_magic(o_ptr, 10, 30, OC_FORCE_GOOD);
+         if(!(o_ptr->flags3 & TR3_INSTA_ART)) apply_magic(o_ptr, 10, 30, OC_FORCE_GOOD, FALSE);
 
          if (CanMake[0] && o_ptr->tval == TV_LITE)
          {
@@ -2011,7 +2015,7 @@ bool activate_effect(object_type *o_ptr)
 	/* Activate random artifacts and ego items */
 	switch (o_ptr->activate)
 	{
-		case ACT_SUNLIGHT:
+/*		case ACT_SUNLIGHT:
 		{
 			if (!get_aim_dir(&dir)) return FALSE;
 			msg_print("A line of sunlight appears.");
@@ -2187,15 +2191,12 @@ bool activate_effect(object_type *o_ptr)
 					y = py + ddy[dir];
 					x = px + ddx[dir];
 
-					/* paranoia */
 					if (!in_bounds2(y, x)) continue;
 
 					c_ptr = area(y, x);
 
-					/* Get the monster */
 					m_ptr = &m_list[c_ptr->m_idx];
 
-					/* Hack -- attack monsters */
 					if (c_ptr->m_idx && (m_ptr->ml || cave_floor_grid(c_ptr)))
 						py_attack(y, x);
 				}
@@ -2259,7 +2260,6 @@ bool activate_effect(object_type *o_ptr)
 			break;
 		}
 
-		/* Activate for other offensive action */
 
 		case ACT_CONFUSE:
 		{
@@ -2326,7 +2326,6 @@ bool activate_effect(object_type *o_ptr)
 			break;
 		}
 
-		/* Activate for summoning / charming */
 
 		case ACT_CHARM_ANIMAL:
 		{
@@ -2449,7 +2448,6 @@ bool activate_effect(object_type *o_ptr)
 			break;
 		}
 
-		/* Activate for healing */
 
 		case ACT_CURE_LW:
 		{
@@ -2519,7 +2517,6 @@ bool activate_effect(object_type *o_ptr)
 			break;
 		}
 
-		/* Activate for timed effect */
 
 		case ACT_ESP:
 		{
@@ -2609,7 +2606,6 @@ bool activate_effect(object_type *o_ptr)
 			break;
 		}
 
-		/* Activate for general purpose effect (detection etc.) */
 
 		case ACT_LIGHT:
 		{
@@ -2747,6 +2743,7 @@ bool activate_effect(object_type *o_ptr)
 			msg_format("Unknown activation effect: %d.", o_ptr->activate);
 			return FALSE;
 		}
+   */
 	}
 
 	return TRUE;

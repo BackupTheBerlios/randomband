@@ -348,6 +348,7 @@ static void rd_item(object_type *o_ptr)
 
 	/* Special pval */
 	rd_s16b(&o_ptr->pval);
+	rd_s16b(&o_ptr->pval2);
 
 	/* New method - old method removed. */
 	rd_byte(&o_ptr->discount);
@@ -375,6 +376,8 @@ static void rd_item(object_type *o_ptr)
 	rd_byte(&o_ptr->ident);
 
 	rd_byte(&o_ptr->marked);
+
+   rd_u16b(&o_ptr->ego_num);
 
 	/* Old flags */
 	rd_u32b(&o_ptr->flags1);
@@ -477,31 +480,24 @@ static void rd_item(object_type *o_ptr)
 		return;
 	}
 
-	/* The new flags as of [Z] 2.5.3 */
-	if (sf_version > 18)
-	{
-		/* The new flags */
-		rd_s32b(&o_ptr->cost);
+	/* The new flags */
+	rd_s32b(&o_ptr->cost);
 
-		rd_u16b(&o_ptr->activate);
+	rd_u16b(&o_ptr->activate);
 
-		rd_u32b(&o_ptr->kn_flags1);
-		rd_u32b(&o_ptr->kn_flags2);
-		rd_u32b(&o_ptr->kn_flags3);
-		rd_u32b(&o_ptr->kn_flags4);
-		rd_u32b(&o_ptr->kn_flags5);
-		rd_u32b(&o_ptr->kn_flags6);
+	rd_u32b(&o_ptr->kn_flags1);
+	rd_u32b(&o_ptr->kn_flags2);
+	rd_u32b(&o_ptr->kn_flags3);
+	rd_u32b(&o_ptr->kn_flags4);
+	rd_u32b(&o_ptr->kn_flags5);
+	rd_u32b(&o_ptr->kn_flags6);
 
-      rd_byte(&o_ptr->OCraftLevel);
-      rd_byte(&o_ptr->CCraftLevel);
-      rd_u32b(&o_ptr->O_Durability);
-      rd_u32b(&o_ptr->C_Durability);
-	}
-	else
-	{
-		/* Set the cost to something reasonable */
-		o_ptr->cost = k_ptr->cost;
-	}
+   rd_byte(&o_ptr->OCraftLevel);
+   rd_byte(&o_ptr->CCraftLevel);
+   rd_u32b(&o_ptr->O_Durability);
+   rd_u32b(&o_ptr->C_Durability);
+
+   rd_byte(&o_ptr->aware);
 
 	/* Repair non "wearable" items */
 	if (!wearable_p(o_ptr))
@@ -524,7 +520,7 @@ static void rd_item(object_type *o_ptr)
 		o_ptr->weight = k_ptr->weight;
 
 		/* Paranoia */
-		o_ptr->activate = 0;
+/*		o_ptr->activate = 0;*/
 
 		/* Reset flags */
 		o_ptr->flags1 = k_ptr->flags1;

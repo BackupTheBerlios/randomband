@@ -840,21 +840,21 @@ static void wiz_reroll_item(object_type *o_ptr)
 			case 'w': case 'W':
 			{
 				object_prep(q_ptr, o_ptr->k_idx);
-				apply_magic(q_ptr, p_ptr->depth, 0, OC_FORCE_BAD);
+				apply_magic(q_ptr, p_ptr->depth, 0, OC_FORCE_BAD, FALSE);
 				break;
 			}
 			/* Apply normal magic, but first clear object */
 			case 'n': case 'N':
 			{
 				object_prep(q_ptr, o_ptr->k_idx);
-				apply_magic(q_ptr, p_ptr->depth, 0, OC_NORMAL);
+				apply_magic(q_ptr, p_ptr->depth, 0, OC_NORMAL, FALSE);
 				break;
 			}
 			/* Apply great magic, but first clear object */
 			case 'e': case 'E':
 			{
 				object_prep(q_ptr, o_ptr->k_idx);
-				apply_magic(q_ptr, p_ptr->depth, 30, OC_FORCE_GOOD);
+				apply_magic(q_ptr, p_ptr->depth, 30, OC_FORCE_GOOD, FALSE);
 				break;
 			}
 			case 's': case 'S':
@@ -862,7 +862,7 @@ static void wiz_reroll_item(object_type *o_ptr)
 				object_prep(q_ptr, o_ptr->k_idx);
 
 				/* Make a random artifact */
-				(void)create_artifact(q_ptr, FALSE);
+				(void)create_artifact(q_ptr, FALSE, FALSE);
 				break;
 			}
 		}
@@ -1154,7 +1154,7 @@ static void wiz_create_item(void)
 	else
 	{*/
 		/* Apply magic */
-		apply_magic(q_ptr, p_ptr->depth, 0, 0);
+		apply_magic(q_ptr, p_ptr->depth, 0, 0, FALSE);
 /*	}*/
 
 	/* Drop the object from heaven */
@@ -1174,12 +1174,12 @@ static void do_cmd_wiz_cure_all(void)
 	(void)remove_all_curse();
 
 	/* Restore stats */
-	(void)res_stat(A_STR);
-	(void)res_stat(A_INT);
-	(void)res_stat(A_WIS);
-	(void)res_stat(A_CON);
-	(void)res_stat(A_DEX);
-	(void)res_stat(A_CHR);
+	(void)res_stat(A_STR, 200);
+	(void)res_stat(A_INT, 200);
+	(void)res_stat(A_WIS, 200);
+	(void)res_stat(A_CON, 200);
+	(void)res_stat(A_DEX, 200);
+	(void)res_stat(A_CHR, 200);
 
 	/* Restore the level */
 	(void)restore_level();

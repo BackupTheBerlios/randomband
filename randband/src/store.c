@@ -361,11 +361,11 @@ static byte	info_flags;
  * to adjust (by 200) to extract a usable multiplier.  Note that the
  * "greed" value is always something (?).
  */
-static u32b price_item(object_type *o_ptr, int greed, bool flip)
+static s32b price_item(object_type *o_ptr, int greed, bool flip)
 {
 	int 	factor;
 	int 	adjust;
-	u32b	price;
+	s32b	price;
 
 	const owner_type *ot_ptr = &owners[f_ptr->data[0]][st_ptr->owner];
 
@@ -1152,17 +1152,17 @@ static void store_create(void)
 		if (restricted & ST_REST_GREAT)
 		{
 			/* Apply some "low-level" magic (great) */
-			apply_magic(q_ptr, level, 30, OC_FORCE_GOOD);
+			apply_magic(q_ptr, level, 30, OC_FORCE_GOOD, TRUE);
 		}
 		else if (restricted & ST_REST_GOOD)
 		{
 			/* Apply some "low-level" magic (good) */
-			apply_magic(q_ptr, level, 15, OC_NONE);
+			apply_magic(q_ptr, level, 15, OC_NONE, TRUE);
 		}
 		else
 		{
 			/* Apply some "low-level" magic (normal) */
-			apply_magic(q_ptr, level, 0, OC_NONE);
+			apply_magic(q_ptr, level, 0, OC_NONE, TRUE);
 		}
 
 		/* Require valid object */

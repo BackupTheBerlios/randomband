@@ -1,7 +1,7 @@
 
 
                             ************************
-                            **  RandomBand 0.3.1  **
+                            **  RandomBand 0.3.3  **
                             ************************
 
               Based on Moria:    Copyright (c) 1985 Robert Alan Koeneke
@@ -14,6 +14,7 @@
         ZAngband 2.3.0 - ???:    The ZAngband DevTeam
 
       RandomBand 0.1.0 - ???:    Kenneth Strom
+                                 < the_one_relic@yahoo.com >
 
           Press ? for help and = for the options screen while playing.
 
